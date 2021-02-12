@@ -1,6 +1,5 @@
 import React from 'react';
 import {View, Text, StyleSheet} from "react-native";
-// import Foundation from 'react-native-vector-icons/Foundation';
 
 
 const HomeScreen = () => {
