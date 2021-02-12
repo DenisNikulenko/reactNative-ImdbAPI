@@ -1,16 +1,18 @@
 import React from 'react';
-import {View, Text, StyleSheet} from "react-native";
+import {View, Text, StyleSheet, Button} from 'react-native';
 
-const BookmarksScreen = () => {
-    return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-          <Text>Home Screen</Text>
-        </View>
-    );
-}
+const BookmarksScreen = ({navigation}) => {
+  return (
+    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+      <Text>Bookmarks Screen</Text>
+      {/* <Button
+        title="Go to Bookmarks"
+        onPress={() => navigation.navigate('Home')}
+      /> */}
+    </View>
+  );
+};
 
-const styles = StyleSheet.create({
-
-});
+const styles = StyleSheet.create({});
 
 export default BookmarksScreen;

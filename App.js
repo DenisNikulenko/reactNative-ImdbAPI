@@ -12,6 +12,7 @@ const Tab = createBottomTabNavigator();
 const App = () => {
   return (
     <NavigationContainer>
+      <Text>Hello</Text>
       <Tab.Navigator
         screenOptions={({route}) => ({
           tabBarIcon: ({focused, color, size}) => {
@@ -26,11 +27,11 @@ const App = () => {
           },
         })}
         tabBarOptions={{
-          activeTintColor: 'blue',
+          activeTintColor: 'red',
           inactiveTintColor: 'gray',
         }}>
         <Tab.Screen name="Home" component={HomeScreen} />
-        <Tab.Screen name="Bookmarks" component={BookmarksScreen} />
+        <Tab.Screen name="Bookmarks" component={BookmarksScreen} options={{ tabBarBadge: 3 }} />
       </Tab.Navigator>
     </NavigationContainer>
   );
