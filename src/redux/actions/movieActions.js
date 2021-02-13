@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   FETCHING_FILMS_FAILURE,
   FETCHING_FILMS_REQUEST,
@@ -9,30 +8,22 @@ export const fetchingFilmsRequest = () => ({type: FETCHING_FILMS_REQUEST});
 
 export const fetchingFilmsSuccess = (json) => ({
   type: FETCHING_FILMS_SUCCESS,
-  playload: json,
+  payload: json
 });
 
 export const fetchingFilmsFailure = (error) => ({
   type: FETCHING_FILMS_FAILURE,
-  playload: error,
+  payload: error,
 });
 
 export const fetchFilms = () => {
   return async dispatch => {
     dispatch(fetchingFilmsRequest());
     try {
-      let response = await fetch((
-        'https://imdb8.p.rapidapi.com/title/get-images?tconst=tt0944947&limit=25', {
-          method: 'GET',
-          headers: {
-            'x-rapidapi-key':
-              'adb453eb86msha69cd81f60ea734p10ef3bjsn283e60ec857f',
-            'x-rapidapi-host': 'imdb8.p.rapidapi.com',
-          }
-        }
-      ))
+      let response = await fetch("https://api.themoviedb.org/3/movie/popular?api_key=a0365c3dfe181648feb572b2dbf405c8")
       let json = await response.json();
-      dispatch(fetchingFilmsSuccess(json.results));
+      console.log(json)
+      dispatch(fetchingFilmsSuccess(json));
     } catch (error) {
       dispatch(fetchingFilmsFailure(error))
     }

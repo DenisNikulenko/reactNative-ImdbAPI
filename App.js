@@ -11,6 +11,7 @@ import BookmarksScreen from './src/screens/BookmarksScreen';
 
 const Tab = createBottomTabNavigator();
 
+
 const App = () => {
   return (
     <Provider store={store}>

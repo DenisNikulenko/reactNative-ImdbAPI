@@ -10,19 +10,19 @@ const initialState = {
     films: []
 }
 
-const filmsReducer = (state = initialState, action) => {
+const movieReducer = (state = initialState, action) => {
     switch(action.type) {
-        case FETCHING_FILMS_SUCCESS:
+        case FETCHING_FILMS_REQUEST:
             return {
                 ...state, isFetching: true
             }
         case FETCHING_FILMS_FAILURE:
             return {
-                ...state, isFetching: false, errorMessage: action.playload
+                ...state, isFetching: false, errorMessage: action.payload
             }
-        case FETCHING_FILMS_REQUEST: 
+        case FETCHING_FILMS_SUCCESS: 
             return {
-                ...state, isFetching: false, films: action.playload
+                ...state, isFetching: false, films: action.payload
             }
 
         default:
@@ -30,4 +30,4 @@ const filmsReducer = (state = initialState, action) => {
     }
 }
 
-export default filmsReducer
+export default movieReducer;
