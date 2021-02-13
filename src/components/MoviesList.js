@@ -14,6 +14,8 @@ import Stars from 'react-native-stars';
 
 import {IMAGE_URL} from '../utilities/apiUrl';
 import { THEME } from '../utilities/theme';
+
+
 const MoviesList = ({stateMovies}) => {
   const navigation = useNavigation(); 
   
@@ -21,7 +23,7 @@ const MoviesList = ({stateMovies}) => {
     
     return (
       <View style={styles.movieItem}>
-        <TouchableOpacity onPress={() =>  navigation.navigate("Bookmarks")}>
+        <TouchableOpacity onPress={() =>  navigation.navigate("Details", {id: item.id})}>
           <View style={styles.infoTitle}>
             <Text style={styles.infoTitleText}>{item.title}</Text>
             <Text style={styles.infoTitleDate}>

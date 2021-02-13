@@ -24,14 +24,20 @@ import DetailsScreen from "./src/screens/DetailsScreen";
 import Header from "./src/components/Header";
 
 const Tab = createBottomTabNavigator();
-const DetailsStack = createStackNavigator();
+const Stack = createStackNavigator();
+
+const HomeStack = () => {
+  return (
+    <Stack.Navigator headerMode="none">
+      <Stack.Screen  name="Home" component={HomeScreen} />
+      <Stack.Screen name="Details" component={DetailsScreen} />
+    </Stack.Navigator>
+  );
+}
 
 const App = () => {
   
-  // const DetailsStackScreen = () => (
-  //   <DetailsStack.Navigator>
-  //   </DetailsStack.Navigator>
-  // )
+
 
   return (
     <Provider store={store}>
@@ -56,7 +62,7 @@ const App = () => {
               activeTintColor: THEME.MAIN_COLOR,
               inactiveTintColor: 'gray',
             }}>
-            <Tab.Screen name="Home" component={HomeScreen} />
+            <Tab.Screen name="Home" component={HomeStack} />
 
             <Tab.Screen
               name="Bookmarks"
