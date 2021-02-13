@@ -18,4 +18,4 @@ const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 const store = createStoreWithMiddleware(rootReducer)
 const appPersist = persistStore(store)
 
-export default {store, appPersist};
+export {store, appPersist};
