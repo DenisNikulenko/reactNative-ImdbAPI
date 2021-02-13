@@ -11,7 +11,7 @@ import {
   ImageBackground
 } from 'react-native';
 
-// import {ReactStars} from 'react-stars';
+import Stars from 'react-native-stars';
 
 import {IMAGE_URL} from '../utilities/apiUrl';
 import { THEME } from '../utilities/theme';
@@ -40,14 +40,24 @@ const MoviesList = ({stateMovies}) => {
           <View style={styles.info}>
             <Text style={styles.infoText}>
               Рейтиг: {item.vote_average} 
+              <Stars
+                default={item.vote_average}
+                count={10}
+                spacing={item.vote_average} 
+                starSize={12}
+                half={true}
+                fullStar={require('../images/starFilled.png')}
+                emptyStar={require('../images/starEmpty.png')}
+                halfStar={require('../images/starHalf.png')}
+                disabled={true} />
             </Text>
-            <Text style={styles.infoText}>
+            {/* <Text style={styles.infoText}>
               Релиз: {item.release_date}
-            </Text>
+            </Text> */}
           </View>
         </TouchableOpacity>
         <TouchableOpacity style={styles.btnAddBookmark} onPress={() => {console.log("add")}} >
-          <Text style={styles.textAddBookMark} > Add to Wishlist</Text>
+          <Text style={styles.textAddBookMark} >Добавить в закладки</Text>
         </TouchableOpacity>
       </View>
     );
