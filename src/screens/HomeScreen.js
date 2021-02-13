@@ -1,17 +1,40 @@
-import React, {Component} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import React, {useEffect} from 'react';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+
+//Redux
+import {useSelector, useDispatch} from 'react-redux';
+import {fetchPopularMovies} from '../redux/actions/moviesActions';
+// import {addToBookmarks, removeFromBookmarks, fetchPopularMovies} from "../redux/actions"
 
 import MoviesList from '../components/MoviesList';
 
 const HomeScreen = ({navigation}) => {
+  const moviesReducer = useSelector((state) => state.moviesReducer);
+  const dispatch = useDispatch();
+
+  const {bookmarksList, movies} = moviesReducer;
+  console.log(movies);
+  useEffect(() => {
+    dispatch(fetchPopularMovies());
+  }, []);
+
   return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>Home Screen</Text>
-      <MoviesList />
+    <View style={styles.container}>
+      <Text style={styles.title}>Home Screen</Text>
+      <MoviesList stateMovies={movies} />
     </View>
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1, 
+    alignItems: 'center', 
+    // justifyContent: 'center'
+  },
+  title: {
+    fontSize: 30
+  }
+});
 
 export default HomeScreen;

@@ -37,8 +37,7 @@ const moviesReducer = (state = initialState, action) => {
       case REMOVE_FROM_BOOKMARKS: 
       return {
           ...state,
-          bookmarksList: state.bookmarksList.filter(movie => movies.id !== action.payload.id) 
-
+          bookmarksList: state.bookmarksList.filter(movie => movie.id !== action.payload.id) 
       }
 
     case FETCHING_MOVIES_FAILURE:

@@ -10,12 +10,16 @@ import {Provider} from 'react-redux';
 import {store, appPersist} from './src/redux/store';
 import {PersistGate} from 'redux-persist/integration/react';
 
-//Icons
+//Styles
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import {THEME} from "./src/utilities/theme";
 
 //Screens
 import HomeScreen from './src/screens/HomeScreen';
 import BookmarksScreen from './src/screens/BookmarksScreen';
+
+//Components
+import Header from "./src/components/Header";
 
 const Tab = createBottomTabNavigator();
 
@@ -24,7 +28,7 @@ const App = () => {
     <Provider store={store}>
       <PersistGate loading={null} persistor={appPersist}>
         <NavigationContainer>
-          <Text>Hello</Text>
+          <Header />
           <Tab.Navigator
             screenOptions={({route}) => ({
               tabBarIcon: ({focused, color, size}) => {
@@ -40,14 +44,14 @@ const App = () => {
               },
             })}
             tabBarOptions={{
-              activeTintColor: 'red',
+              activeTintColor: THEME.MAIN_COLOR,
               inactiveTintColor: 'gray',
             }}>
             <Tab.Screen name="Home" component={HomeScreen} />
             <Tab.Screen
               name="Bookmarks"
               component={BookmarksScreen}
-              options={{tabBarBadge: 3}}
+              options={{tabBarBadge: 3, color: "green"}}
             />
           </Tab.Navigator>
         </NavigationContainer>

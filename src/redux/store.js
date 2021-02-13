@@ -7,11 +7,12 @@ import moviesReducer from "./reducers/moviesReducer";
 
 const persistConfig = {
     key: "root",
-    storage: AsyncStorage 
+    storage: AsyncStorage,
+    whitelist: ["bookmarksList"] 
 }
 
 const rootReducer = combineReducers({
-    movies: persistReducer(persistConfig, moviesReducer)
+    moviesReducer: persistReducer(persistConfig, moviesReducer)
 })
 
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);

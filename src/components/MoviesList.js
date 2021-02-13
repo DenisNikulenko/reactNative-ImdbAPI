@@ -1,25 +1,19 @@
-import React, {useEffect} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
-import {useSelector, useDispatch} from 'react-redux';
-import {fetchPopularMovies} from '../redux/actions/moviesActions';
+import React from 'react';
+import {SafeAreaView, StyleSheet, FlatList} from 'react-native';
 
-const MoviesList = () => {
-  const dispatch = useDispatch();
-  const stateMovies = useSelector((state) => state.movies);
-  console.log(stateMovies);
-  
-  useEffect(() => {
-    dispatch(fetchPopularMovies());
-    console.log(stateMovies);
-  }, []);
+const MoviesList = ({stateMovies}) => {
+  //movie.title
+
+console.log(stateMovies)
 
   return (
-    <View>
-      <Text></Text>
-      <Text>Тут список</Text>
-      <Text>Тут список</Text>
-      <Text>Тут список</Text>
-    </View>
+    <SafeAreaView style={styles.container}>
+    {/* <FlatList
+      data={stateMovies}
+      renderItem={renderItem}
+      keyExtractor={item => item.id}
+    /> */}
+  </SafeAreaView>
   );
 };
 
