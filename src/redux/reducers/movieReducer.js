@@ -5,9 +5,9 @@ import {
   } from '../types';
 
 const initialState = {
+    movie: [],
     isFetching: false,
     errorMessage: "",
-    films: []
 }
 
 const movieReducer = (state = initialState, action) => {
