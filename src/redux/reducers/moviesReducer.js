@@ -1,28 +1,29 @@
 import {
-    FETCHING_FILMS_FAILURE,
-    FETCHING_FILMS_REQUEST,
-    FETCHING_FILMS_SUCCESS,
+    FETCHING_MOVIES_FAILURE,
+    FETCHING_MOVIES_REQUEST,
+    FETCHING_MOVIES_SUCCESS,
   } from '../types';
 
 const initialState = {
-    movie: [],
+    movies: [],
+    bookmarks: [],
     isFetching: false,
     errorMessage: "",
 }
 
-const movieReducer = (state = initialState, action) => {
+const moviesReducer = (state = initialState, action) => {
     switch(action.type) {
-        case FETCHING_FILMS_REQUEST:
+        case FETCHING_MOVIES_REQUEST:
             return {
                 ...state, isFetching: true
             }
-        case FETCHING_FILMS_FAILURE:
+        case FETCHING_MOVIES_FAILURE:
             return {
                 ...state, isFetching: false, errorMessage: action.payload
             }
-        case FETCHING_FILMS_SUCCESS: 
+        case FETCHING_MOVIES_SUCCESS: 
             return {
-                ...state, isFetching: false, films: action.payload
+                ...state, isFetching: false, movies: action.payload
             }
 
         default:
@@ -30,4 +31,4 @@ const movieReducer = (state = initialState, action) => {
     }
 }
 
-export default movieReducer;
+export default moviesReducer;

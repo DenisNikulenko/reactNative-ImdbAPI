@@ -1,18 +1,18 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
-import {fetchFilms} from '../redux/actions/movieActions';
+import {fetchPopularMovies} from '../redux/actions/moviesActions';
 
 const MoviesList = () => {
-  const stateFilms = useSelector((state) => state.movie);
-
   const dispatch = useDispatch();
-
+  const stateMovies = useSelector((state) => state.movies);
+  console.log(stateMovies);
+  
   useEffect(() => {
-    dispatch(fetchFilms());
+    dispatch(fetchPopularMovies());
+    console.log(stateMovies);
   }, []);
 
-  console.log(stateFilms);
   return (
     <View>
       <Text></Text>
