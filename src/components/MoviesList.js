@@ -8,56 +8,55 @@ import {
   TouchableOpacity,
   Dimensions,
   Image,
-  ImageBackground
 } from 'react-native';
-
+import { useNavigation } from '@react-navigation/native';
 import Stars from 'react-native-stars';
 
 import {IMAGE_URL} from '../utilities/apiUrl';
 import { THEME } from '../utilities/theme';
-
 const MoviesList = ({stateMovies}) => {
-  //movie.title
-  console.log(stateMovies);
-
-  // const Item = ({item, onPress, style}) => (
-  //   <TouchableOpacity onPress={onPress} style={[styles.item, style]}>
-  //     <Text style={styles.title}>{item.title}</Text>
-  //   </TouchableOpacity>
-  // );
-
+  const navigation = useNavigation(); 
+  
   const renderItem = ({item}) => {
+    
     return (
       <View style={styles.movieItem}>
-        <TouchableOpacity onPress={() => console.log(`id:${item.id}`)}>
-          <Text style={styles.movieTitle}>{item.title}</Text>
+        <TouchableOpacity onPress={() =>  navigation.navigate("Bookmarks")}>
+          <View style={styles.infoTitle}>
+            <Text style={styles.infoTitleText}>{item.title}</Text>
+            <Text style={styles.infoTitleDate}>
+              Релиз: {item.release_date}
+            </Text>
+          </View>
           <Image
             style={styles.movieImage}
             source={{
-              uri: `${IMAGE_URL}/${item.backdrop_path}`
+              uri: `${IMAGE_URL}/${item.backdrop_path}`,
             }}
           />
-          <View style={styles.info}>
-            <Text style={styles.infoText}>
-              Рейтиг: {item.vote_average} 
+          <View style={styles.infoRaite}>
+            <Text style={styles.infoRaiteText}>
+              Рейтиг: {item.vote_average}
               <Stars
                 default={item.vote_average}
                 count={10}
-                spacing={item.vote_average} 
+                spacing={item.vote_average}
                 starSize={12}
                 half={true}
                 fullStar={require('../images/starFilled.png')}
                 emptyStar={require('../images/starEmpty.png')}
                 halfStar={require('../images/starHalf.png')}
-                disabled={true} />
+                disabled={true}
+              />
             </Text>
-            {/* <Text style={styles.infoText}>
-              Релиз: {item.release_date}
-            </Text> */}
           </View>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.btnAddBookmark} onPress={() => {console.log("add")}} >
-          <Text style={styles.textAddBookMark} >Добавить в закладки</Text>
+        <TouchableOpacity
+          style={styles.btnAddBookmark}
+          onPress={() => {
+            console.log('add');
+          }}>
+          <Text style={styles.textAddBookMark}>Добавить в закладки</Text>
         </TouchableOpacity>
       </View>
     );
@@ -77,12 +76,11 @@ const MoviesList = ({stateMovies}) => {
 
 const styles = StyleSheet.create({
   movieItem: {
-    
     flexDirection: 'column',
     width: Dimensions.get('screen').width / 1.1 - 10,
     backgroundColor: '#FFF',
     borderRadius: 20,
-    height: Dimensions.get('screen').height / 1.85 - 10,
+    height: Dimensions.get('screen').height / 2 - 10,
     justifyContent: 'space-between',
     alignItems: 'center',
     marginHorizontal: 10,
@@ -90,8 +88,16 @@ const styles = StyleSheet.create({
     paddingBottom: 20
   },
 
-  movieTitle: {
-    fontSize: 26,
+  infoTitle: {
+    justifyContent: "space-around",
+    alignItems: "center"
+  },
+  infoTitleText: {
+    fontSize: 20,
+    color: "grey"
+  },
+  infoTitleDate: {
+    fontSize: 14,
     color: "grey"
   },
 
@@ -99,19 +105,19 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
     marginTop: 10,
     width: Dimensions.get('screen').width / 1.3,
-    height: '80%',
+    height: '75%',
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
   },
   
-  info: {
+  infoRaite: {
     flexDirection: "row",
     justifyContent: "space-around",
     marginTop: 5
   },
-  infoText: {
+  infoRaiteText: {
     color:"grey", 
     fontSize: 18
   },
@@ -125,7 +131,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-
   textAddBookMark: {
    color: '#FFF', 
    fontSize: 14, 

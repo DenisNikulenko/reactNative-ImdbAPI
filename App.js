@@ -3,6 +3,7 @@ import {StyleSheet, Text} from 'react-native';
 
 //Navigation
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createStackNavigator} from "@react-navigation/stack"
 import {NavigationContainer} from '@react-navigation/native';
 
 //Redux
@@ -17,13 +18,21 @@ import {THEME} from "./src/utilities/theme";
 //Screens
 import HomeScreen from './src/screens/HomeScreen';
 import BookmarksScreen from './src/screens/BookmarksScreen';
+import DetailsScreen from "./src/screens/DetailsScreen";
 
 //Components
 import Header from "./src/components/Header";
 
 const Tab = createBottomTabNavigator();
+const DetailsStack = createStackNavigator();
 
 const App = () => {
+  
+  // const DetailsStackScreen = () => (
+  //   <DetailsStack.Navigator>
+  //   </DetailsStack.Navigator>
+  // )
+
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={appPersist}>
@@ -48,6 +57,7 @@ const App = () => {
               inactiveTintColor: 'gray',
             }}>
             <Tab.Screen name="Home" component={HomeScreen} />
+
             <Tab.Screen
               name="Bookmarks"
               component={BookmarksScreen}
