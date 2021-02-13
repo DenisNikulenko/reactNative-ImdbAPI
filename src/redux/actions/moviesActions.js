@@ -3,10 +3,10 @@ import {
   FETCHING_MOVIES_SUCCESS,
   FETCHING_MOVIES_FAILURE,
   ADD_TO_BOOKMARKS,
-  REMOVE_FROM_BOOKMARKS
+  REMOVE_FROM_BOOKMARKS,
 } from '../types';
 
-import {BASE_URL, API_KEY} from '../../utilities/apiUrl';
+import {BASE_URL, API_KEY, LANGUAGE, TOP_POPULAR} from '../../utilities/apiUrl';
 
 // export const fetchingFilmsRequest = () => ({type: FETCHING_FILMS_REQUEST});
 
@@ -33,9 +33,10 @@ export const removeFromBookmarks = (movie) => ({
 export const fetchPopularMovies = () => {
   try { 
     return async (dispatch) => {   
-      let response = await fetch(`${BASE_URL}/movie/popular?${API_KEY}`);
+      let response = await fetch(`${BASE_URL}/${TOP_POPULAR}?${API_KEY}&page=2&${LANGUAGE}`);
       
       let json = await response.json();
+      
       if (json.results) {
         dispatch(fetchingSuccessFailure(json.results));
         console.log("Успешно")
@@ -48,20 +49,3 @@ export const fetchPopularMovies = () => {
       dispatch(fetchingMoviesFailure(error));
     }
 };
-
-//  const fetchFilmsPopular = () => {
-//   try { 
-//     return async (dispatch) => {   
-//       let response = await fetch(`${BASE_URL}/movie/popular?${API_KEY}`);
-      
-//       let json = await response.json();
-//       if (json.results) {
-//         dispatch(fetchingFilmsSuccess(json.results));
-//       } else {
-//         dispatch(fetchingFilmsFailure(error))
-//       }
-//     }
-//   } catch (error) {
-//       dispatch(fetchingFilmsFailure(error));
-//     }
-// };

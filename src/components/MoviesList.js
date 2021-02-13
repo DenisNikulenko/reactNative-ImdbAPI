@@ -1,7 +1,20 @@
 import React from 'react';
-import {SafeAreaView, StyleSheet, FlatList, View, Text, TouchableOpacity, Dimensions, Image} from 'react-native';
+import {
+  SafeAreaView,
+  StyleSheet,
+  FlatList,
+  View,
+  Text,
+  TouchableOpacity,
+  Dimensions,
+  Image,
+  ImageBackground
+} from 'react-native';
 
-import {IMAGE_URL} from "../utilities/apiUrl"
+// import {ReactStars} from 'react-stars';
+
+import {IMAGE_URL} from '../utilities/apiUrl';
+import { THEME } from '../utilities/theme';
 
 const MoviesList = ({stateMovies}) => {
   //movie.title
@@ -14,35 +27,36 @@ const MoviesList = ({stateMovies}) => {
   // );
 
   const renderItem = ({item}) => {
-    return ( 
+    return (
       <View style={styles.movieItem}>
-       <TouchableOpacity
-        onPress={() => console.log(`id:${item.id}`)} >
-         <Text>{item.title}</Text>
-         <Image
-         style={{ 
-          display: 'flex',
-          marginTop: 10, 
-          width: Dimensions.get('screen').width / 1.5, 
-          height: '90%',  
-          borderTopLeftRadius: 20,
-          borderTopRightRadius: 20,
-          borderBottomLeftRadius: 20,
-          borderBottomRightRadius: 20,                                   
-          }} 
+        <TouchableOpacity onPress={() => console.log(`id:${item.id}`)}>
+          <Text style={styles.movieTitle}>{item.title}</Text>
+          <Image
+            style={styles.movieImage}
             source={{
-              uri:`${IMAGE_URL}/w600_and_h900_bestv2/${item.backdrop_path}`
-            }} />
-       </TouchableOpacity>
+              uri: `${IMAGE_URL}/${item.backdrop_path}`
+            }}
+          />
+          <View style={styles.info}>
+            <Text style={styles.infoText}>
+              Рейтиг: {item.vote_average} 
+            </Text>
+            <Text style={styles.infoText}>
+              Релиз: {item.release_date}
+            </Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.btnAddBookmark} onPress={() => {console.log("add")}} >
+          <Text style={styles.textAddBookMark} > Add to Wishlist</Text>
+        </TouchableOpacity>
       </View>
     );
   };
-  //https://pbs.twimg.com/profile_images/486929358120964097/gNLINY67_400x400.png
-  //`${IMAGE_URL}/w600_and_h900_bestv2/${item.backdrop_path}&append_to_response=backdrop_path`
 
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
+        horizontal={false}
         data={stateMovies}
         renderItem={renderItem}
         keyExtractor={(item) => item.id.toString()}
@@ -53,17 +67,61 @@ const MoviesList = ({stateMovies}) => {
 
 const styles = StyleSheet.create({
   movieItem: {
-    display: 'flex',
+    
     flexDirection: 'column',
     width: Dimensions.get('screen').width / 1.1 - 10,
     backgroundColor: '#FFF',
     borderRadius: 20,
-    height:  Dimensions.get('screen').height / 2 - 10,
+    height: Dimensions.get('screen').height / 1.85 - 10,
     justifyContent: 'space-between',
     alignItems: 'center',
     marginHorizontal: 10,
     marginVertical: 10,
+    paddingBottom: 20
+  },
+
+  movieTitle: {
+    fontSize: 26,
+    color: "grey"
+  },
+
+  movieImage: {
+    resizeMode: "contain",
+    marginTop: 10,
+    width: Dimensions.get('screen').width / 1.3,
+    height: '80%',
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
+  },
+  
+  info: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    marginTop: 5
+  },
+  infoText: {
+    color:"grey", 
+    fontSize: 18
+  },
+
+  btnAddBookmark: {
+    backgroundColor: THEME.MAIN_COLOR,
+    width: '100%',
+    height: Dimensions.get('screen').width / 10,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+
+  textAddBookMark: {
+   color: '#FFF', 
+   fontSize: 14, 
+   fontWeight: '600' 
   }
+
 });
 
 export default MoviesList;
