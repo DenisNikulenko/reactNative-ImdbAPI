@@ -2,7 +2,7 @@ import React from 'react';
 import {View, StyleSheet, Text, StatusBar} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import {THEME} from "../utilities/theme"
+import {THEME} from "../utilities/theme";
 
 const Header = () => {
   return (

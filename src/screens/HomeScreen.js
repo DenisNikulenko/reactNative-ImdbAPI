@@ -13,7 +13,7 @@ const HomeScreen = ({navigation}) => {
   const dispatch = useDispatch();
 
   const {bookmarksList, movies} = moviesReducer;
-  console.log(movies);
+  // console.log(movies);
   useEffect(() => {
     dispatch(fetchPopularMovies());
   }, []);
