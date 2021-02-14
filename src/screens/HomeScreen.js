@@ -3,7 +3,7 @@ import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 
 //Redux
 import {useSelector, useDispatch} from 'react-redux';
-import {fetchPopularMovies} from '../redux/actions/moviesActions';
+import {fetchPopularMovies, fetchDetailsMovie} from '../redux/actions/moviesActions';
 // import {addToBookmarks, removeFromBookmarks, fetchPopularMovies} from "../redux/actions"
 
 import MoviesList from '../components/MoviesList';
@@ -13,9 +13,11 @@ const HomeScreen = ({navigation}) => {
   const dispatch = useDispatch();
 
   const {bookmarksList, movies} = moviesReducer;
-  // console.log(movies);
+
   useEffect(() => {
     dispatch(fetchPopularMovies());
+    //тут
+    dispatch(fetchDetailsMovie());
   }, []);
 
   return (
@@ -30,9 +32,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1, 
     alignItems: 'center', 
+    marginBottom: 40
   },
   title: {
-    fontSize: 25
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "grey"
   }
 });
 

@@ -36,13 +36,11 @@ const HomeStack = () => {
 }
 
 const App = () => {
-  
-
 
   return (
     <Provider store={store}>
-      <PersistGate loading={null} persistor={appPersist}>
-        <NavigationContainer>
+      <PersistGate  loading={null} persistor={appPersist}>
+        <NavigationContainer >
           <Header />
           <Tab.Navigator
             screenOptions={({route}) => ({
@@ -76,6 +74,10 @@ const App = () => {
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    marginBottom: 100
+  }
+});
 
 export default App;

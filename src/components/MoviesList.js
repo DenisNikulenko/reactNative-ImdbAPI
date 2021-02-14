@@ -9,40 +9,40 @@ import {
   Dimensions,
   Image,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import Stars from 'react-native-stars';
 
 import {IMAGE_URL} from '../utilities/apiUrl';
-import { THEME } from '../utilities/theme';
-
+import {THEME} from '../utilities/theme';
 
 const MoviesList = ({stateMovies}) => {
-  const navigation = useNavigation(); 
-  
+  const navigation = useNavigation();
+
   const renderItem = ({item}) => {
-    
+    const {id, release_date, backdrop_path, vote_average} = item;
+    let {title} = item
+    title.length > 30 ? title = `${title.substr(0,29)}` : null;
     return (
       <View style={styles.movieItem}>
-        <TouchableOpacity onPress={() =>  navigation.navigate("Details", {id: item.id})}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('Details', {id, title})}>
           <View style={styles.infoTitle}>
-            <Text style={styles.infoTitleText}>{item.title}</Text>
-            <Text style={styles.infoTitleDate}>
-              Релиз: {item.release_date}
-            </Text>
+            <Text style={styles.infoTitleText}>{title}</Text>
+            <Text style={styles.infoTitleDate}>Релиз: {release_date}</Text>
           </View>
           <Image
             style={styles.movieImage}
             source={{
-              uri: `${IMAGE_URL}/${item.backdrop_path}`,
+              uri: `${IMAGE_URL}/${backdrop_path}`,
             }}
           />
           <View style={styles.infoRaite}>
             <Text style={styles.infoRaiteText}>
-              Рейтиг: {item.vote_average}
+              Рейтиг: {vote_average}
               <Stars
-                default={item.vote_average}
+                default={vote_average}
                 count={10}
-                spacing={item.vote_average}
+                spacing={vote_average}
                 starSize={12}
                 half={true}
                 fullStar={require('../images/starFilled.png')}
@@ -87,24 +87,25 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginHorizontal: 10,
     marginVertical: 10,
-    paddingBottom: 20
+    paddingBottom: 15,
+    
   },
 
   infoTitle: {
-    justifyContent: "space-around",
-    alignItems: "center"
+    justifyContent: 'space-around',
+    alignItems: 'center',
   },
   infoTitleText: {
     fontSize: 20,
-    color: "grey"
+    color: 'grey',
   },
   infoTitleDate: {
     fontSize: 14,
-    color: "grey"
+    color: 'grey',
   },
 
   movieImage: {
-    resizeMode: "contain",
+    resizeMode: 'contain',
     marginTop: 10,
     width: Dimensions.get('screen').width / 1.3,
     height: '75%',
@@ -113,15 +114,15 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
   },
-  
+
   infoRaite: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    marginTop: 5
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginTop: 5,
   },
   infoRaiteText: {
-    color:"grey", 
-    fontSize: 18
+    color: 'grey',
+    fontSize: 18,
   },
 
   btnAddBookmark: {
@@ -131,14 +132,13 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   textAddBookMark: {
-   color: '#FFF', 
-   fontSize: 14, 
-   fontWeight: '600' 
-  }
-
+    color: '#FFF',
+    fontSize: 14,
+    fontWeight: '600',
+  },
 });
 
 export default MoviesList;

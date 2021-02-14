@@ -2,6 +2,7 @@ import {
   FETCHING_MOVIES_FAILURE,
   FETCHING_MOVIES_REQUEST,
   FETCHING_MOVIES_SUCCESS,
+  FETCHING_DETAILS_REQUEST,
   FETCHING_DETAILS_SUCCESS,
   FETCHING_DETAILS_FAILURE,
   ADD_TO_BOOKMARKS,
@@ -36,6 +37,12 @@ const moviesReducer = (state = initialState, action) => {
           ...state,
           isFetching: false,
           errorMessage: action.payload,
+        };
+
+      case FETCHING_DETAILS_REQUEST:
+        return {
+          ...state,
+          isFetching: true,
         };
   
       case FETCHING_DETAILS_SUCCESS:
