@@ -15,8 +15,8 @@ import Stars from 'react-native-stars';
 import {IMAGE_URL} from '../utilities/apiUrl';
 import {THEME} from '../utilities/theme';
 
-const MoviesList = ({stateMovies, didTapCurrentMovie}) => {
-  console.log(didTapCurrentMovie)
+const MoviesList = ({stateMovies, didTapCurrentMovie, isExist, addToBookMarkList, removeFromBookmarks}) => {
+  // console.log(didTapCurrentMovie)
   const navigation = useNavigation();
 
   const renderItem = ({item}) => {
@@ -25,8 +25,10 @@ const MoviesList = ({stateMovies, didTapCurrentMovie}) => {
     title.length > 30 ? title = `${title.substr(0,29)}` : null;
     return (
       <View style={styles.movieItem}>
+        {/* // onPress={() => navigation.navigate('Details', {id, title})} */}
         <TouchableOpacity
-          onPress={() => navigation.navigate('Details', {id, title})}>
+          onPress={()=> didTapCurrentMovie(item,id,title)}
+         >
           <View style={styles.infoTitle}>
             <Text style={styles.infoTitleText}>{title}</Text>
             <Text style={styles.infoTitleDate}>Релиз: {release_date}</Text>
@@ -54,13 +56,19 @@ const MoviesList = ({stateMovies, didTapCurrentMovie}) => {
             </Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.btnAddBookmark}
-          onPress={() => {
-            console.log('add');
-          }}>
-          <Text style={styles.textAddBookMark}>Добавить в закладки</Text>
-        </TouchableOpacity>
+        {isExist(item) ?
+          <TouchableOpacity
+            style={styles.btnAddBookmarkTrue}
+            onPress={()=> removeFromBookmarks(item)} >
+            <Text style={styles.textAddBookMark}>Удалить из закладок</Text>
+          </TouchableOpacity>
+          :
+          <TouchableOpacity
+            style={styles.btnAddBookmarkFalse}
+            onPress={()=> addToBookMarkList(item)} >
+            <Text style={styles.textAddBookMark}>Добавить в закладки</Text>
+          </TouchableOpacity>
+      }
       </View>
     );
   };
@@ -68,7 +76,7 @@ const MoviesList = ({stateMovies, didTapCurrentMovie}) => {
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
-        horizontal={false}
+        showsVerticalScrollIndicator={false} 
         data={stateMovies}
         renderItem={renderItem}
         keyExtractor={(item) => item.id.toString()}
@@ -126,7 +134,16 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
 
-  btnAddBookmark: {
+  btnAddBookmarkTrue: {
+    backgroundColor: "lightgreen",
+    width: '100%',
+    height: Dimensions.get('screen').height / 20,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  btnAddBookmarkFalse: {
     backgroundColor: THEME.MAIN_COLOR,
     width: '100%',
     height: Dimensions.get('screen').height / 20,
@@ -135,6 +152,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+
   textAddBookMark: {
     color: '#fff',
     fontSize: 16,
