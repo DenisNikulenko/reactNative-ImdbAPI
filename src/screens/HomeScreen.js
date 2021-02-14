@@ -1,9 +1,9 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 
 //Redux
 import {useSelector, useDispatch} from 'react-redux';
-import {fetchPopularMovies, fetchDetailsMovie} from '../redux/actions/moviesActions';
+import {fetchPopularMovies, fetchDetailsMovie, addToBookmarks,removeFromBookmarks} from '../redux/actions/moviesActions';
 // import {addToBookmarks, removeFromBookmarks, fetchPopularMovies} from "../redux/actions"
 
 import MoviesList from '../components/MoviesList';
@@ -14,16 +14,37 @@ const HomeScreen = ({navigation}) => {
 
   const {bookmarksList, movies} = moviesReducer;
 
+  const [currentMovie, setCurrentMovie] = useState(undefined);
+
   useEffect(() => {
+{}
     dispatch(fetchPopularMovies());
     //тут
     dispatch(fetchDetailsMovie());
   }, []);
 
+  useEffect(()=>{
+    if(movies.length > 0) {
+      setCurrentMovie(movies[0])
+    }
+  }, [movies])
+
+  const didTapCurrentMovie = (movie) => {
+    setCurrentMovie(movie)
+  }
+
+  const onTapAddToBookmarkList = (movie) => {
+     
+  }
+
+  const onTapRemoveFromBookmarkList = (movie) => {
+
+  }
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>ТОП популярных фильмов</Text>
-      <MoviesList stateMovies={movies} />
+      <MoviesList didTapCurrentMovie={didTapCurrentMovie} stateMovies={movies} />
     </View>
   );
 };

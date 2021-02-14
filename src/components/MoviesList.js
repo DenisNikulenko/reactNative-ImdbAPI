@@ -15,7 +15,8 @@ import Stars from 'react-native-stars';
 import {IMAGE_URL} from '../utilities/apiUrl';
 import {THEME} from '../utilities/theme';
 
-const MoviesList = ({stateMovies}) => {
+const MoviesList = ({stateMovies, didTapCurrentMovie}) => {
+  console.log(didTapCurrentMovie)
   const navigation = useNavigation();
 
   const renderItem = ({item}) => {

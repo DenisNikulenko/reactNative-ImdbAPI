@@ -41,15 +41,19 @@ export const fetchingDetailsFailure = (error) => ({
 
 
 
-export const addToBookmarks = (movie) => ({
-  type: ADD_TO_BOOKMARKS,
-  payload: movie
-})
+export const addToBookmarks = (movie) => (dispatch) => {
+  dispatch({  
+    type: ADD_TO_BOOKMARKS,
+    payload: movie
+  })
+}
 
-export const removeFromBookmarks = (movie) => ({
-  type: REMOVE_FROM_BOOKMARKS,
-  payload: movie
-})
+export const removeFromBookmarks = (movie) => (dispatch) => {
+  dispatch({
+    type: REMOVE_FROM_BOOKMARKS,
+    payload: movie
+  })
+}
 
 
 
