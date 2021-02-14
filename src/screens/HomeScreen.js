@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, ActivityIndicator} from 'react-native';
 
 //Redux
 import {useSelector, useDispatch} from 'react-redux';
@@ -11,12 +11,15 @@ import {
 } from '../redux/actions/moviesActions';
 
 import MoviesList from '../components/MoviesList';
+import {THEME} from '../utilities/theme';
 
 const HomeScreen = () => {
   const moviesReducer = useSelector((state) => state.moviesReducer);
   const dispatch = useDispatch();
 
   const {bookmarksList, movies} = moviesReducer;
+  const isReady = moviesReducer.isFetching;
+
 
   useEffect(() => {
     dispatch(fetchPopularMovies());
@@ -38,17 +41,37 @@ const HomeScreen = () => {
     return false;
   };
 
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>ТОП популярных фильмов</Text>
-      <MoviesList
-        addToBookMarkList={onTapAddToBookmarkList}
-        removeFromBookmarks={onTapRemoveFromBookmarkList}
-        isExist={isExist}
-        stateMovies={movies}
-      />
-    </View>
-  );
+  let content;
+  if (isReady) {
+    return (content = (
+      <View style={styles.indicator}>
+        <ActivityIndicator size="large" color={THEME.MAIN_COLOR} />
+      </View>
+    ));
+  } else {
+    return (content = (
+      <View style={styles.container}>
+        <Text style={styles.title}>ТОП популярных фильмов</Text>
+        <MoviesList
+          addToBookMarkList={onTapAddToBookmarkList}
+          removeFromBookmarks={onTapRemoveFromBookmarkList}
+          isExist={isExist}
+          stateMovies={movies}
+        />
+      </View>
+    ));
+  }
+
+  return {content};
+  // <View style={styles.container}>
+  //   <Text style={styles.title}>ТОП популярных фильмов</Text>
+  //   <MoviesList
+  //     addToBookMarkList={onTapAddToBookmarkList}
+  //     removeFromBookmarks={onTapRemoveFromBookmarkList}
+  //     isExist={isExist}
+  //     stateMovies={movies}
+  //   />
+  // </View>
 };
 
 const styles = StyleSheet.create({
@@ -61,6 +84,11 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     color: 'grey',
+  },
+  indicator: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 

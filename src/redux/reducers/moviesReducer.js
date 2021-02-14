@@ -13,7 +13,7 @@ const initialState = {
   movies: [],
   detailsMovie: null,
   bookmarksList: [],
-  isFetching: false,
+  isFetching: true,
   errorMessage: '',
 };
 
@@ -63,7 +63,7 @@ const moviesReducer = (state = initialState, action) => {
     case ADD_TO_BOOKMARKS: 
       return {
           ...state,
-          bookmarksList:[...state.bookmarksList, action.payload]
+          bookmarksList:[...state.bookmarksList, action.payload],
       }
       
       case REMOVE_FROM_BOOKMARKS: 
