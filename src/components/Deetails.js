@@ -9,11 +9,11 @@ import {
   Dimensions,
   TouchableOpacity,
 } from 'react-native';
-import {IMAGE_URL} from '../utilities/apiUrl';
-import {AppButton} from '../components/ui/AppButton';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import {THEME} from '../utilities/theme';
 import {useNavigation} from '@react-navigation/native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+
+import {IMAGE_URL} from '../utilities/apiUrl';
+import {THEME} from '../utilities/theme';
 
 export const Details = ({movieDetails}) => {
   const [container, setcontainer] = useState({});
@@ -22,7 +22,6 @@ export const Details = ({movieDetails}) => {
   useEffect(() => {
     setcontainer({...movieDetails});
   }, [movieDetails]);
-  console.log(container);
 
   const {
     backdrop_path,
@@ -86,7 +85,7 @@ export const Details = ({movieDetails}) => {
               <Ionicons
                 onPress={() => navigation.goBack()}
                 style={{color: 'white', width: 50, height: 50}}
-                name="return-down-back"
+                name="arrow-back"
                 size={40}
               />
             </TouchableOpacity>
@@ -95,6 +94,7 @@ export const Details = ({movieDetails}) => {
           
 
           <View style={styles.opacityBlockBottom}></View>
+          
           <View style={styles.descriptionBlockBottom}>
             <Text style={{color: 'white', fontSize: 16}}>
               Рейтинг: <Text style={styles.textBold}>{vote_average}</Text>

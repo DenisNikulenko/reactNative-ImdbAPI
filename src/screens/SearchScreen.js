@@ -1,24 +1,28 @@
-import React from 'react';
-import {View, StyleSheet, TextInput, TouchableOpacity, Dimensions} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {View, StyleSheet, TextInput, TouchableOpacity, Dimensions, Text} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { THEME } from '../utilities/theme';
 
 const SearchScreen = () => {
+  const [title, setTitle] = useState("")
+
   return (
     <View style={styles.conteainer}>
       <View style={styles.searchBlock}>
         <TextInput
-          // value={}
-          onChangeText={() => console.log("hello")}
+          value={title}
+          onChangeText={setTitle}
           style={styles.searchInput}
           placeholder="Введите название фильма..."
           maxLength={64}
           />
         <TouchableOpacity style={styles.serchBtn}>
-          <Ionicons name="search" color={THEME.MAIN_COLOR} size={28} />
+          <Ionicons name="search" color={THEME.MAIN_COLOR} size={30} />
         </TouchableOpacity>
       </View>
-      <View style={styles.contentBlock}></View>
+      <View style={styles.contentBlock}>
+        <Text style={styles.contentBlockTitle}>У этого API только по id поиск :(</Text>
+      </View>
     </View>
   );
 };
@@ -36,29 +40,38 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
-    height: 70,
-    borderBottomColor: THEME.GREY,
-    borderBottomWidth: 1,
+    height: 60,
+    backgroundColor: THEME.LIGHT_GREY,
+    borderTopEndRadius: 15
   },
 
   searchInput: {
     padding: 10,
+    backgroundColor: THEME.WHITE,
     borderBottomColor: THEME.MAIN_COLOR,
     borderBottomWidth: 2,
+    borderBottomRightRadius: 20,
     width: "75%",
-    height: 60,
+    height: 55,
   },
 
   serchBtn:{
     alignItems: "center",
     justifyContent: "center",
-    marginTop: 15,
     width: "15%",
     height: "100%",
   },
 
 
   contentBlock: {
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: Dimensions.get("screen").height / 3,
+  },
+
+  contentBlockTitle: {
+    fontSize: 20,
+    fontWeight: "bold"
   }
 
 });
