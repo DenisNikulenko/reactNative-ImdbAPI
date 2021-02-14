@@ -18,6 +18,7 @@ import {THEME} from "./src/utilities/theme";
 //Screens
 import HomeScreen from './src/screens/HomeScreen';
 import BookmarksScreen from './src/screens/BookmarksScreen';
+import SearchScreen from "./src/screens/SearchScreen";
 import DetailsScreen from "./src/screens/DetailsScreen";
 
 //Components
@@ -51,6 +52,8 @@ const App = () => {
                   iconName = focused ? 'home' : 'home-outline';
                 } else if (route.name === 'Bookmarks') {
                   iconName = focused ? 'star' : 'star-outline';
+                } else if (route.name === 'Search') {
+                  iconName = focused ? 'search' : 'search-outline';
                 }
 
                 return <Ionicons name={iconName} size={size} color={color} />;
@@ -61,7 +64,7 @@ const App = () => {
               inactiveTintColor: 'gray',
             }}>
             <Tab.Screen name="Home" component={HomeStack} />
-
+            <Tab.Screen name="Search" component={SearchScreen} />
             <Tab.Screen
               name="Bookmarks"
               component={BookmarksScreen}
