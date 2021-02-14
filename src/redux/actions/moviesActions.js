@@ -58,14 +58,11 @@ export const removeFromBookmarks = (movie) => ({
 export const fetchPopularMovies = () => {
   try { 
     return async (dispatch) => {
-      dispatch(fetchingMovieRequest())
+      dispatch(fetchingMovieRequest());
 
       let response = await fetch(`${BASE_URL}/${TOP_POPULAR}?${API_KEY}&page=1&${LANGUAGE}`);
       let json = await response.json();
 
-      // if (json.results) {
-      //   dispatch(fetchingMovieFailure(json.results))
-      // }
       json.results ? dispatch(fetchingMovieFailure(json.results)) :  dispatch(fetchingMoviesFailure(error));
     }
   } catch (error) {
@@ -76,14 +73,11 @@ export const fetchPopularMovies = () => {
 export const fetchDetailsMovie = (id) => {
   try { 
     return async (dispatch) => {
-      dispatch(fetchingMovieRequest())   
+      dispatch(fetchingMovieRequest());   
+
       let response = await fetch(`${BASE_URL}/movie/${id}?${API_KEY}&${LANGUAGE}`);
-      
       let json = await response.json();
 
-      // if (json) {
-      //   dispatch(fetchingDetailsSuccess(json));
-      // }
       json ? dispatch(fetchingDetailsSuccess(json)) : fetchingMoviesFailure(error);
     }
     

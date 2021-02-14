@@ -128,15 +128,15 @@ const styles = StyleSheet.create({
   btnAddBookmark: {
     backgroundColor: THEME.MAIN_COLOR,
     width: '100%',
-    height: Dimensions.get('screen').width / 10,
+    height: Dimensions.get('screen').height / 20,
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
     justifyContent: 'center',
     alignItems: 'center',
   },
   textAddBookMark: {
-    color: '#FFF',
-    fontSize: 14,
+    color: '#fff',
+    fontSize: 16,
     fontWeight: '600',
   },
 });

@@ -25,12 +25,12 @@ const MovieDetails = ({route}) => {
 
   return (
     <View>
-      <View style={styles.container}>
+      {/* <View style={styles.container}>
         <AppButton onPress={() => navigation.goBack()}>
           <Ionicons name="return-down-back" size={20} />
         </AppButton>
         <Text style={styles.title}>{title}</Text>
-      </View>
+      </View> */}
       <View>
         <Details movieDetails={movieDetails} />
       </View>
