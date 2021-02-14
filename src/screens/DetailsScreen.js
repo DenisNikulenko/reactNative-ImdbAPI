@@ -1,6 +1,5 @@
 import React, {useEffect} from 'react';
 import {View, StyleSheet} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
 import {useSelector, useDispatch} from 'react-redux';
 import {fetchDetailsMovie} from '../redux/actions/moviesActions';
 
