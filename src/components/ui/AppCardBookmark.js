@@ -8,19 +8,21 @@ import {
   Dimensions,
 } from 'react-native';
 
-import {useDispatch} from "react-redux";
 import {removeFromBookmarks} from "../../redux/actions/moviesActions"
+import {useNavigation} from '@react-navigation/native';
+import {useDispatch} from "react-redux";
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {IMAGE_URL} from '../../utilities/apiUrl';
 
-
+//onPress={() => navigation.navigate('Details')}
 const AppCardBookmark = ({item}) => {
+  const navigation = useNavigation()
 	const dispatch = useDispatch();
-	const {poster_path, title} = item;
+	const {poster_path, id, title} = item;
 
   return (
-    <View style={styles.movieCard}>
+    <TouchableOpacity style={styles.movieCard} onPress={() => navigation.navigate('Details', {id,title})}>
       <Image
         style={styles.movieCardIamge}
         resizeMode="stretch"
@@ -34,7 +36,7 @@ const AppCardBookmark = ({item}) => {
         onPress={() => dispatch(removeFromBookmarks(item))} >
         	<Ionicons name="md-star-outline" color="white" size={26} />
       </TouchableOpacity>
-    </View>
+    </TouchableOpacity>
   );
 };
 

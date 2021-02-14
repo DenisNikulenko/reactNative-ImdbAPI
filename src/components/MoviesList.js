@@ -15,8 +15,7 @@ import Stars from 'react-native-stars';
 import {IMAGE_URL} from '../utilities/apiUrl';
 import {THEME} from '../utilities/theme';
 
-const MoviesList = ({stateMovies, didTapCurrentMovie, isExist, addToBookMarkList, removeFromBookmarks}) => {
-  // console.log(didTapCurrentMovie)
+const MoviesList = ({stateMovies, isExist, addToBookMarkList, removeFromBookmarks}) => {
   const navigation = useNavigation();
 
   const renderItem = ({item}) => {
@@ -25,9 +24,8 @@ const MoviesList = ({stateMovies, didTapCurrentMovie, isExist, addToBookMarkList
     title.length > 30 ? title = `${title.substr(0,29)}` : null;
     return (
       <View style={styles.movieItem}>
-        {/* // onPress={() => navigation.navigate('Details', {id, title})} */}
         <TouchableOpacity
-          onPress={()=> didTapCurrentMovie(item,id,title)}
+          onPress={()=> navigation.navigate('Details', {id, title})}
          >
           <View style={styles.infoTitle}>
             <Text style={styles.infoTitleText}>{title}</Text>

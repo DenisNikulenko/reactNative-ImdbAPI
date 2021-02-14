@@ -1,6 +1,8 @@
 import React from 'react';
-import {View, Text, StyleSheet, FlatList} from 'react-native';
+import {View, Text, StyleSheet, FlatList, TouchableOpacity} from 'react-native';
+
 import {useSelector} from 'react-redux';
+
 import AppCardBookmark from '../components/ui/AppCardBookmark';
 
 const BookmarksScreen = () => {
@@ -9,7 +11,7 @@ const BookmarksScreen = () => {
   );
 
   const renderItem = ({item}) => <AppCardBookmark item={item} />;
-
+  console.log(bookMarksList)
   return (
     <View style={styles.container}>
       <Text style={styles.textTitle}>

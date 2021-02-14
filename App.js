@@ -7,7 +7,7 @@ import {createStackNavigator} from "@react-navigation/stack"
 import {NavigationContainer} from '@react-navigation/native';
 
 //Redux
-import {Provider} from 'react-redux';
+import {Provider, useSelector} from 'react-redux';
 import {store, appPersist} from './src/redux/store';
 import {PersistGate} from 'redux-persist/integration/react';
 
@@ -31,6 +31,15 @@ const HomeStack = () => {
   return (
     <Stack.Navigator headerMode="none">
       <Stack.Screen  name="Home" component={HomeScreen} />
+      <Stack.Screen name="Details" component={DetailsScreen} />
+    </Stack.Navigator>
+  );
+}
+
+const BookmarksStack = () => {
+  return (
+    <Stack.Navigator headerMode="none">
+      <Stack.Screen  name="Bookmarks" component={BookmarksScreen} />
       <Stack.Screen name="Details" component={DetailsScreen} />
     </Stack.Navigator>
   );
@@ -62,12 +71,13 @@ const App = () => {
             tabBarOptions={{
               activeTintColor: THEME.MAIN_COLOR,
               inactiveTintColor: 'gray',
+              width: "100%"
             }}>
             <Tab.Screen name="Home" component={HomeStack} />
             <Tab.Screen name="Search" component={SearchScreen} />
             <Tab.Screen
               name="Bookmarks"
-              component={BookmarksScreen}
+              component={BookmarksStack}
               options={{tabBarBadge: 3, color: "green"}}
             />
           </Tab.Navigator>
