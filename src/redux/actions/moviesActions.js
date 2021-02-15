@@ -5,15 +5,19 @@ import {
   FETCHING_DETAILS_REQUEST,
   FETCHING_DETAILS_SUCCESS,
   FETCHING_DETAILS_FAILURE,
+  FETCHING_SERCH_REQUEST,
+  FETCHING_SERCH_SUCCESS,
+  FETCHING_SEARCH_FAILURE,
   ADD_TO_BOOKMARKS,
   REMOVE_FROM_BOOKMARKS,
 } from '../types';
 
 import {BASE_URL, API_KEY, LANGUAGE, TOP_POPULAR} from '../../utilities/apiUrl';
 
+//TOP 30
 export const fetchingMovieRequest = () => ({type: FETCHING_MOVIES_REQUEST});
 
-export const fetchingMovieFailure = (data) => ({
+export const fetchingMovieSuccess = (data) => ({
   type: FETCHING_MOVIES_SUCCESS,
   payload: data,
 });
@@ -23,6 +27,7 @@ export const fetchingMoviesFailure = (error) => ({
   payload: error,
 });
 
+//DETAILS
 export const fetchingDetailsRequest = () => ({type: FETCHING_DETAILS_REQUEST});
 
 export const fetchingDetailsSuccess = (data) => ({
@@ -34,6 +39,25 @@ export const fetchingDetailsFailure = (error) => ({
   type: FETCHING_DETAILS_FAILURE,
   payload: error,
 });
+
+//SEARCH
+export const fetchingSearchRequest = () => ({type: FETCHING_SERCH_REQUEST});
+
+export const fetchingSearchSuccess = (data) => ({
+  type: FETCHING_DETAILS_SUCCESS,
+  payload: data,
+});
+
+export const fetchingSearchFailure = (error) => ({
+  type: FETCHING_SEARCH_FAILURE,
+  payload: error,
+})
+
+
+
+
+
+
 
 export const addToBookmarks = (movie) => (dispatch) => {
   dispatch({  
@@ -55,10 +79,10 @@ export const fetchPopularMovies = () => {
     return async (dispatch) => {
       dispatch(fetchingMovieRequest());
 
-      let response = await fetch(`${BASE_URL}/${TOP_POPULAR}?${API_KEY}&page=1&${LANGUAGE}`);
+      let response = await fetch(`${BASE_URL}/${TOP_POPULAR}?${API_KEY}&page=2&${LANGUAGE}`);
       let json = await response.json();
 
-      json.results ? dispatch(fetchingMovieFailure(json.results)) :  dispatch(fetchingMoviesFailure(error));
+      json.results ? dispatch(fetchingMovieSuccess(json.results)) :  dispatch(fetchingMoviesFailure(error));
     }
   } catch (error) {
       dispatch(fetchingMoviesFailure(error));
@@ -71,6 +95,23 @@ export const fetchDetailsMovie = (id) => {
       dispatch(fetchingMovieRequest());   
 
       let response = await fetch(`${BASE_URL}/movie/${id}?${API_KEY}&${LANGUAGE}`);
+      let json = await response.json();
+
+      json ? dispatch(fetchingDetailsSuccess(json)) : fetchingMoviesFailure(error);
+    }
+    
+  } catch (error) {
+      dispatch(fetchingMoviesFailure(error));
+    }
+};
+
+
+export const fetchSearch = (search) => {
+  try { 
+    return async (dispatch) => {
+      dispatch(fetchingMovieRequest());   
+
+      let response = await fetch(`${BASE_URL}/${SEARCH_MULTI}?${API_KEY}&${LANGUAGE}&query=${search}spider&page=1&`);
       let json = await response.json();
 
       json ? dispatch(fetchingDetailsSuccess(json)) : fetchingMoviesFailure(error);
