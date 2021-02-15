@@ -39,6 +39,10 @@ const HomeScreen = () => {
     return false;
   };
 
+  const scrollLoadMore = () => {
+    setPage(page + 1)
+  }
+
   if (isReady) {
     return (
         <AppIndicator style={styles.indicator} />
@@ -52,6 +56,7 @@ const HomeScreen = () => {
           removeFromBookmarks={onTapRemoveFromBookmarkList}
           isExist={isExist}
           stateMovies={movies}
+          scrollLoadMore={scrollLoadMore}
         />
       </View>
     );

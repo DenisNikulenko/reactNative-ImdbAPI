@@ -15,7 +15,7 @@ import Stars from 'react-native-stars';
 import {IMAGE_URL} from '../utilities/apiUrl';
 import {THEME} from '../utilities/theme';
 
-const MoviesList = ({stateMovies, isExist, addToBookMarkList, removeFromBookmarks}) => {
+const MoviesList = ({stateMovies, isExist, addToBookMarkList, removeFromBookmarks, scrollLoadMore}) => {
   const navigation = useNavigation();
 
   const renderItem = ({item}) => {
