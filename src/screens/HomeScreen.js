@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Dimensions} from 'react-native';
 
 import {useSelector, useDispatch} from 'react-redux';
 import {
@@ -43,7 +43,7 @@ const HomeScreen = () => {
 
   if (isReady) {
     return (content = (
-        <AppIndicator />
+        <AppIndicator style={styles.indicator} />
     ));
   } else {
     return (content = (
@@ -70,7 +70,12 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     color: 'grey',
-  }
+  },
+  indicator: {
+    height: Dimensions.get("screen").height,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 });
 
 export default HomeScreen;

@@ -1,28 +1,27 @@
 import React, {useState, useEffect} from 'react';
-import {View, StyleSheet, TextInput, TouchableOpacity, Dimensions, Text, ActivityIndicator} from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import { THEME } from '../utilities/theme';
+import {View, StyleSheet, TextInput, TouchableOpacity, Dimensions, Text, FlatList} from 'react-native';
+
 
 import {useSelector, useDispatch} from 'react-redux';
 import {fetchSearchMovies} from "../redux/actions/moviesActions";
 
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import { THEME } from '../utilities/theme';
+import AppIndicator from "../components/ui/AppIndicator";
+import AppCardBookmark from '../components/ui/AppCardBookmark';
 
 const SearchScreen = () => {
   const dispatch = useDispatch();
   const isFetching = useSelector(state => state.moviesReducer.isFetching)
   const searchData = useSelector((state) => state.moviesReducer.searchData.results);
+  console.log(searchData)
 
   const [title, setTitle] = useState("")
-  let content;
   console.log(isFetching)
   useEffect(()=> {
     dispatch(fetchSearchMovies(title));
   },[title])
 
-
-  if(isFetching) {
-
-  }
 
   return (
     <View style={styles.conteainer}>
@@ -39,7 +38,16 @@ const SearchScreen = () => {
         </TouchableOpacity>
       </View>
       <View style={styles.contentBlock}>
-        <Text style={styles.contentBlockTitle}>У этого API только по id поиск :(</Text>
+        { isFetching ? 
+          <AppIndicator /> : 
+            <View style={styles.contentBlock}>
+              <FlatList
+                showsVerticalScrollIndicator={false}
+                data={searchData}
+                keyExtractor={(item) => item.id.toString()}
+                renderItem={({item}) =>  <AppCardBookmark item={item} />}
+              />
+            </View>}
       </View>
     </View>
   );
@@ -48,9 +56,10 @@ const SearchScreen = () => {
 const styles = StyleSheet.create({
   conteainer: {
     flex: 1,
-    width: Dimensions.get("screen").width - 30,
+    width: Dimensions.get("screen").width - 10,
+    height: Dimensions.get("screen").height,
     alignItems: "center",
-    marginLeft: 10,
+    // marginLeft: 10,
   },
 
   searchBlock: {
@@ -81,14 +90,7 @@ const styles = StyleSheet.create({
   },
   
   contentBlock: {
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: Dimensions.get("screen").height / 3,
-  },
 
-  contentBlockTitle: {
-    fontSize: 20,
-    fontWeight: "bold"
   }
 
 });

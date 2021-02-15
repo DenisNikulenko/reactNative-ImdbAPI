@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, ActivityIndicator, StyleSheet} from 'react-native';
+import {View, ActivityIndicator, StyleSheet, Dimensions} from 'react-native';
 
 import {THEME} from '../../utilities/theme';
 
@@ -13,7 +13,7 @@ export default AppIndicator = () => {
 
 const styles = StyleSheet.create({
   indicator: {
-    flex: 1,
+    height: Dimensions.get("screen").height,
     alignItems: 'center',
     justifyContent: 'center',
   },

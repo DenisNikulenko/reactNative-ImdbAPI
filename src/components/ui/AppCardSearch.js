@@ -14,7 +14,6 @@ import {useDispatch} from "react-redux";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {IMAGE_URL} from '../../utilities/apiUrl';
 import { THEME } from '../../utilities/theme';
-import {AppButton} from "./AppButton";
 
 const AppCardBookmark = ({item}) => {
   const navigation = useNavigation()
@@ -32,12 +31,11 @@ const AppCardBookmark = ({item}) => {
         }}
       />
       <Text style={styles.movieCardTitle}>{title}</Text>
-      <AppButton 
-        styles={styles.movieCardBtn}  
-        onPress={() => dispatch(removeFromBookmarks(item))}
-        iconName="trash-outline"
-        iconColor="white"
-        iconSize={26} />
+      <TouchableOpacity
+        style={styles.movieCardBtn}
+        onPress={() => dispatch(removeFromBookmarks(item))} >
+        	<Ionicons name="trash-outline" color="white" size={26} />
+      </TouchableOpacity>
     </TouchableOpacity>
   );
 };
@@ -55,8 +53,8 @@ const styles = StyleSheet.create({
   },
   movieCardIamge: {
     margin: 5,
-    flex: 3,
-    resizeMode: 'stretch',
+    flex: 4,
+    resizeMode: 'cover',
     borderRadius: 5,
     height: '90%',
     borderTopLeftRadius: 10,

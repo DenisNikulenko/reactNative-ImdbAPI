@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, Dimensions} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import {fetchDetailsMovie} from '../redux/actions/moviesActions';
 
@@ -37,7 +37,12 @@ const MovieDetails = ({route}) => {
 const styles = StyleSheet.create({
   container: {
     marginBottom: 100
-  }
+  },
+  indicator: {
+    height: Dimensions.get("screen").height,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 });
 
 export default MovieDetails;

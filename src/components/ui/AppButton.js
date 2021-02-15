@@ -1,35 +1,20 @@
 import React from 'react';
-import {StyleSheet, View, TouchableOpacity, Text} from 'react-native';
+import {StyleSheet, TouchableOpacity} from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+
 
 export const AppButton = ({
-  children,
-  onPress,
-  width = 70,
-  color = 'white',
-  backgroundColor = '#ff4d4d',
+  styles,
+  onPress = ()=> console.log("hello"),
+  iconName = "trash-outline",
+  iconColor = "black",
+  iconSize = 20
 }) => {
   return (
-    <TouchableOpacity activeOpacity={0.7} onPress={onPress}>
-      <View style={{...styles.button, backgroundColor: backgroundColor, width: width}}>
-        <Text style={{...styles.text, color: color}}>
-          {children}
-        </Text>
-      </View>
+    <TouchableOpacity style={{...styles}} onPress={onPress} >
+      <Ionicons name={iconName} color={iconColor} size={iconSize} />
     </TouchableOpacity>
   );
 };
 
-const styles = StyleSheet.create({
-  button: {
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    borderRadius: 10,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-
-  text: {
-    color: 'white',
-  },
-});
+const styles = StyleSheet.create({});
