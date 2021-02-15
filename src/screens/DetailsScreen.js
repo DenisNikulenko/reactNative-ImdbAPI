@@ -13,18 +13,18 @@ const MovieDetails = ({route}) => {
   const movieDetails = moviesReducer.detailsMovie;
   const isFetching = moviesReducer.isFetching;
   const id = route.params.id;
-  let content;
+
 
   useEffect(() => {
     dispatch(fetchDetailsMovie(id));
   }, [id]);
 
   if (isFetching) {
-    return content = (
+    return  (
       <AppIndicator />
     );
   } else {
-    return content = (
+    return (
       <View style={styles.container}>
         <View>
           <Details movieDetails={movieDetails} />

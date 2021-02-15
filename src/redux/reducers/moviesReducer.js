@@ -37,7 +37,7 @@ const moviesReducer = (state = initialState, action) => {
       return {
         ...state,
         isFetching: false,
-        movies: [...state.movies, ...action.payload],
+        movies: [...state.movies, ...action.payload], //[state.movies, ...action.payload]
       };
 
     case FETCHING_MOVIES_FAILURE:

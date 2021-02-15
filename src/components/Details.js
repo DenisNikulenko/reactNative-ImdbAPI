@@ -6,26 +6,24 @@ import {
   StyleSheet,
   Dimensions,
 } from 'react-native';
-import {useNavigation} from '@react-navigation/native';
 import AppImageDetails from "../components/ui/AppImageDetails";
 
 import {THEME} from '../utilities/theme';
 
 export const Details = ({movieDetails}) => {
   const [container, setContainer] = useState({});
-  const navigation = useNavigation();
 
   useEffect(() => {
     setContainer({...movieDetails});
   }, [movieDetails]);
 
-  let title = movieDetails.title;
+  let {title, overview, budget} = movieDetails;
   let genre;
   const {
-    budget,
+    // budget,
     genres,
     id,
-    overview,
+    // overview,
     poster_path,
     release_date,
     runtime,
@@ -33,6 +31,7 @@ export const Details = ({movieDetails}) => {
   } = container;
 
   typeof title === 'string' ? title.length > 30 ? (title = `${title.substr(0, 29)}`) : null : null;
+  overview.length < 5 ? overview = "нет описания :(" : null;
   
   genres ? (genre = genres.map((g) => (
         <View key={g.id}>
@@ -77,6 +76,7 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   descriptionText:{
+    width: Dimensions.get('screen').width,
     padding: 12,
     backgroundColor: "#b3b3b3",
     borderTopRightRadius: 60,

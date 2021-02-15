@@ -16,7 +16,7 @@ const HomeScreen = () => {
   const dispatch = useDispatch();
 
   const {bookmarksList, movies} = moviesReducer;
-  const [page, setPage] = useState(1)
+  const [page, setPage] = useState(2)
 
   useEffect(() => {
     dispatch(fetchPopularMovies(page));
@@ -43,7 +43,7 @@ const HomeScreen = () => {
 
   if (movies.length < 1) {
     return (
-        <AppIndicator style={styles.indicator} />
+        <AppIndicator />
     );
   } else {
     return (
@@ -71,12 +71,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     color: 'grey',
-  },
-  indicator: {
-    height: Dimensions.get("screen").height,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+  }
 });
 
 export default HomeScreen;

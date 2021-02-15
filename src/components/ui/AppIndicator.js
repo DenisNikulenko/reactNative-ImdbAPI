@@ -13,7 +13,7 @@ export default AppIndicator = () => {
 
 const styles = StyleSheet.create({
   indicator: {
-    height: Dimensions.get("screen").height,
+    // height: Dimensions.get("screen").height,
     alignItems: 'center',
     justifyContent: 'center',
   },
