@@ -2,11 +2,18 @@ import React from 'react';
 import {View, Text, StyleSheet, FlatList} from 'react-native';
 
 import {useSelector} from 'react-redux';
+import {useDispatch} from "react-redux";
+import {removeFromBookmarks} from "../redux/actions/moviesActions"
+import {useNavigation} from '@react-navigation/native';
 
-import AppCardBookmark from '../components/ui/AppCardBookmark';
+import AppCardPreviewMovie from '../components/ui/AppCardPreviewMovie';
 
 const BookmarksScreen = () => {
   const bookMarksList = useSelector((state) => state.moviesReducer.bookmarksList);
+	const dispatch = useDispatch();
+  const navigation = useNavigation()
+
+  const {id,title} = bookMarksList[0]
 
   return (
     <View style={styles.container}>
@@ -18,7 +25,14 @@ const BookmarksScreen = () => {
           showsVerticalScrollIndicator={false}
           data={bookMarksList}
           keyExtractor={(item) => item.id.toString()}
-          renderItem={({item}) =>  <AppCardBookmark item={item} />}
+          renderItem={({item}) =>  
+            <AppCardPreviewMovie
+              item={item}
+              onPressNavigation={() => navigation.navigate('Details', {id,title})} 
+              onPressBtn={() => dispatch(removeFromBookmarks(item))}
+              iconName="trash-outline" 
+              iconColor="white" 
+              iconSize={26} />}
         />
       </View>
     </View>

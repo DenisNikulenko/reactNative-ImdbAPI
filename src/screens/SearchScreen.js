@@ -8,7 +8,7 @@ import {fetchSearchMovies} from "../redux/actions/moviesActions";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { THEME } from '../utilities/theme';
 import AppIndicator from "../components/ui/AppIndicator";
-import AppCardBookmark from '../components/ui/AppCardBookmark';
+import AppCardPreviewMovie from '../components/ui/AppCardPreviewMovie';
 
 const SearchScreen = () => {
   const dispatch = useDispatch();

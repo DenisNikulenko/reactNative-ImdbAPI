@@ -7,23 +7,16 @@ import {
   Dimensions,
 } from 'react-native';
 
-import {removeFromBookmarks} from "../../redux/actions/moviesActions"
-import {useNavigation} from '@react-navigation/native';
-import {useDispatch} from "react-redux";
-
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import {IMAGE_URL} from '../../utilities/apiUrl';
 import { THEME } from '../../utilities/theme';
 import {AppButton} from "./AppButton";
 
-const AppCardBookmark = ({item}) => {
-  const navigation = useNavigation()
-	const dispatch = useDispatch();
+const AppCardPreviewMovie = ({item, onPressBtn, onPressNavigation, iconName, iconColor, iconSize}) => {
   
 	const {poster_path, id, title} = item;
 
   return (
-    <TouchableOpacity style={styles.movieCard} onPress={() => navigation.navigate('Details', {id,title})}>
+    <TouchableOpacity style={styles.movieCard} onPress={onPressNavigation}>
       <Image
         style={styles.movieCardIamge}
         resizeMode="stretch"
@@ -34,10 +27,10 @@ const AppCardBookmark = ({item}) => {
       <Text style={styles.movieCardTitle}>{title}</Text>
       <AppButton 
         styles={styles.movieCardBtn}  
-        onPress={() => dispatch(removeFromBookmarks(item))}
-        iconName="trash-outline"
-        iconColor="white"
-        iconSize={26} />
+        onPress={onPressBtn}
+        iconName={iconName}
+        iconColor={iconColor}
+        iconSize={iconSize} />
     </TouchableOpacity>
   );
 };
@@ -78,4 +71,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AppCardBookmark;
+export default AppCardPreviewMovie;
