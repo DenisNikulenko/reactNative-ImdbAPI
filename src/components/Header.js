@@ -9,7 +9,7 @@ const Header = () => {
     <View style={styles.container}>
       <StatusBar
         animated={true}
-        backgroundColor={THEME.MAIN_COLOR}/>
+        backgroundColor={THEME.MAIN_COLOR} />
       <Text style={styles.text}>
         <Ionicons color={THEME.MAIN_COLOR} name="logo-tux" size={25} />
         Movies <Text style={styles.textDB}>DB</Text>
@@ -24,11 +24,14 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
   },
+
   text: {},
+
   textDB: {
     fontWeight: 'bold',
     color: THEME.MAIN_COLOR
-  },
+  }
+  
 });
 
 export default Header;

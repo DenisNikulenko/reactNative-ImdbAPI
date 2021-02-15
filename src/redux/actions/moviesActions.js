@@ -53,12 +53,7 @@ export const fetchingSearchFailure = (error) => ({
   payload: error,
 })
 
-
-
-
-
-
-
+//BOOKMARS
 export const addToBookmarks = (movie) => (dispatch) => {
   dispatch({  
     type: ADD_TO_BOOKMARKS,
@@ -73,7 +68,7 @@ export const removeFromBookmarks = (movie) => (dispatch) => {
   })
 }
 
-
+//PROMISES
 export const fetchPopularMovies = () => {
   try { 
     return async (dispatch) => {

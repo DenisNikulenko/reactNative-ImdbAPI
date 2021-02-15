@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react';
-import {View, Text, StyleSheet, ActivityIndicator} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 
-//Redux
 import {useSelector, useDispatch} from 'react-redux';
 import {
   fetchPopularMovies,
@@ -12,7 +11,6 @@ import {
 
 import AppIndicator from "../components/ui/AppIndicator";
 import MoviesList from '../components/MoviesList';
-import {THEME} from '../utilities/theme';
 
 const HomeScreen = () => {
   const moviesReducer = useSelector((state) => state.moviesReducer);
@@ -20,6 +18,8 @@ const HomeScreen = () => {
 
   const {bookmarksList, movies} = moviesReducer;
   const isReady = moviesReducer.isFetching;
+
+  let content;
 
   useEffect(() => {
     dispatch(fetchPopularMovies());
@@ -41,10 +41,9 @@ const HomeScreen = () => {
     return false;
   };
 
-  let content;
   if (isReady) {
     return (content = (
-        <ActivityIndicator style={styles.indicator} size="large" color={THEME.MAIN_COLOR} />
+        <AppIndicator />
     ));
   } else {
     return (content = (
@@ -71,12 +70,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     color: 'grey',
-  },
-  indicator: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+  }
 });
 
 export default HomeScreen;

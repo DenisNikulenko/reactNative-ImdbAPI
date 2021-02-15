@@ -1,10 +1,10 @@
 import React, {useEffect} from 'react';
-import {View, StyleSheet, ActivityIndicator} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import {fetchDetailsMovie} from '../redux/actions/moviesActions';
 
-import {THEME} from '../utilities/theme';
 import {Details} from '../components/Details';
+import AppIndicator from "../components/ui/AppIndicator";
 
 const MovieDetails = ({route}) => {
   const dispatch = useDispatch();
@@ -15,18 +15,13 @@ const MovieDetails = ({route}) => {
   const id = route.params.id;
   let content;
 
-  console.log(id);
-  console.log(isFetching);
-
   useEffect(() => {
     dispatch(fetchDetailsMovie(id));
   }, [id]);
 
   if (isFetching) {
     return content = (
-      <View style={styles.indicator}>
-        <ActivityIndicator size="large" color={THEME.MAIN_COLOR} />
-      </View>
+      <AppIndicator />
     );
   } else {
     return content = (
@@ -42,13 +37,7 @@ const MovieDetails = ({route}) => {
 const styles = StyleSheet.create({
   container: {
     marginBottom: 100
-  },
-  
-  indicator: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+  }
 });
 
 export default MovieDetails;

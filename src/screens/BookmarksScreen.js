@@ -1,17 +1,13 @@
 import React from 'react';
-import {View, Text, StyleSheet, FlatList, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, FlatList} from 'react-native';
 
 import {useSelector} from 'react-redux';
 
 import AppCardBookmark from '../components/ui/AppCardBookmark';
 
 const BookmarksScreen = () => {
-  const bookMarksList = useSelector(
-    (state) => state.moviesReducer.bookmarksList,
-  );
+  const bookMarksList = useSelector((state) => state.moviesReducer.bookmarksList);
 
-  const renderItem = ({item}) => <AppCardBookmark item={item} />;
-  console.log(bookMarksList)
   return (
     <View style={styles.container}>
       <Text style={styles.textTitle}>
@@ -22,7 +18,7 @@ const BookmarksScreen = () => {
           showsVerticalScrollIndicator={false}
           data={bookMarksList}
           keyExtractor={(item) => item.id.toString()}
-          renderItem={renderItem}
+          renderItem={({item}) =>  <AppCardBookmark item={item} />}
         />
       </View>
     </View>

@@ -1,5 +1,4 @@
 import React from 'react';
-
 import {StyleSheet, View, TouchableOpacity, Text} from 'react-native';
 
 export const AppButton = ({
