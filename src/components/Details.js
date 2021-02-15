@@ -31,7 +31,8 @@ export const Details = ({movieDetails}) => {
   } = container;
 
   typeof title === 'string' ? title.length > 30 ? (title = `${title.substr(0, 29)}`) : null : null;
-  overview.length < 5 ? overview = "нет описания :(" : null;
+  // typeof overview === "string" ? overview.length < 5 : overview = "нет описания :(" : null :
+  // overview.length < 5 ? overview = "нет описания :(" : null;
   
   genres ? (genre = genres.map((g) => (
         <View key={g.id}>

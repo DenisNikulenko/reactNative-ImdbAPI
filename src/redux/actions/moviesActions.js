@@ -11,6 +11,7 @@ import {
   TOUCHE_ON_REFRESH,
   ADD_TO_BOOKMARKS,
   REMOVE_FROM_BOOKMARKS,
+  SEARCG_BY_NAME,
 } from '../types';
 
 import {BASE_URL, API_KEY, LANGUAGE, TOP_POPULAR} from '../../utilities/apiUrl';
@@ -71,8 +72,13 @@ export const removeFromBookmarks = (movie) => (dispatch) => {
 }
 
 
+export const searchByName = (searchText) => (dispatch) => {
+  dispatch({
+    type: SEARCG_BY_NAME,
+    payload: searchText
+  })
+}
 /////
-
 export const touchOnRefresh = () => ({type: TOUCHE_ON_REFRESH});
 
 //PROMISES

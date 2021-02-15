@@ -1,13 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import {View, StyleSheet, TextInput, TouchableOpacity, Dimensions, FlatList} from 'react-native';
-
-
 import {useSelector, useDispatch} from 'react-redux';
 import {fetchSearchMovies} from "../redux/actions/moviesActions";
-
 import {useNavigation} from '@react-navigation/native';
 import {addToBookmarks} from "../redux/actions/moviesActions";
 import Ionicons from 'react-native-vector-icons/Ionicons';
+
 import { THEME } from '../utilities/theme';
 import AppIndicator from "../components/ui/AppIndicator";
 import AppCardPreviewMovie from '../components/ui/AppCardPreviewMovie';
@@ -18,22 +16,21 @@ const SearchScreen = () => {
   const searchData = useSelector((state) => state.moviesReducer.searchData);
   const navigation = useNavigation()
 
-  const [title, setTitle] = useState("")
+  const [value, setValue] = useState("")
 
   useEffect(()=> {
-    if(title !== "") {
-      dispatch(fetchSearchMovies(title));
+    if(value !== "") {
+      dispatch(fetchSearchMovies(value));
     }
-  },[title])
-
-
+  },[value])
 
   return (
     <View style={styles.conteainer}>
       <View style={styles.searchBlock}>
+
         <TextInput
-          value={title}
-          onChangeText={setTitle}
+          value={value}
+          onChangeText={setValue}
           style={styles.searchInput}
           placeholder="Введите название фильма..."
           maxLength={64}

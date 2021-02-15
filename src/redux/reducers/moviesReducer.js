@@ -12,15 +12,20 @@ import {
   ADD_TO_BOOKMARKS,
   REMOVE_FROM_BOOKMARKS,
   TOUCHE_ON_REFRESH,
+  SEARCG_BY_NAME,
 } from '../types';
 
 const initialState = {
   movies: [],
   detailsMovie: [],
+
   searchData: [],
-  bookmarksList: [],
   isFetching: true,
   errorMessage: '',
+  
+  bookmarksList: [],
+  filteredBookmarkList: [],
+  isSearchActive: false
 };
 
 const moviesReducer = (state = initialState, action) => {
@@ -89,6 +94,7 @@ const moviesReducer = (state = initialState, action) => {
         errorMessage: action.payload,
       };
 
+
     //BOOKMARKS
     case ADD_TO_BOOKMARKS:
       return {
@@ -103,6 +109,16 @@ const moviesReducer = (state = initialState, action) => {
           (movie) => movie.id !== action.payload.id,
         ),
       };
+
+    case SEARCG_BY_NAME:
+      return {
+        ...state,
+        isSearchActive: !!action.payload.length > 0 || false,
+        filteredBookmarkList: state.bookmarksList.filter(movie => {
+          return movie.title.toLowerCase().search(action.payload.toLowerCase()) !== -1
+
+        })
+      }
 
       //
     case TOUCHE_ON_REFRESH: 

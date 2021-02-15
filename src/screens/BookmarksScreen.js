@@ -1,26 +1,45 @@
-import React from 'react';
-import {View, Text, StyleSheet, FlatList} from 'react-native';
+import React, {useState, useMemo} from 'react';
+import {View, StyleSheet, FlatList, TextInput, Dimensions} from 'react-native';
 
 import {useSelector} from 'react-redux';
 import {useDispatch} from "react-redux";
-import {removeFromBookmarks} from "../redux/actions/moviesActions"
+import {removeFromBookmarks, searchByName} from "../redux/actions/moviesActions";
 
 import AppCardPreviewMovie from '../components/ui/AppCardPreviewMovie';
 import {THEME} from "../utilities/theme";
+// import {searchByName} from "../redux/actions";
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import { useEffect } from 'react/cjs/react.development';
 
 const BookmarksScreen = () => {
-  const bookMarksList = useSelector((state) => state.moviesReducer.bookmarksList);
+  const moviesReducer = useSelector((state) => state.moviesReducer);
+
+  const {bookmarksList, filteredBookmarkList, isSearchActive} = moviesReducer;
+  console.log(filteredBookmarkList)
 	const dispatch = useDispatch();
+  
+
+  const currentMovies = isSearchActive ? filteredBookmarkList : bookmarksList
+
+  const onChange = (text) => {
+    const searchText = text.trim().replace(/""/g, "")
+    searchByName(searchText)(dispatch);
+  }
 
   return (
     <View style={styles.container}>
-      <Text style={styles.textTitle}>
-      <Text style={styles.header}>И</Text>збраное:
-      </Text>
+        <View style={styles.searchBlock}>
+        <TextInput
+          onChangeText={onChange}
+          style={styles.searchInput}
+          placeholder="Введите название фильма..."
+          maxLength={64}
+          />
+      </View>
       <View>
         <FlatList
           showsVerticalScrollIndicator={false}
-          data={bookMarksList}
+          data={currentMovies}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({item}) =>  
             <AppCardPreviewMovie
@@ -49,9 +68,14 @@ const styles = StyleSheet.create({
     color: 'red',
   },
 
-  textTitle: {
-    fontSize: 26,
-    color: 'grey',
+  searchInput: {
+    padding: 10,
+    backgroundColor: THEME.WHITE,
+    borderBottomColor: THEME.MAIN_COLOR,
+    borderBottomWidth: 2,
+    borderBottomRightRadius: 20,
+    width: Dimensions.get("screen").width - 10,
+    height: 55,
   },
   
   movieCardBtn: {
