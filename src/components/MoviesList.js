@@ -14,6 +14,7 @@ import Stars from 'react-native-stars';
 
 import {IMAGE_URL} from '../utilities/apiUrl';
 import {THEME} from '../utilities/theme';
+import AppIndicator from "../components/ui/AppIndicator"; 
 
 const MoviesList = ({stateMovies, isExist, addToBookMarkList, removeFromBookmarks, scrollLoadMore}) => {
   const navigation = useNavigation();
@@ -78,6 +79,9 @@ const MoviesList = ({stateMovies, isExist, addToBookMarkList, removeFromBookmark
         data={stateMovies}
         renderItem={renderItem}
         keyExtractor={(item) => item.id.toString()}
+        onEndReached={()=> scrollLoadMore()}
+        onEndReachedThreshold={1}
+        ListFooterComponent={()=> <AppIndicator />}
       />
     </SafeAreaView>
   );

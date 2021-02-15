@@ -2,6 +2,7 @@ import {
   FETCHING_MOVIES_FAILURE,
   FETCHING_MOVIES_REQUEST,
   FETCHING_MOVIES_SUCCESS,
+  FETCHING_MOVIES_SCROLL,
   FETCHING_DETAILS_REQUEST,
   FETCHING_DETAILS_SUCCESS,
   FETCHING_DETAILS_FAILURE,
@@ -23,7 +24,7 @@ const initialState = {
 
 const moviesReducer = (state = initialState, action) => {
   switch (action.type) {
-//TOP 30
+//TOP 
     case FETCHING_MOVIES_REQUEST:
       return {
         ...state,
@@ -34,15 +35,16 @@ const moviesReducer = (state = initialState, action) => {
       return {
         ...state,
         isFetching: false,
-        movies: action.payload,
+        movies:  [...state.movies, ...action.payload]
       };
 
-      case FETCHING_MOVIES_FAILURE:
-        return {
-          ...state,
-          isFetching: false,
-          errorMessage: action.payload,
-        };
+    case FETCHING_MOVIES_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
+        errorMessage: action.payload,
+      };
+    
 //DETAILS
       case FETCHING_DETAILS_REQUEST:
         return {

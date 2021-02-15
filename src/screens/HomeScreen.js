@@ -22,7 +22,7 @@ const HomeScreen = () => {
 
   useEffect(() => {
     dispatch(fetchPopularMovies(page));
-  }, []);
+  },[page]);
 
   const onTapAddToBookmarkList = (movie) => {
     dispatch(addToBookmarks(movie));
@@ -43,11 +43,11 @@ const HomeScreen = () => {
     setPage(page + 1)
   }
 
-  if (isReady) {
-    return (
-        <AppIndicator style={styles.indicator} />
-    );
-  } else {
+  // if (isReady) {
+  //   return (
+  //       <AppIndicator style={styles.indicator} />
+  //   );
+  // } else {
     return (
       <View style={styles.container}>
         <Text style={styles.title}>ТОП популярных фильмов</Text>
@@ -60,7 +60,7 @@ const HomeScreen = () => {
         />
       </View>
     );
-  }
+  // }
 };
 
 const styles = StyleSheet.create({

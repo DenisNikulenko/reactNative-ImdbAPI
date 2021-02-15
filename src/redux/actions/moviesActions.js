@@ -14,7 +14,7 @@ import {
 
 import {BASE_URL, API_KEY, LANGUAGE, TOP_POPULAR} from '../../utilities/apiUrl';
 
-//TOP 30
+//TOP MOVIES
 export const fetchingMovieRequest = () => ({type: FETCHING_MOVIES_REQUEST});
 
 export const fetchingMovieSuccess = (data) => ({
@@ -26,6 +26,7 @@ export const fetchingMoviesFailure = (error) => ({
   type: FETCHING_MOVIES_FAILURE,
   payload: error,
 });
+
 
 //DETAILS
 export const fetchingDetailsRequest = () => ({type: FETCHING_DETAILS_REQUEST});
@@ -69,7 +70,7 @@ export const removeFromBookmarks = (movie) => (dispatch) => {
 }
 
 //PROMISES
-export const fetchPopularMovies = (page = 2) => {
+export const fetchPopularMovies = (page) => {
   try { 
     return async (dispatch) => {
       dispatch(fetchingMovieRequest());
