@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
   },
 
   btnAddBookmarkTrue: {
-    backgroundColor: "lightgreen",
+    backgroundColor: THEME.GREEN,
     width: '100%',
     height: Dimensions.get('screen').height / 20,
     borderBottomLeftRadius: 20,

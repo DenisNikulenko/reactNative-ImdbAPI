@@ -52,11 +52,12 @@ const SearchScreen = () => {
                 renderItem={({item}) =>  
                   <AppCardPreviewMovie 
                     item={item} 
+                    costumeStyle={styles.movieCardBtn}
                     onPressNavigation={() => navigation.navigate('Details', {id,title})}
                     onPressBtn={() => dispatch(addToBookmarks(item))}
-                    iconName="trash-outline" 
+                    iconName="star-sharp" 
                     iconColor="white" 
-                    iconSize={26} />}
+                    iconSize={30} />}
               />
             </View>}
       </View>
@@ -102,8 +103,17 @@ const styles = StyleSheet.create({
   
   contentBlock: {
 
-  }
+  },
 
+  movieCardBtn: {
+    flex: 2,
+    height: '100%',
+    backgroundColor: THEME.GREEN,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderTopRightRadius: 10,
+    borderBottomRightRadius: 10,
+  },
 });
 
 export default SearchScreen;

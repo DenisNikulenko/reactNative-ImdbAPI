@@ -12,7 +12,7 @@ import {IMAGE_URL} from '../../utilities/apiUrl';
 import { THEME } from '../../utilities/theme';
 import {AppButton} from "./AppButton";
 
-const AppCardPreviewMovie = ({item, onPressBtn, iconName, iconColor, iconSize}) => {
+const AppCardPreviewMovie = ({item, onPressBtn, costumeStyle, iconName, iconColor, iconSize}) => {
   const navigation = useNavigation()
   
 	const {poster_path, id, title} = item;
@@ -28,7 +28,8 @@ const AppCardPreviewMovie = ({item, onPressBtn, iconName, iconColor, iconSize}) 
       />
       <Text style={styles.movieCardTitle}>{title}</Text>
       <AppButton 
-        styles={styles.movieCardBtn}  
+        
+        styles={{...costumeStyle}}  
         onPress={onPressBtn}
         iconName={iconName}
         iconColor={iconColor}
@@ -61,15 +62,6 @@ const styles = StyleSheet.create({
     flex: 6,
     padding: 10,
     fontSize: 14,
-  },
-  movieCardBtn: {
-    flex: 2,
-    height: '100%',
-    backgroundColor: THEME.MAIN_COLOR,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderTopRightRadius: 10,
-    borderBottomRightRadius: 10,
   },
 });
 
