@@ -12,7 +12,7 @@ import {
   ADD_TO_BOOKMARKS,
   REMOVE_FROM_BOOKMARKS,
   TOUCHE_ON_REFRESH,
-  SEARCG_BY_NAME,
+  SERCH_BY_NAME_BOOKMARKS,
 } from '../types';
 
 const initialState = {
@@ -110,7 +110,7 @@ const moviesReducer = (state = initialState, action) => {
         ),
       };
 
-    case SEARCG_BY_NAME:
+    case SERCH_BY_NAME_BOOKMARKS:
       return {
         ...state,
         isSearchActive: !!action.payload.length > 0 || false,
@@ -120,7 +120,7 @@ const moviesReducer = (state = initialState, action) => {
         })
       }
 
-      //
+    // Не успел
     case TOUCHE_ON_REFRESH: 
       return {
         ...state,

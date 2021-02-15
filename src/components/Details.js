@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {
   ScrollView,
   View,
@@ -6,33 +6,25 @@ import {
   StyleSheet,
   Dimensions,
 } from 'react-native';
-import AppImageDetails from "../components/ui/AppImageDetails";
 
+import AppImageDetails from "../components/ui/AppImageDetails";
 import {THEME} from '../utilities/theme';
 
-export const Details = ({movieDetails}) => {
-  const [container, setContainer] = useState({});
-
+export const Details = ({detailsMovie}) => {
   useEffect(() => {
-    setContainer({...movieDetails});
-  }, [movieDetails]);
+  }, [detailsMovie]);
 
-  let {title, overview, budget} = movieDetails;
-  let genre;
+  let {title, overview, budget, genre} = detailsMovie;
   const {
-    // budget,
     genres,
-    id,
-    // overview,
     poster_path,
     release_date,
     runtime,
     vote_average,
-  } = container;
+  } = detailsMovie;
 
   typeof title === 'string' ? title.length > 30 ? (title = `${title.substr(0, 29)}`) : null : null;
-  // typeof overview === "string" ? overview.length < 5 : overview = "нет описания :(" : null :
-  // overview.length < 5 ? overview = "нет описания :(" : null;
+  typeof overview === "string" ? overview.length < 5 ? overview = "нет описания :(" : null : null
   
   genres ? (genre = genres.map((g) => (
         <View key={g.id}>
@@ -51,8 +43,8 @@ export const Details = ({movieDetails}) => {
         </View>
         <View style={styles.descriptioninfo}>
           <View>
-            <Text style={styles.descriptioninfoText}><Text style={styles.textBold}>Релиз:</Text> {release_date}</Text>
-            <Text style={styles.descriptioninfoText}><Text style={styles.textBold}>Бюджет:</Text> {budget} $</Text>
+            <Text style={styles.descriptioninfoText}><Text style={styles.textBold}>Релиз:</Text>{release_date}</Text>
+            <Text style={styles.descriptioninfoText}><Text style={styles.textBold}>Бюджет:</Text>{budget} $</Text>
           </View>
           <View>
             {genre}
@@ -62,7 +54,6 @@ export const Details = ({movieDetails}) => {
     </ScrollView>
   )
 };
-
 
 const styles = StyleSheet.create({
   container: {
@@ -76,12 +67,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center"
   },
+
   descriptionText:{
     width: Dimensions.get('screen').width,
     padding: 12,
     backgroundColor: "#b3b3b3",
     borderTopRightRadius: 60,
   },
+
   descriptionTextPreview: {
     color:"white", 
     fontWeight: "bold", 
@@ -102,6 +95,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between"
   },
+
   descriptioninfoText: {
     color: "white"
   },
@@ -110,5 +104,4 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 20
   }
-
 })

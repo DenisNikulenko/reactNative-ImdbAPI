@@ -6,16 +6,16 @@ import {
   Image,
   Dimensions,
 } from 'react-native';
+
 import {useNavigation} from '@react-navigation/native';
 import {useSelector, useDispatch} from 'react-redux';
 import {addToBookmarks, removeFromBookmarks} from "../../redux/actions/moviesActions";
 
 import {IMAGE_URL} from '../../utilities/apiUrl';
 import {AppButton} from "./AppButton";
-
 import {THEME} from "../../utilities/theme";
 
-const AppCardPreviewMovie = ({item, onPressBtn,iconName, iconSize}) => {
+const AppCardPreviewMovie = ({item, iconName, iconSize}) => {
   const dispatch = useDispatch();
   const navigation = useNavigation()
   const bookmarksList = useSelector((state) => state.moviesReducer.bookmarksList);
@@ -27,7 +27,6 @@ const AppCardPreviewMovie = ({item, onPressBtn,iconName, iconSize}) => {
     }
     return false;
   };
-
 
   return (
     <TouchableOpacity style={styles.movieCard} onPress={() => navigation.navigate('Details', {id,title})}>
@@ -69,6 +68,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
+
   movieCardIamge: {
     margin: 5,
     flex: 3,
@@ -78,6 +78,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 10,
     borderBottomRightRadius: 10,
   },
+
   movieCardTitle: {
     flex: 6,
     padding: 10,
@@ -93,6 +94,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 10,
     borderBottomRightRadius: 10,
   },
+
   movieBtnFalse: {
     flex: 2,
     height: '100%',
@@ -101,7 +103,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderTopRightRadius: 10,
     borderBottomRightRadius: 10,
-  },
+  }
 });
 
 export default AppCardPreviewMovie;

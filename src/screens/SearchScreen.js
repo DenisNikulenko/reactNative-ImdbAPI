@@ -1,11 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import {View, StyleSheet, TextInput, TouchableOpacity, Dimensions, FlatList} from 'react-native';
+
 import {useSelector, useDispatch} from 'react-redux';
 import {fetchSearchMovies} from "../redux/actions/moviesActions";
+
 import {useNavigation} from '@react-navigation/native';
 import {addToBookmarks} from "../redux/actions/moviesActions";
-import Ionicons from 'react-native-vector-icons/Ionicons';
 
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import { THEME } from '../utilities/theme';
 import AppIndicator from "../components/ui/AppIndicator";
 import AppCardPreviewMovie from '../components/ui/AppCardPreviewMovie';
@@ -42,7 +44,7 @@ const SearchScreen = () => {
       <View style={styles.contentBlock}>
         { isFetching ? 
           <AppIndicator /> : 
-            <View style={styles.contentBlock}>
+            <View>
               <FlatList
                 showsVerticalScrollIndicator={false}
                 data={searchData}
@@ -56,7 +58,8 @@ const SearchScreen = () => {
                     iconColor="white" 
                     iconSize={30} />}
               />
-            </View>}
+            </View>
+        }
       </View>
     </View>
   );
@@ -96,10 +99,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: "15%",
     height: "100%",
-  },
-  
-  contentBlock: {
-
   }
 });
 

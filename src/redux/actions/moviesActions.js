@@ -11,7 +11,7 @@ import {
   TOUCHE_ON_REFRESH,
   ADD_TO_BOOKMARKS,
   REMOVE_FROM_BOOKMARKS,
-  SEARCG_BY_NAME,
+  SERCH_BY_NAME_BOOKMARKS,
 } from '../types';
 
 import {BASE_URL, API_KEY, LANGUAGE, TOP_POPULAR} from '../../utilities/apiUrl';
@@ -43,6 +43,7 @@ export const fetchingDetailsFailure = (error) => ({
   payload: error,
 });
 
+
 //SEARCH
 export const fetchingSearchRequest = () => ({type: FETCHING_SERCH_REQUEST});
 
@@ -55,6 +56,7 @@ export const fetchingSearchFailure = (error) => ({
   type: FETCHING_SEARCH_FAILURE,
   payload: error,
 })
+
 
 //BOOKMARS
 export const addToBookmarks = (movie) => (dispatch) => {
@@ -71,15 +73,16 @@ export const removeFromBookmarks = (movie) => (dispatch) => {
   })
 }
 
-
 export const searchByName = (searchText) => (dispatch) => {
   dispatch({
-    type: SEARCG_BY_NAME,
+    type: SERCH_BY_NAME_BOOKMARKS,
     payload: searchText
   })
 }
-/////
+
+//Не успел
 export const touchOnRefresh = () => ({type: TOUCHE_ON_REFRESH});
+
 
 //PROMISES
 export const fetchPopularMovies = (page) => {

@@ -1,4 +1,4 @@
-import React, {useState, useMemo} from 'react';
+import React from 'react';
 import {View, StyleSheet, FlatList, TextInput, Dimensions} from 'react-native';
 
 import {useSelector} from 'react-redux';
@@ -7,9 +7,6 @@ import {removeFromBookmarks, searchByName} from "../redux/actions/moviesActions"
 
 import AppCardPreviewMovie from '../components/ui/AppCardPreviewMovie';
 import {THEME} from "../utilities/theme";
-// import {searchByName} from "../redux/actions";
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import { useEffect } from 'react/cjs/react.development';
 
 const BookmarksScreen = () => {
   const moviesReducer = useSelector((state) => state.moviesReducer);

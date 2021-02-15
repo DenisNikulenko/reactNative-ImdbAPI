@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, StyleSheet, Text, StatusBar} from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import {THEME} from "../utilities/theme";
 
 const Header = () => {
@@ -25,13 +25,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 
-  text: {},
-
   textDB: {
     fontWeight: 'bold',
     color: THEME.MAIN_COLOR
   }
-  
 });
 
 export default Header;

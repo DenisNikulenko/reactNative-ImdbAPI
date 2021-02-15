@@ -22,7 +22,9 @@ const MoviesList = ({stateMovies, isExist, addToBookMarkList, removeFromBookmark
   const renderItem = ({item}) => {
     const {id, release_date, backdrop_path, vote_average} = item;
     let {title} = item
+
     title.length > 30 ? title = `${title.substr(0,29)}` : null;
+    
     return (
       <View style={styles.movieItem}>
         <TouchableOpacity
@@ -100,7 +102,6 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     marginVertical: 10,
     paddingBottom: 15,
-    
   },
 
   infoTitle: {

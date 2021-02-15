@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, StyleSheet, Dimensions} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 
 import {useSelector, useDispatch} from 'react-redux';
 import {
@@ -13,10 +13,10 @@ import MoviesList from '../components/MoviesList';
 
 const HomeScreen = () => {
   const moviesReducer = useSelector((state) => state.moviesReducer);
+  const {bookmarksList, movies} = moviesReducer;
   const dispatch = useDispatch();
 
-  const {bookmarksList, movies} = moviesReducer;
-  const [page, setPage] = useState(2)
+  const [page, setPage] = useState(1)
 
   useEffect(() => {
     dispatch(fetchPopularMovies(page));

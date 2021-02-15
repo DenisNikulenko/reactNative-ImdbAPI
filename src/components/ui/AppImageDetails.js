@@ -1,6 +1,8 @@
 import React from 'react';
 import {View, StyleSheet, Text, Dimensions, ImageBackground, TouchableOpacity} from 'react-native';
+
 import {useNavigation} from '@react-navigation/native';
+
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {IMAGE_URL} from '../../utilities/apiUrl';
 
@@ -31,9 +33,7 @@ const AppImageDetails = ({posterPath, title, voteAverage, runtime}) => {
             size={40}
           />
         </TouchableOpacity>
-
         <Text style={styles.textTitle}>{title}</Text>
-
       </View>
 
       <View style={styles.opacityBlockBottom}></View>
@@ -45,7 +45,6 @@ const AppImageDetails = ({posterPath, title, voteAverage, runtime}) => {
             {voteAverage} < Ionicons name="star" color="yellow"  size={15} />
             </Text>
         </Text>
-
         <Text style={{color: 'white'}}>
           Длительность: <Text style={styles.textBold}>{runtime}</Text> мин
         </Text>

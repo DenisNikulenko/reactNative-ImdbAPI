@@ -10,8 +10,8 @@ const MovieDetails = ({route}) => {
   const dispatch = useDispatch();
   const moviesReducer = useSelector((state) => state.moviesReducer);
 
-  const movieDetails = moviesReducer.detailsMovie;
-  const isFetching = moviesReducer.isFetching;
+  const {detailsMovie, isFetching} = moviesReducer;
+
   const id = route.params.id;
 
 
@@ -27,7 +27,7 @@ const MovieDetails = ({route}) => {
     return (
       <View style={styles.container}>
         <View>
-          <Details movieDetails={movieDetails} />
+          <Details detailsMovie={detailsMovie} />
         </View>
       </View>
     );

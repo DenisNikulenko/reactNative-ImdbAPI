@@ -9,14 +9,14 @@ const persistConfig = {
     key: "root",
     storage: AsyncStorage,
     whitelist: ["bookmarksList"] 
-}
+};
 
 const rootReducer = combineReducers({
     moviesReducer: persistReducer(persistConfig, moviesReducer)
-})
+});
 
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
-const store = createStoreWithMiddleware(rootReducer)
-const appPersist = persistStore(store)
+const store = createStoreWithMiddleware(rootReducer);
+const appPersist = persistStore(store);
 
 export {store, appPersist};

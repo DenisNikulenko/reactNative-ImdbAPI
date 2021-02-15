@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
+
   movieCardIamge: {
     margin: 5,
     flex: 4,
@@ -60,11 +61,13 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 10,
     borderBottomRightRadius: 10,
   },
+
   movieCardTitle: {
     flex: 6,
     padding: 10,
     fontSize: 14,
   },
+
   movieCardBtn: {
     flex: 2,
     height: '100%',
@@ -73,7 +76,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderTopRightRadius: 10,
     borderBottomRightRadius: 10,
-  },
+  }
 });
 
 export default AppCardBookmark;
