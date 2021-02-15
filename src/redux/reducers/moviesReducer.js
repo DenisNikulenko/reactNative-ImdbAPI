@@ -11,6 +11,7 @@ import {
   FETCHING_SEARCH_FAILURE,
   ADD_TO_BOOKMARKS,
   REMOVE_FROM_BOOKMARKS,
+  TOUCHE_ON_REFRESH,
 } from '../types';
 
 const initialState = {
@@ -24,7 +25,8 @@ const initialState = {
 
 const moviesReducer = (state = initialState, action) => {
   switch (action.type) {
-//TOP 
+
+    //TOP MOVIES
     case FETCHING_MOVIES_REQUEST:
       return {
         ...state,
@@ -35,7 +37,7 @@ const moviesReducer = (state = initialState, action) => {
       return {
         ...state,
         isFetching: false,
-        movies:  [...state.movies, ...action.payload]
+        movies: [...state.movies, ...action.payload],
       };
 
     case FETCHING_MOVIES_FAILURE:
@@ -44,60 +46,70 @@ const moviesReducer = (state = initialState, action) => {
         isFetching: false,
         errorMessage: action.payload,
       };
-    
-//DETAILS
-      case FETCHING_DETAILS_REQUEST:
-        return {
-          ...state,
-          isFetching: true,
-        };
-  
-      case FETCHING_DETAILS_SUCCESS:
-        return {
-          ...state,
-          isFetching: false,
-          detailsMovie: action.payload,
-        };
 
-      case FETCHING_DETAILS_FAILURE:
-        return {
-          ...state,
-          isFetching: false,
-          errorMessage: action.payload,
-        };
-
-//SEARCH
-      case FETCHING_SERCH_REQUEST:
-        return {
-          ...state,
-          isFetching: true
-        }
-
-      case FETCHING_SERCH_SUCCESS:
-        return {
-          ...state,
-          isFetching: false,
-          searchData: action.payload,
-        }
-        
-      case FETCHING_SEARCH_FAILURE:
-        return {
-          ...state,
-          isFetching: false,
-          errorMessage: action.payload,
-        }
-//BOOKMARKS
-    case ADD_TO_BOOKMARKS: 
+    //DETAILS
+    case FETCHING_DETAILS_REQUEST:
       return {
-          ...state,
-          bookmarksList:[...state.bookmarksList, action.payload],
+        ...state,
+        isFetching: true,
+      };
+
+    case FETCHING_DETAILS_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        detailsMovie: action.payload,
+      };
+
+    case FETCHING_DETAILS_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
+        errorMessage: action.payload,
+      };
+
+    //SEARCH
+    case FETCHING_SERCH_REQUEST:
+      return {
+        ...state,
+        isFetching: true,
+      };
+
+    case FETCHING_SERCH_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        searchData: action.payload,
+      };
+
+    case FETCHING_SEARCH_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
+        errorMessage: action.payload,
+      };
+
+    //BOOKMARKS
+    case ADD_TO_BOOKMARKS:
+      return {
+        ...state,
+        bookmarksList: [...state.bookmarksList, action.payload],
+      };
+
+    case REMOVE_FROM_BOOKMARKS:
+      return {
+        ...state,
+        bookmarksList: state.bookmarksList.filter(
+          (movie) => movie.id !== action.payload.id,
+        ),
+      };
+
+      //
+    case TOUCHE_ON_REFRESH: 
+      return {
+        ...state,
+        movies: []
       }
-      
-      case REMOVE_FROM_BOOKMARKS: 
-        return {
-            ...state,
-            bookmarksList: state.bookmarksList.filter(movie => movie.id !== action.payload.id) 
-        }
 
     default:
       return state;

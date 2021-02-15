@@ -8,6 +8,7 @@ import {
   FETCHING_SERCH_REQUEST,
   FETCHING_SERCH_SUCCESS,
   FETCHING_SEARCH_FAILURE,
+  TOUCHE_ON_REFRESH,
   ADD_TO_BOOKMARKS,
   REMOVE_FROM_BOOKMARKS,
 } from '../types';
@@ -68,6 +69,11 @@ export const removeFromBookmarks = (movie) => (dispatch) => {
     payload: movie
   })
 }
+
+
+/////
+
+export const touchOnRefresh = () => ({type: TOUCHE_ON_REFRESH});
 
 //PROMISES
 export const fetchPopularMovies = (page) => {

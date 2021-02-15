@@ -75,6 +75,7 @@ const MoviesList = ({stateMovies, isExist, addToBookMarkList, removeFromBookmark
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
+        // onRefresh={() => ()}
         showsVerticalScrollIndicator={false} 
         data={stateMovies}
         renderItem={renderItem}

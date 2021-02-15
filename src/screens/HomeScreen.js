@@ -4,7 +4,6 @@ import {View, Text, StyleSheet, Dimensions} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import {
   fetchPopularMovies,
-  fetchDetailsMovie,
   addToBookmarks,
   removeFromBookmarks,
 } from '../redux/actions/moviesActions';
@@ -17,7 +16,6 @@ const HomeScreen = () => {
   const dispatch = useDispatch();
 
   const {bookmarksList, movies} = moviesReducer;
-  const isReady = moviesReducer.isFetching;
   const [page, setPage] = useState(1)
 
   useEffect(() => {
@@ -43,11 +41,11 @@ const HomeScreen = () => {
     setPage(page + 1)
   }
 
-  // if (isReady) {
-  //   return (
-  //       <AppIndicator style={styles.indicator} />
-  //   );
-  // } else {
+  if (movies.length < 1) {
+    return (
+        <AppIndicator style={styles.indicator} />
+    );
+  } else {
     return (
       <View style={styles.container}>
         <Text style={styles.title}>ТОП популярных фильмов</Text>
@@ -60,7 +58,7 @@ const HomeScreen = () => {
         />
       </View>
     );
-  // }
+  }
 };
 
 const styles = StyleSheet.create({
