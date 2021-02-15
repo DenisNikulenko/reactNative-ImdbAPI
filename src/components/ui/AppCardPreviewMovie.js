@@ -6,17 +6,19 @@ import {
   Image,
   Dimensions,
 } from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 
 import {IMAGE_URL} from '../../utilities/apiUrl';
 import { THEME } from '../../utilities/theme';
 import {AppButton} from "./AppButton";
 
-const AppCardPreviewMovie = ({item, onPressBtn, onPressNavigation, iconName, iconColor, iconSize}) => {
+const AppCardPreviewMovie = ({item, onPressBtn, iconName, iconColor, iconSize}) => {
+  const navigation = useNavigation()
   
 	const {poster_path, id, title} = item;
 
   return (
-    <TouchableOpacity style={styles.movieCard} onPress={onPressNavigation}>
+    <TouchableOpacity style={styles.movieCard} onPress={() => navigation.navigate('Details', {id,title})}>
       <Image
         style={styles.movieCardIamge}
         resizeMode="stretch"

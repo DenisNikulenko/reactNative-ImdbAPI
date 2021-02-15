@@ -5,6 +5,8 @@ import {View, StyleSheet, TextInput, TouchableOpacity, Dimensions, Text, FlatLis
 import {useSelector, useDispatch} from 'react-redux';
 import {fetchSearchMovies} from "../redux/actions/moviesActions";
 
+import {useNavigation} from '@react-navigation/native';
+import {addToBookmarks} from "../redux/actions/moviesActions";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { THEME } from '../utilities/theme';
 import AppIndicator from "../components/ui/AppIndicator";
@@ -14,6 +16,8 @@ const SearchScreen = () => {
   const dispatch = useDispatch();
   const isFetching = useSelector(state => state.moviesReducer.isFetching)
   const searchData = useSelector((state) => state.moviesReducer.searchData.results);
+  const navigation = useNavigation()
+
   console.log(searchData)
 
   const [title, setTitle] = useState("")
@@ -45,7 +49,14 @@ const SearchScreen = () => {
                 showsVerticalScrollIndicator={false}
                 data={searchData}
                 keyExtractor={(item) => item.id.toString()}
-                renderItem={({item}) =>  <AppCardBookmark item={item} />}
+                renderItem={({item}) =>  
+                  <AppCardPreviewMovie 
+                    item={item} 
+                    onPressNavigation={() => navigation.navigate('Details', {id,title})}
+                    onPressBtn={() => dispatch(addToBookmarks(item))}
+                    iconName="trash-outline" 
+                    iconColor="white" 
+                    iconSize={26} />}
               />
             </View>}
       </View>
