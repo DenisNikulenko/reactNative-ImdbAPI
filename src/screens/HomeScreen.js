@@ -10,6 +10,7 @@ import {
   removeFromBookmarks,
 } from '../redux/actions/moviesActions';
 
+import AppIndicator from "../components/ui/AppIndicator";
 import MoviesList from '../components/MoviesList';
 import {THEME} from '../utilities/theme';
 
@@ -43,9 +44,7 @@ const HomeScreen = () => {
   let content;
   if (isReady) {
     return (content = (
-      <View style={styles.indicator}>
-        <ActivityIndicator size="large" color={THEME.MAIN_COLOR} />
-      </View>
+        <ActivityIndicator style={styles.indicator} size="large" color={THEME.MAIN_COLOR} />
     ));
   } else {
     return (content = (

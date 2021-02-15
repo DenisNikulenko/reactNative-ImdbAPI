@@ -107,11 +107,12 @@ export const fetchDetailsMovie = (id) => {
 export const fetchSearchMovies = (search) => {
   try { 
     return async (dispatch) => {
-      console.log(search)
-      dispatch(fetchingSearchRequest());   
-      let response = await fetch(`${BASE_URL}/${SEARCH_MULTI}?${API_KEY}&${LANGUAGE}&query=${search}spider&page=1&`);
-      let json = await response.json();
+      dispatch(fetchingSearchRequest());
 
+      let response = await fetch(`${BASE_URL}/search/multi?${API_KEY}&${LANGUAGE}&query=${search}&page=1`);
+      let json = await response.json();
+      
+      console.log(json)
       json ? dispatch(fetchingSearchSuccess(json)) : fetchingSearchFailure(error);
     }
   } catch (error) {
