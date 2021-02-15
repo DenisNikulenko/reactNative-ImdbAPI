@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Text, StyleSheet, Dimensions} from 'react-native';
 
 import {useSelector, useDispatch} from 'react-redux';
@@ -18,12 +18,10 @@ const HomeScreen = () => {
 
   const {bookmarksList, movies} = moviesReducer;
   const isReady = moviesReducer.isFetching;
-
-  let content;
+  const [page, setPage] = useState(1)
 
   useEffect(() => {
-    dispatch(fetchPopularMovies());
-    dispatch(fetchDetailsMovie());
+    dispatch(fetchPopularMovies(page));
   }, []);
 
   const onTapAddToBookmarkList = (movie) => {
@@ -42,11 +40,11 @@ const HomeScreen = () => {
   };
 
   if (isReady) {
-    return (content = (
+    return (
         <AppIndicator style={styles.indicator} />
-    ));
+    );
   } else {
-    return (content = (
+    return (
       <View style={styles.container}>
         <Text style={styles.title}>ТОП популярных фильмов</Text>
         <MoviesList
@@ -56,7 +54,7 @@ const HomeScreen = () => {
           stateMovies={movies}
         />
       </View>
-    ));
+    );
   }
 };
 

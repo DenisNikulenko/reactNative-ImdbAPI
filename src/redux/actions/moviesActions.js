@@ -69,12 +69,12 @@ export const removeFromBookmarks = (movie) => (dispatch) => {
 }
 
 //PROMISES
-export const fetchPopularMovies = () => {
+export const fetchPopularMovies = (page = 2) => {
   try { 
     return async (dispatch) => {
       dispatch(fetchingMovieRequest());
 
-      let response = await fetch(`${BASE_URL}/${TOP_POPULAR}?${API_KEY}&page=2&${LANGUAGE}`);
+      let response = await fetch(`${BASE_URL}/${TOP_POPULAR}?${API_KEY}&page=${page}&${LANGUAGE}`);
       let json = await response.json();
 
       json.results ? dispatch(fetchingMovieSuccess(json.results)) :  dispatch(fetchingMoviesFailure(error));
