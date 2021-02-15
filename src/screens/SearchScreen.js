@@ -3,8 +3,14 @@ import {View, StyleSheet, TextInput, TouchableOpacity, Dimensions, Text} from 'r
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { THEME } from '../utilities/theme';
 
+import {useSelector, useDispatch} from 'react-redux';
+import fetchSearchMovies from "../redux/actions/moviesActions";
+
+
 const SearchScreen = () => {
   const [title, setTitle] = useState("")
+
+
 
   return (
     <View style={styles.conteainer}>

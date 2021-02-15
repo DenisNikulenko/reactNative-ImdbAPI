@@ -5,13 +5,17 @@ import {
   FETCHING_DETAILS_REQUEST,
   FETCHING_DETAILS_SUCCESS,
   FETCHING_DETAILS_FAILURE,
+  FETCHING_SERCH_REQUEST,
+  FETCHING_SERCH_SUCCESS,
+  FETCHING_SEARCH_FAILURE,
   ADD_TO_BOOKMARKS,
   REMOVE_FROM_BOOKMARKS,
 } from '../types';
 
 const initialState = {
   movies: [],
-  detailsMovie: null,
+  detailsMovie: [],
+  searchData: [],
   bookmarksList: [],
   isFetching: true,
   errorMessage: '',
@@ -19,6 +23,7 @@ const initialState = {
 
 const moviesReducer = (state = initialState, action) => {
   switch (action.type) {
+//TOP 30
     case FETCHING_MOVIES_REQUEST:
       return {
         ...state,
@@ -38,7 +43,7 @@ const moviesReducer = (state = initialState, action) => {
           isFetching: false,
           errorMessage: action.payload,
         };
-
+//DETAILS
       case FETCHING_DETAILS_REQUEST:
         return {
           ...state,
@@ -58,8 +63,28 @@ const moviesReducer = (state = initialState, action) => {
           isFetching: false,
           errorMessage: action.payload,
         };
-  
 
+//SEARCH
+      case FETCHING_SERCH_REQUEST:
+        return {
+          ...state,
+          isFetching: true
+        }
+
+      case FETCHING_SERCH_SUCCESS:
+        return {
+          ...state,
+          isFetching: false,
+          searchData: action.payload,
+        }
+        
+      case FETCHING_SEARCH_FAILURE:
+        return {
+          ...state,
+          isFetching: false,
+          errorMessage: action.payload,
+        }
+//BOOKMARKS
     case ADD_TO_BOOKMARKS: 
       return {
           ...state,

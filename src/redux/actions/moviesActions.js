@@ -44,7 +44,7 @@ export const fetchingDetailsFailure = (error) => ({
 export const fetchingSearchRequest = () => ({type: FETCHING_SERCH_REQUEST});
 
 export const fetchingSearchSuccess = (data) => ({
-  type: FETCHING_DETAILS_SUCCESS,
+  type: FETCHING_SERCH_SUCCESS,
   payload: data,
 });
 
@@ -98,26 +98,23 @@ export const fetchDetailsMovie = (id) => {
       let json = await response.json();
 
       json ? dispatch(fetchingDetailsSuccess(json)) : fetchingMoviesFailure(error);
-    }
-    
+    }  
   } catch (error) {
       dispatch(fetchingMoviesFailure(error));
     }
 };
 
-
-export const fetchSearch = (search) => {
+export const fetchSearchMovies = (search) => {
   try { 
     return async (dispatch) => {
-      dispatch(fetchingMovieRequest());   
-
+      console.log(search)
+      dispatch(fetchingSearchRequest());   
       let response = await fetch(`${BASE_URL}/${SEARCH_MULTI}?${API_KEY}&${LANGUAGE}&query=${search}spider&page=1&`);
       let json = await response.json();
 
-      json ? dispatch(fetchingDetailsSuccess(json)) : fetchingMoviesFailure(error);
+      json ? dispatch(fetchingSearchSuccess(json)) : fetchingSearchFailure(error);
     }
-    
   } catch (error) {
-      dispatch(fetchingMoviesFailure(error));
+      dispatch(fetchingSearchFailure(error));
     }
 };
