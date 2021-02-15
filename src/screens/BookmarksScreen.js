@@ -15,7 +15,7 @@ const BookmarksScreen = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.textTitle}>
-        Из<Text style={styles.header}>бра</Text>ное:
+      <Text style={styles.header}>И</Text>збраное:
       </Text>
       <View>
         <FlatList

@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  View,
   Text,
   StyleSheet,
   TouchableOpacity,
@@ -16,10 +15,10 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import {IMAGE_URL} from '../../utilities/apiUrl';
 import { THEME } from '../../utilities/theme';
 
-//onPress={() => navigation.navigate('Details')}
 const AppCardBookmark = ({item}) => {
   const navigation = useNavigation()
 	const dispatch = useDispatch();
+  
 	const {poster_path, id, title} = item;
 
   return (

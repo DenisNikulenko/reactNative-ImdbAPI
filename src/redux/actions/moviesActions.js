@@ -23,9 +23,6 @@ export const fetchingMoviesFailure = (error) => ({
   payload: error,
 });
 
-
-
-
 export const fetchingDetailsRequest = () => ({type: FETCHING_DETAILS_REQUEST});
 
 export const fetchingDetailsSuccess = (data) => ({
@@ -37,9 +34,6 @@ export const fetchingDetailsFailure = (error) => ({
   type: FETCHING_DETAILS_FAILURE,
   payload: error,
 });
-
-
-
 
 export const addToBookmarks = (movie) => (dispatch) => {
   dispatch({  
@@ -54,9 +48,6 @@ export const removeFromBookmarks = (movie) => (dispatch) => {
     payload: movie
   })
 }
-
-
-
 
 
 export const fetchPopularMovies = () => {

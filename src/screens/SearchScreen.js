@@ -61,8 +61,7 @@ const styles = StyleSheet.create({
     width: "15%",
     height: "100%",
   },
-
-
+  
   contentBlock: {
     justifyContent: "center",
     alignItems: "center",

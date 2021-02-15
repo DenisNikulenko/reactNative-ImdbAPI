@@ -20,7 +20,6 @@ const HomeScreen = () => {
   const {bookmarksList, movies} = moviesReducer;
   const isReady = moviesReducer.isFetching;
 
-
   useEffect(() => {
     dispatch(fetchPopularMovies());
     dispatch(fetchDetailsMovie());
@@ -61,17 +60,6 @@ const HomeScreen = () => {
       </View>
     ));
   }
-
-  return {content};
-  // <View style={styles.container}>
-  //   <Text style={styles.title}>ТОП популярных фильмов</Text>
-  //   <MoviesList
-  //     addToBookMarkList={onTapAddToBookmarkList}
-  //     removeFromBookmarks={onTapRemoveFromBookmarkList}
-  //     isExist={isExist}
-  //     stateMovies={movies}
-  //   />
-  // </View>
 };
 
 const styles = StyleSheet.create({

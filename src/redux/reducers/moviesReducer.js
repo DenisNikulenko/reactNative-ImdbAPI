@@ -72,8 +72,6 @@ const moviesReducer = (state = initialState, action) => {
             bookmarksList: state.bookmarksList.filter(movie => movie.id !== action.payload.id) 
         }
 
-
-
     default:
       return state;
   }
