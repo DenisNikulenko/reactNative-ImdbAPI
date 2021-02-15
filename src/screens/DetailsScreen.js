@@ -30,7 +30,7 @@ const MovieDetails = ({route}) => {
     );
   } else {
     return content = (
-      <View>
+      <View style={styles.container}>
         <View>
           <Details movieDetails={movieDetails} />
         </View>
@@ -40,6 +40,9 @@ const MovieDetails = ({route}) => {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    marginBottom: 100
+  },
   indicator: {
     flex: 1,
     alignItems: 'center',

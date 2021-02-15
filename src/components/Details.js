@@ -4,16 +4,11 @@ import {
   View,
   Text,
   StyleSheet,
-  Image,
-  ImageBackground,
   Dimensions,
-  TouchableOpacity,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import AppImageDetails from "../components/ui/AppImageDetails";
 
-import {IMAGE_URL} from '../utilities/apiUrl';
 import {THEME} from '../utilities/theme';
 
 export const Details = ({movieDetails}) => {
@@ -27,34 +22,43 @@ export const Details = ({movieDetails}) => {
   let title = movieDetails.title;
   let genre;
   const {
-    backdrop_path,
-    belongs_to_collection,
     budget,
     genres,
     id,
-    original_language,
-    original_title,
     overview,
-    popularity,
     poster_path,
-    production_companies,
-    production_countries,
     release_date,
-    revenue,
     runtime,
-    spoken_languages,
-    status,
-    tagline,
-    video,
     vote_average,
-    vote_count,
   } = container;
 
   typeof title === 'string' ? title.length > 30 ? (title = `${title.substr(0, 29)}`) : null : null;
+  
+  genres ? (genre = genres.map((g) => (
+        <View key={g.id}>
+          <Text style={styles.descriptioninfoText}>{g.name}</Text>
+        </View>
+  ))) : (genre = <Text>Пусто</Text>);
 
   return (
     <ScrollView style={styles.container}>
       <AppImageDetails posterPath={poster_path} title={title} voteAverage={vote_average} runtime={runtime} />
+
+      <View style={styles.description}>
+        <View style={styles.descriptionText}>
+          <Text style={styles.descriptionTextPreview}>Описание: </Text>
+          <Text style={{color:"white", fontSize: 18, marginTop: 7}}>{overview}</Text>
+        </View>
+        <View style={styles.descriptioninfo}>
+          <View>
+            <Text style={styles.descriptioninfoText}><Text style={styles.textBold}>Релиз:</Text> {release_date}</Text>
+            <Text style={styles.descriptioninfoText}><Text style={styles.textBold}>Бюджет:</Text> {budget} $</Text>
+          </View>
+          <View>
+            {genre}
+          </View>
+        </View>
+      </View>
     </ScrollView>
   )
 };
@@ -64,7 +68,46 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#f2f2f2",
     width: Dimensions.get('screen').width,
-    height: Dimensions.get('screen').height,
-    marginBottom: 45,
+    height: Dimensions.get('screen').height - 110,
   },
+
+  description: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  descriptionText:{
+    padding: 12,
+    backgroundColor: "#b3b3b3",
+    borderTopRightRadius: 60,
+  },
+  descriptionTextPreview: {
+    color:"white", 
+    fontWeight: "bold", 
+    fontSize: 24, 
+    borderLeftColor: 
+    THEME.MAIN_COLOR,
+    borderLeftWidth: 1, 
+    paddingLeft: 5, 
+    borderBottomWidth: 1, 
+    borderColor: THEME.MAIN_COLOR, 
+    width: 120,
+  },
+
+  descriptioninfo: {
+    width: Dimensions.get('screen').width,
+    padding: 12,
+    backgroundColor: "#b3b3b3",
+    flexDirection: "row",
+    justifyContent: "space-between"
+  },
+  descriptioninfoText: {
+    color: "white"
+  },
+
+  textBold: {
+    fontWeight: "bold",
+    fontSize: 20
+  }
+
 })

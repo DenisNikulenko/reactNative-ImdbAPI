@@ -14,6 +14,7 @@ import {useDispatch} from "react-redux";
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {IMAGE_URL} from '../../utilities/apiUrl';
+import { THEME } from '../../utilities/theme';
 
 //onPress={() => navigation.navigate('Details')}
 const AppCardBookmark = ({item}) => {
@@ -34,7 +35,7 @@ const AppCardBookmark = ({item}) => {
       <TouchableOpacity
         style={styles.movieCardBtn}
         onPress={() => dispatch(removeFromBookmarks(item))} >
-        	<Ionicons name="md-star-outline" color="white" size={26} />
+        	<Ionicons name="trash-outline" color="white" size={26} />
       </TouchableOpacity>
     </TouchableOpacity>
   );
@@ -68,7 +69,7 @@ const styles = StyleSheet.create({
   movieCardBtn: {
     flex: 2,
     height: '100%',
-    backgroundColor: 'lightgreen',
+    backgroundColor: THEME.MAIN_COLOR,
     justifyContent: 'center',
     alignItems: 'center',
     borderTopRightRadius: 10,
