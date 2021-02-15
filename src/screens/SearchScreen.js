@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, StyleSheet, TextInput, TouchableOpacity, Dimensions, Text, FlatList} from 'react-native';
+import {View, StyleSheet, TextInput, TouchableOpacity, Dimensions, FlatList} from 'react-native';
 
 
 import {useSelector, useDispatch} from 'react-redux';
@@ -18,13 +18,15 @@ const SearchScreen = () => {
   const searchData = useSelector((state) => state.moviesReducer.searchData);
   const navigation = useNavigation()
 
-  console.log(searchData)
-
   const [title, setTitle] = useState("")
-  console.log(isFetching)
+
   useEffect(()=> {
-    dispatch(fetchSearchMovies(title));
+    if(title !== "") {
+      dispatch(fetchSearchMovies(title));
+    }
   },[title])
+
+
 
   return (
     <View style={styles.conteainer}>
@@ -51,7 +53,6 @@ const SearchScreen = () => {
                 renderItem={({item}) =>  
                   <AppCardPreviewMovie 
                     item={item} 
-                    costumeStyle={styles.movieCardBtn}
                     onPressNavigation={() => navigation.navigate('Details', {id,title})}
                     onPressBtn={() => dispatch(addToBookmarks(item))}
                     iconName="star-sharp" 
@@ -102,17 +103,7 @@ const styles = StyleSheet.create({
   
   contentBlock: {
 
-  },
-
-  movieCardBtn: {
-    flex: 2,
-    height: '100%',
-    backgroundColor: THEME.GREEN,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderTopRightRadius: 10,
-    borderBottomRightRadius: 10,
-  },
+  }
 });
 
 export default SearchScreen;

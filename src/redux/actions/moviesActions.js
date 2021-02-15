@@ -108,7 +108,7 @@ export const fetchSearchMovies = (search) => {
       let json = await response.json();
       
       let result = json.results.filter(i => !i.name && !i.backdrop_path)
-
+      console.log(result)
       json ? dispatch(fetchingSearchSuccess(result)) : fetchingSearchFailure(error);
     }
   } catch (error) {
