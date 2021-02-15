@@ -45,6 +45,15 @@ const BookmarksStack = () => {
   );
 };
 
+const SearchStack = () => {
+  return (
+    <Stack.Navigator headerMode="none">
+      <Stack.Screen name="Search" component={SearchScreen} />
+      <Stack.Screen name="Details" component={DetailsScreen} />
+    </Stack.Navigator>
+  );
+};
+
 const App = () => {
   return (
     <Provider store={store}>
@@ -72,7 +81,7 @@ const App = () => {
               inactiveTintColor: 'gray',
             }}>
             <Tab.Screen name="Home" component={HomeStack} />
-            <Tab.Screen name="Search" component={SearchScreen} />
+            <Tab.Screen name="Search" component={SearchStack} />
             <Tab.Screen
               name="Bookmarks"
               component={BookmarksStack}

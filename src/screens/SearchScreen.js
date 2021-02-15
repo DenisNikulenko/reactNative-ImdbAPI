@@ -15,7 +15,7 @@ import AppCardPreviewMovie from '../components/ui/AppCardPreviewMovie';
 const SearchScreen = () => {
   const dispatch = useDispatch();
   const isFetching = useSelector(state => state.moviesReducer.isFetching)
-  const searchData = useSelector((state) => state.moviesReducer.searchData.results);
+  const searchData = useSelector((state) => state.moviesReducer.searchData);
   const navigation = useNavigation()
 
   console.log(searchData)
@@ -25,7 +25,6 @@ const SearchScreen = () => {
   useEffect(()=> {
     dispatch(fetchSearchMovies(title));
   },[title])
-
 
   return (
     <View style={styles.conteainer}>
@@ -71,7 +70,7 @@ const styles = StyleSheet.create({
     width: Dimensions.get("screen").width - 10,
     height: Dimensions.get("screen").height,
     alignItems: "center",
-    // marginLeft: 10,
+    marginBottom: 60,
   },
 
   searchBlock: {

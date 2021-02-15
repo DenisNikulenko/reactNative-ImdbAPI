@@ -16,7 +16,7 @@ const AppCardPreviewMovie = ({item, onPressBtn, costumeStyle, iconName, iconColo
   const navigation = useNavigation()
   
 	const {poster_path, id, title} = item;
-
+  
   return (
     <TouchableOpacity style={styles.movieCard} onPress={() => navigation.navigate('Details', {id,title})}>
       <Image

@@ -107,8 +107,9 @@ export const fetchSearchMovies = (search) => {
       let response = await fetch(`${BASE_URL}/search/multi?${API_KEY}&${LANGUAGE}&query=${search}&page=1`);
       let json = await response.json();
       
-      console.log(json)
-      json ? dispatch(fetchingSearchSuccess(json)) : fetchingSearchFailure(error);
+      let result = json.results.filter(i => !i.name && !i.backdrop_path)
+
+      json ? dispatch(fetchingSearchSuccess(result)) : fetchingSearchFailure(error);
     }
   } catch (error) {
       dispatch(fetchingSearchFailure(error));
