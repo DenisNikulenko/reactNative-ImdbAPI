@@ -90,7 +90,6 @@ export const searchByName = (searchText) => (dispatch) => {
 //Не успел
 export const touchOnRefresh = () => ({type: TOUCHE_ON_REFRESH});
 
-
 //PROMISES
 export const fetchPopularMovies = (page) => {
   try { 

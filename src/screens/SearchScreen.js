@@ -56,7 +56,8 @@ const SearchScreen = () => {
                     onPressBtn={() => dispatch(addToBookmarks(item))}
                     iconName="star-sharp" 
                     iconColor="white" 
-                    iconSize={30} />}
+                    iconSize={30} />
+                }
               />
             </View>
         }

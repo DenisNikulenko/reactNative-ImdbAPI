@@ -14,7 +14,6 @@ import { IMAGE_URL } from '../../utilities/apiUrl';
 const AppActorsDetails= ({castActors, crewActors}) => {
 
   const renderItem = ({item}) => {
-    console.log(item)
     return (
       <View style={styles.actorCard}>
         <TouchableOpacity>
@@ -39,13 +38,6 @@ const AppActorsDetails= ({castActors, crewActors}) => {
         keyExtractor={(item, index) => index.toString()}
         horizontal={true}
       />
-      {/* <FlatList
-        showsVerticalScrollIndicator={false}
-        data={crewActors}
-        renderItem={renderItem}
-        keyExtractor={(item,index) => index.toString()}
-        horizontal={true}
-      /> */}
     </View>
   );
 };

@@ -12,10 +12,8 @@ const BookmarksScreen = () => {
   const moviesReducer = useSelector((state) => state.moviesReducer);
 
   const {bookmarksList, filteredBookmarkList, isSearchActive} = moviesReducer;
-  console.log(filteredBookmarkList)
 	const dispatch = useDispatch();
   
-
   const currentMovies = isSearchActive ? filteredBookmarkList : bookmarksList
 
   const onChange = (text) => {
