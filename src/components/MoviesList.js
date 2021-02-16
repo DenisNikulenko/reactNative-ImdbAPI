@@ -20,15 +20,14 @@ const MoviesList = ({stateMovies, isExist, addToBookMarkList, removeFromBookmark
   const navigation = useNavigation();
 
   const renderItem = ({item}) => {
-    const {id, release_date, backdrop_path, vote_average} = item;
+    const {id,release_date, backdrop_path, vote_average} = item;
     let {title} = item
-
     title.length > 30 ? title = `${title.substr(0,29)}` : null;
     
     return (
       <View style={styles.movieItem}>
         <TouchableOpacity
-          onPress={()=> navigation.navigate('Details', {id, title})}
+          onPress={()=> navigation.navigate('Details',{id})}
          >
           <View style={styles.infoTitle}>
             <Text style={styles.infoTitleText}>{title}</Text>
@@ -81,7 +80,7 @@ const MoviesList = ({stateMovies, isExist, addToBookMarkList, removeFromBookmark
         showsVerticalScrollIndicator={false} 
         data={stateMovies}
         renderItem={renderItem}
-        keyExtractor={(item) => item.title + item.id}
+        keyExtractor={ (item, index) => index.toString() }
         onEndReached={()=> scrollLoadMore()}
         onEndReachedThreshold={1}
         ListFooterComponent={()=> <AppIndicator />}

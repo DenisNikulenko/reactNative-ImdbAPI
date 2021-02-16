@@ -4,7 +4,6 @@ import {
   Text,
   StyleSheet,
   FlatList,
-  SafeAreaView,
   Dimensions,
   Image,
   TouchableOpacity,
@@ -12,10 +11,10 @@ import {
 
 import { IMAGE_URL } from '../../utilities/apiUrl';
 
-
-const AppActorsInfo = ({castActors, crewActors}) => {
+const AppActorsDetails= ({castActors, crewActors}) => {
 
   const renderItem = ({item}) => {
+    console.log(item)
     return (
       <View style={styles.actorCard}>
         <TouchableOpacity>
@@ -37,21 +36,19 @@ const AppActorsInfo = ({castActors, crewActors}) => {
         showsVerticalScrollIndicator={false}
         data={castActors}
         renderItem={renderItem}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={(item, index) => index.toString()}
         horizontal={true}
       />
-      <FlatList
+      {/* <FlatList
         showsVerticalScrollIndicator={false}
         data={crewActors}
         renderItem={renderItem}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={(item,index) => index.toString()}
         horizontal={true}
-      />
+      /> */}
     </View>
   );
 };
-
-export default AppActorsInfo;
 
 const styles = StyleSheet.create({
   container: {
@@ -76,3 +73,5 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 10  
   },
 });
+
+export default AppActorsDetails;

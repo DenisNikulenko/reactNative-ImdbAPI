@@ -12,11 +12,11 @@ const MovieDetails = ({route}) => {
 
   const {detailsMovie, isFetching, actors:{cast, crew}} = moviesReducer;
   const id = route.params.id;
-
+  console.log(id)
   useEffect(() => {
     dispatch(fetchDetailsMovie(id));
     dispatch(fetchActors(id))
-  }, [id]);
+  },[]);
 
   if (isFetching) {
     return  (

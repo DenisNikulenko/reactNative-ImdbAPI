@@ -48,7 +48,7 @@ const SearchScreen = () => {
               <FlatList
                 showsVerticalScrollIndicator={false}
                 data={searchData}
-                keyExtractor={(item) => item.id.toString()}
+                keyExtractor={(item,idx) => idx.toString()}
                 renderItem={({item}) =>  
                   <AppCardPreviewMovie 
                     item={item} 

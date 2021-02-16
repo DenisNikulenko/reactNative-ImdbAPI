@@ -5,18 +5,15 @@ import {
   Text,
   StyleSheet,
   Dimensions,
-  FlatList,
-  Image,
-  SafeAreaView
 } from 'react-native';
 
 import AppImageDetails from "../components/ui/AppImageDetails";
-import AppActorsInfo from "../components/ui/AppActorsInfo";
+import AppActorsDetails from "./ui/AppActorsDetails";
 import {THEME} from '../utilities/theme';
 
 export const Details = ({detailsMovie, castActors, crewActors}) => {
-  useEffect(() => {
-  }, [detailsMovie]);
+  // useEffect(() => {
+  // }, [detailsMovie]);
 
   let {title, overview, budget, genre} = detailsMovie;
   const {
@@ -30,17 +27,17 @@ export const Details = ({detailsMovie, castActors, crewActors}) => {
   typeof title === 'string' ? title.length > 30 ? (title = `${title.substr(0, 29)}`) : null : null;
   typeof overview === "string" ? overview.length < 5 ? overview = "нет описания :(" : null : null
 
-  genres ? (genre = genres.map((g) => (
-        <View key={g.id}>
+  genres ? (genre = genres.map((g, indx) => (
+        <View key={g.indx}>
           <Text style={styles.descriptioninfoText}>{g.name}</Text>
         </View>
   ))) : (genre = <Text>Пусто</Text>);
 
   return (
-    <ScrollView style={styles.container}>
+    <View style={styles.container}>
       <AppImageDetails posterPath={poster_path} title={title} voteAverage={vote_average} runtime={runtime} />
 
-      <View>
+      {/* <View>
         <View style={styles.descriptionText}>
           <Text style={styles.descriptionTextPreview}>Описание: </Text>
           <Text style={{color:"white", fontSize: 18, marginTop: 7}}>{overview}</Text>
@@ -58,9 +55,9 @@ export const Details = ({detailsMovie, castActors, crewActors}) => {
           </View>
 
         </View>
-      </View>
-        <AppActorsInfo castActors={castActors}  crewActors={crewActors} />
-    </ScrollView>
+      </View> */}
+        <AppActorsDetails castActors={castActors}  crewActors={crewActors} />
+    </View>
   )
 };
 

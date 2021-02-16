@@ -114,7 +114,7 @@ export const fetchDetailsMovie = (id) => {
 
       let response = await fetch(`${BASE_URL}/movie/${id}?${API_KEY}&${LANGUAGE}`);
       let json = await response.json();
-
+      
       json ? dispatch(fetchingDetailsSuccess(json)) : fetchingMoviesFailure(error);
     }  
   } catch (error) {
