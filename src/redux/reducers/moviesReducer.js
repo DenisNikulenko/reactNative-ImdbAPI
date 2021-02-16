@@ -9,6 +9,7 @@ import {
   FETCHING_SERCH_REQUEST,
   FETCHING_SERCH_SUCCESS,
   FETCHING_SEARCH_FAILURE,
+  FETCHING_ACTORS_SUCCESS,
   ADD_TO_BOOKMARKS,
   REMOVE_FROM_BOOKMARKS,
   TOUCHE_ON_REFRESH,
@@ -18,9 +19,10 @@ import {
 const initialState = {
   movies: [],
   detailsMovie: [],
+  actors: [],
 
   searchData: [],
-  isFetching: true,
+  isFetching: false,
   errorMessage: '',
   
   bookmarksList: [],
@@ -83,17 +85,24 @@ const moviesReducer = (state = initialState, action) => {
     case FETCHING_SERCH_SUCCESS:
       return {
         ...state,
-        isFetching: false,
         searchData: action.payload,
+        isFetching: false,
       };
 
     case FETCHING_SEARCH_FAILURE:
       return {
         ...state,
-        isFetching: false,
         errorMessage: action.payload,
+        isFetching: false,
       };
 
+    //Actors
+    case FETCHING_ACTORS_SUCCESS:
+      return {
+        ...state,
+        actors: action.payload,
+        isFetching: false,
+      };
 
     //BOOKMARKS
     case ADD_TO_BOOKMARKS:

@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {View, StyleSheet, Dimensions} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
-import {fetchDetailsMovie} from '../redux/actions/moviesActions';
+import {fetchDetailsMovie, fetchActors} from '../redux/actions/moviesActions';
 
 import {Details} from '../components/Details';
 import AppIndicator from "../components/ui/AppIndicator";
@@ -10,13 +10,12 @@ const MovieDetails = ({route}) => {
   const dispatch = useDispatch();
   const moviesReducer = useSelector((state) => state.moviesReducer);
 
-  const {detailsMovie, isFetching} = moviesReducer;
-
+  const {detailsMovie, isFetching, actors:{cast, crew}} = moviesReducer;
   const id = route.params.id;
-
 
   useEffect(() => {
     dispatch(fetchDetailsMovie(id));
+    dispatch(fetchActors(id))
   }, [id]);
 
   if (isFetching) {
@@ -27,7 +26,7 @@ const MovieDetails = ({route}) => {
     return (
       <View style={styles.container}>
         <View>
-          <Details detailsMovie={detailsMovie} />
+          <Details detailsMovie={detailsMovie} castActors={cast} crewActors={crew} />
         </View>
       </View>
     );

@@ -85,7 +85,7 @@ const App = () => {
             <Tab.Screen
               name="Bookmarks"
               component={BookmarksStack}
-              options={{tabBarBadge: 3, color: 'green'}}
+              options={{tabBarBadge: 3}}
             />
           </Tab.Navigator>
         </NavigationContainer>

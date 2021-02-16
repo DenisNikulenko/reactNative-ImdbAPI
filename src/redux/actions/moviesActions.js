@@ -8,6 +8,7 @@ import {
   FETCHING_SERCH_REQUEST,
   FETCHING_SERCH_SUCCESS,
   FETCHING_SEARCH_FAILURE,
+  FETCHING_ACTORS_SUCCESS,
   TOUCHE_ON_REFRESH,
   ADD_TO_BOOKMARKS,
   REMOVE_FROM_BOOKMARKS,
@@ -55,6 +56,12 @@ export const fetchingSearchSuccess = (data) => ({
 export const fetchingSearchFailure = (error) => ({
   type: FETCHING_SEARCH_FAILURE,
   payload: error,
+})
+
+//Actors
+export const fetchingActorsSuccess = (data) => ({
+  type: FETCHING_ACTORS_SUCCESS,
+  payload: data
 })
 
 
@@ -131,3 +138,23 @@ export const fetchSearchMovies = (search) => {
       dispatch(fetchingSearchFailure(error));
     }
 };
+
+//`${BASE_URL}/movie/${id}/credits?${API_KEY}&${LANGUAGE}`
+//https://api.themoviedb.org/3/movie/504253/credits?api_key=a0365c3dfe181648feb572b2dbf405c8
+export const fetchActors = (id) => {
+  try { 
+    return async (dispatch) => {
+      dispatch(fetchingMovieRequest());   
+
+      let response = await fetch(`${BASE_URL}/movie/${id}/credits?${API_KEY}&${LANGUAGE}`);
+      let json = await response.json();
+      console.log(json)
+
+
+      json ? dispatch(fetchingActorsSuccess(json)) : fetchingMoviesFailure(error);
+    }  
+  } catch (error) {
+      dispatch(fetchingMoviesFailure(error));
+    }
+};
+
