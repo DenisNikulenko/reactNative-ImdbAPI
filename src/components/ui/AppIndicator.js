@@ -8,7 +8,7 @@ export default AppIndicator = () => {
     <View style={styles.indicator}>
       <ActivityIndicator size="large" color={THEME.MAIN_COLOR} />
     </View>
-  )
+  );
 };
 
 const styles = StyleSheet.create({

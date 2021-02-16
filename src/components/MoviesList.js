@@ -81,7 +81,7 @@ const MoviesList = ({stateMovies, isExist, addToBookMarkList, removeFromBookmark
         showsVerticalScrollIndicator={false} 
         data={stateMovies}
         renderItem={renderItem}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={(item) => item.title + item.id}
         onEndReached={()=> scrollLoadMore()}
         onEndReachedThreshold={1}
         ListFooterComponent={()=> <AppIndicator />}

@@ -131,7 +131,6 @@ export const fetchSearchMovies = (search) => {
       let json = await response.json();
       
       let result = json.results.filter(i => !i.name && !i.backdrop_path)
-      console.log(result)
       json ? dispatch(fetchingSearchSuccess(result)) : fetchingSearchFailure(error);
     }
   } catch (error) {
@@ -147,8 +146,6 @@ export const fetchActors = (id) => {
       let response = await fetch(`${BASE_URL}/movie/${id}/credits?${API_KEY}&${LANGUAGE}`);
       let json = await response.json();
       console.log(json)
-
-
       json ? dispatch(fetchingActorsSuccess(json)) : fetchingMoviesFailure(error);
     }  
   } catch (error) {
