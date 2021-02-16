@@ -11,7 +11,7 @@ import AppImageDetails from "../components/ui/AppImageDetails";
 import AppActorsDetails from "./ui/AppActorsDetails";
 import {THEME} from '../utilities/theme';
 
-export const Details = ({detailsMovie, castActors, crewActors}) => {
+export const Details = ({detailsMovie, castActors}) => {
   let {title, overview, genre} = detailsMovie;
   const {
     genres,
@@ -40,7 +40,7 @@ export const Details = ({detailsMovie, castActors, crewActors}) => {
             <Text style={{color:"white", fontSize: 18, marginTop: 7}}>{overview}</Text>
           </View>
 
-        <AppActorsDetails castActors={castActors}  crewActors={crewActors} />
+        <AppActorsDetails castActors={castActors} />
     </ScrollView>
   )
 };

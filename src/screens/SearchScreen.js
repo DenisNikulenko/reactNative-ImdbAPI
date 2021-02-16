@@ -14,25 +14,30 @@ import AppCardPreviewMovie from '../components/ui/AppCardPreviewMovie';
 
 const SearchScreen = () => {
   const dispatch = useDispatch();
-  const isFetching = useSelector(state => state.moviesReducer.isFetching)
-  const searchData = useSelector((state) => state.moviesReducer.searchData);
+  const {isFetching, searchData} = useSelector(state => state.moviesReducer)
+  console.log(searchData)
   const navigation = useNavigation()
 
-  const [value, setValue] = useState("")
-
+  const [valueSearch, setValueSearch] = useState("")
+  const [page,setPage] = useState(1)
   useEffect(()=> {
-    if(value !== "") {
-      dispatch(fetchSearchMovies(value));
+    if(searchData.length < 20) {
+      setPage(page + 1)
+      dispatch(fetchSearchMovies(page))
     }
-  },[value])
+
+    if(valueSearch !== "") {
+      dispatch(fetchSearchMovies(valueSearch));
+    }
+  },[valueSearch])
 
   return (
     <View style={styles.conteainer}>
       <View style={styles.searchBlock}>
 
         <TextInput
-          value={value}
-          onChangeText={setValue}
+          value={valueSearch}
+          onChangeText={setValueSearch}
           style={styles.searchInput}
           placeholder="Введите название фильма..."
           maxLength={64}

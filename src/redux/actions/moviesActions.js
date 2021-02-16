@@ -121,12 +121,12 @@ export const fetchDetailsMovie = (id) => {
     }
 };
 
-export const fetchSearchMovies = (search) => {
+export const fetchSearchMovies = (search, page = 1) => {
   try { 
     return async (dispatch) => {
       dispatch(fetchingSearchRequest());
 
-      let response = await fetch(`${BASE_URL}/search/multi?${API_KEY}&${LANGUAGE}&query=${search}&page=1`);
+      let response = await fetch(`${BASE_URL}/search/multi?${API_KEY}&${LANGUAGE}&query=${search}&page=${page}`);
       let json = await response.json();
       
       let result = json.results.filter(i => !i.name && !i.backdrop_path)
@@ -144,8 +144,8 @@ export const fetchActors = (id) => {
 
       let response = await fetch(`${BASE_URL}/movie/${id}/credits?${API_KEY}&${LANGUAGE}`);
       let json = await response.json();
-      
-      json ? dispatch(fetchingActorsSuccess(json)) : fetchingMoviesFailure(error);
+      const result = json.cast.filter(item => item.profile_path)
+      json ? dispatch(fetchingActorsSuccess(result)) : fetchingMoviesFailure(error);
     }  
   } catch (error) {
       dispatch(fetchingMoviesFailure(error));

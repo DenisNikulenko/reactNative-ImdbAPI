@@ -11,8 +11,8 @@ import {
 
 import { IMAGE_URL } from '../../utilities/apiUrl';
 
-const AppActorsDetails= ({castActors, crewActors}) => {
-
+const AppActorsDetails= ({castActors}) => {
+  console.log(castActors)
   const renderItem = ({item}) => {
     return (
       <View style={styles.actorCard}>
