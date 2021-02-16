@@ -139,8 +139,6 @@ export const fetchSearchMovies = (search) => {
     }
 };
 
-//`${BASE_URL}/movie/${id}/credits?${API_KEY}&${LANGUAGE}`
-//https://api.themoviedb.org/3/movie/504253/credits?api_key=a0365c3dfe181648feb572b2dbf405c8
 export const fetchActors = (id) => {
   try { 
     return async (dispatch) => {

@@ -5,12 +5,17 @@ import {
   Text,
   StyleSheet,
   Dimensions,
+  FlatList,
+  Image,
+  SafeAreaView
 } from 'react-native';
 
 import AppImageDetails from "../components/ui/AppImageDetails";
+import { IMAGE_URL } from '../utilities/apiUrl';
 import {THEME} from '../utilities/theme';
 
-export const Details = ({detailsMovie}) => {
+export const Details = ({detailsMovie, castActors, crewActors}) => {
+  console.log(castActors)
   useEffect(() => {
   }, [detailsMovie]);
 
@@ -25,6 +30,23 @@ export const Details = ({detailsMovie}) => {
 
   typeof title === 'string' ? title.length > 30 ? (title = `${title.substr(0, 29)}`) : null : null;
   typeof overview === "string" ? overview.length < 5 ? overview = "нет описания :(" : null : null
+
+  const renderItem = ({item}) => {
+    return (
+      <View style={{width: 100, justifyContent: "center", flexDirection: "row"}}>
+        <Image 
+            style={styles.image}
+            source={{
+              uri: `${IMAGE_URL}${item.profile_path}`,
+            }}
+            />
+        <Text>
+          {item.name}
+        </Text>
+
+      </View>
+    )
+  }
   
   genres ? (genre = genres.map((g) => (
         <View key={g.id}>
@@ -51,6 +73,13 @@ export const Details = ({detailsMovie}) => {
           </View>
         </View>
       </View>
+      <SafeAreaView>
+        <FlatList
+          showsVerticalScrollIndicator={true} 
+          data={castActors}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id.toString()} />
+      </SafeAreaView>
     </ScrollView>
   )
 };
@@ -63,6 +92,7 @@ const styles = StyleSheet.create({
   },
 
   description: {
+    marginTop: 5,
     flex: 1,
     justifyContent: "center",
     alignItems: "center"
@@ -103,5 +133,16 @@ const styles = StyleSheet.create({
   textBold: {
     fontWeight: "bold",
     fontSize: 20
+  },
+
+  image: {
+    resizeMode: 'contain',
+    marginTop: 10,
+    width: Dimensions.get('screen').width / 1.3,
+    height: '75%',
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
   }
 })
