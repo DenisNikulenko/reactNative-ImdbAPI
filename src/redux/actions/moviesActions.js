@@ -144,7 +144,7 @@ export const fetchActors = (id) => {
 
       let response = await fetch(`${BASE_URL}/movie/${id}/credits?${API_KEY}&${LANGUAGE}`);
       let json = await response.json();
-      console.log(json)
+      
       json ? dispatch(fetchingActorsSuccess(json)) : fetchingMoviesFailure(error);
     }  
   } catch (error) {

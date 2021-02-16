@@ -36,12 +36,7 @@ const MovieDetails = ({route}) => {
 const styles = StyleSheet.create({
   container: {
     marginBottom: 100
-  },
-  indicator: {
-    height: Dimensions.get("screen").height,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+  }
 });
 
 export default MovieDetails;

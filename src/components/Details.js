@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   container: {
     width: Dimensions.get('screen').width,
     height: Dimensions.get('screen').height - 80,
-    backgroundColor: "grey"
+    backgroundColor: "grey",
   },
 
   descriptionText:{
