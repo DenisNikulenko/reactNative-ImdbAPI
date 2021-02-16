@@ -13,7 +13,7 @@ import {addToBookmarks, removeFromBookmarks} from "../../redux/actions/moviesAct
 
 import {IMAGE_URL} from '../../utilities/apiUrl';
 import {AppButton} from "./AppButton";
-import {THEME} from "../../utilities/theme";
+import {COLORS} from "../../utilities/colors";
 
 const AppCardPreviewMovie = ({item, iconName, iconSize}) => {
   const dispatch = useDispatch();
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
   movieBtnTrue: {
     flex: 2,
     height: '100%',
-    backgroundColor: THEME.GREEN,
+    backgroundColor: COLORS.GREEN,
     justifyContent: 'center',
     alignItems: 'center',
     borderTopRightRadius: 10,
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
   movieBtnFalse: {
     flex: 2,
     height: '100%',
-    backgroundColor: THEME.MAIN_COLOR,
+    backgroundColor: COLORS.MAIN_COLOR,
     justifyContent: 'center',
     alignItems: 'center',
     borderTopRightRadius: 10,

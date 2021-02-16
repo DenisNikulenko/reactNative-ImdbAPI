@@ -85,7 +85,7 @@ const moviesReducer = (state = initialState, action) => {
     case FETCHING_SERCH_SUCCESS:
       return {
         ...state,
-        searchData: [...state.searchData, ...action.payload],
+        searchData: action.payload,
         isFetching: false,
       };
 

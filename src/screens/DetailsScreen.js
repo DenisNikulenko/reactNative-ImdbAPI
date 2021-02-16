@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {View, StyleSheet, Dimensions} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import {fetchDetailsMovie, fetchActors} from '../redux/actions/moviesActions';
 
@@ -12,7 +12,7 @@ const MovieDetails = ({route}) => {
 
   const {detailsMovie, isFetching, actors} = moviesReducer;
   const id = route.params.id;
-  console.log(id)
+
   useEffect(() => {
     dispatch(fetchDetailsMovie(id));
     dispatch(fetchActors(id))

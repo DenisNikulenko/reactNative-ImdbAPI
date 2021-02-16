@@ -12,11 +12,11 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import Stars from 'react-native-stars';
 
-import {IMAGE_URL} from '../utilities/apiUrl';
-import {THEME} from '../utilities/theme';
-import AppIndicator from "../components/ui/AppIndicator"; 
+import {IMAGE_URL} from '../../utilities/apiUrl';
+import {COLORS} from '../../utilities/colors';
+import AppIndicator from "../ui/AppIndicator"; 
 
-const MoviesList = ({stateMovies, isExist, addToBookMarkList, removeFromBookmarks, scrollLoadMore}) => {
+const MovieList = ({stateMovies, isExist, addToBookMarkList, removeFromBookmarks, scrollLoadMore}) => {
   const navigation = useNavigation();
 
   const renderItem = ({item}) => {
@@ -48,9 +48,9 @@ const MoviesList = ({stateMovies, isExist, addToBookMarkList, removeFromBookmark
                 spacing={vote_average}
                 starSize={12}
                 half={true}
-                fullStar={require('../images/starFilled.png')}
-                emptyStar={require('../images/starEmpty.png')}
-                halfStar={require('../images/starHalf.png')}
+                fullStar={require('../../images/starFilled.png')}
+                emptyStar={require('../../images/starEmpty.png')}
+                halfStar={require('../../images/starHalf.png')}
                 disabled={true}
               />
             </Text>
@@ -76,7 +76,6 @@ const MoviesList = ({stateMovies, isExist, addToBookMarkList, removeFromBookmark
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
-        // onRefresh={() => ()}
         showsVerticalScrollIndicator={false} 
         data={stateMovies}
         renderItem={renderItem}
@@ -138,7 +137,7 @@ const styles = StyleSheet.create({
   },
 
   btnAddBookmarkTrue: {
-    backgroundColor: THEME.GREEN,
+    backgroundColor: COLORS.GREEN,
     width: '100%',
     height: Dimensions.get('screen').height / 20,
     borderBottomLeftRadius: 20,
@@ -147,7 +146,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   btnAddBookmarkFalse: {
-    backgroundColor: THEME.MAIN_COLOR,
+    backgroundColor: COLORS.MAIN_COLOR,
     width: '100%',
     height: Dimensions.get('screen').height / 20,
     borderBottomLeftRadius: 20,
@@ -163,4 +162,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MoviesList;
+export default MovieList;

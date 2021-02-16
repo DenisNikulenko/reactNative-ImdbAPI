@@ -8,25 +8,19 @@ import {useNavigation} from '@react-navigation/native';
 import {addToBookmarks} from "../redux/actions/moviesActions";
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { THEME } from '../utilities/theme';
+import { COLORS } from '../utilities/colors';
 import AppIndicator from "../components/ui/AppIndicator";
 import AppCardPreviewMovie from '../components/ui/AppCardPreviewMovie';
 
 const SearchScreen = () => {
   const dispatch = useDispatch();
   const {isFetching, searchData} = useSelector(state => state.moviesReducer)
-  console.log(searchData)
   const navigation = useNavigation()
 
   const [valueSearch, setValueSearch] = useState("")
-  const [page,setPage] = useState(1)
+  
   useEffect(()=> {
-    if(searchData.length < 20) {
-      setPage(page + 1)
-      dispatch(fetchSearchMovies(page))
-    }
-
-    if(valueSearch !== "") {
+    if(valueSearch !== "" && valueSearch.length > 3) {
       dispatch(fetchSearchMovies(valueSearch));
     }
   },[valueSearch])
@@ -43,7 +37,7 @@ const SearchScreen = () => {
           maxLength={64}
           />
         <TouchableOpacity style={styles.serchBtn} onPress={() => dispatch(fetchSearchMovies(title))}>
-          <Ionicons name="search" color={THEME.MAIN_COLOR} size={30} />
+          <Ionicons name="search" color={COLORS.MAIN_COLOR} size={30} />
         </TouchableOpacity>
       </View>
       <View style={styles.contentBlock}>
@@ -86,14 +80,14 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     alignItems: "center",
     height: 60,
-    backgroundColor: THEME.LIGHT_GREY,
+    backgroundColor: COLORS.LIGHT_GREY,
     borderTopEndRadius: 15
   },
 
   searchInput: {
     padding: 10,
-    backgroundColor: THEME.WHITE,
-    borderBottomColor: THEME.MAIN_COLOR,
+    backgroundColor: COLORS.WHITE,
+    borderBottomColor: COLORS.MAIN_COLOR,
     borderBottomWidth: 2,
     borderBottomRightRadius: 20,
     width: "75%",

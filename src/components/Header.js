@@ -2,16 +2,16 @@ import React from 'react';
 import {View, StyleSheet, Text, StatusBar} from 'react-native';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {THEME} from "../utilities/theme";
+import {COLORS} from "../utilities/colors";
 
 const Header = () => {
   return (
     <View style={styles.container}>
       <StatusBar
         animated={true}
-        backgroundColor={THEME.MAIN_COLOR} />
+        backgroundColor={COLORS.MAIN_COLOR} />
       <Text style={styles.text}>
-        <Ionicons color={THEME.MAIN_COLOR} name="logo-tux" size={25} />
+        <Ionicons color={COLORS.MAIN_COLOR} name="logo-tux" size={25} />
         Movies <Text style={styles.textDB}>DB</Text>
       </Text>
     </View>
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
 
   textDB: {
     fontWeight: 'bold',
-    color: THEME.MAIN_COLOR
+    color: COLORS.MAIN_COLOR
   }
 });
 

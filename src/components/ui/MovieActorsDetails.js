@@ -11,8 +11,7 @@ import {
 
 import { IMAGE_URL } from '../../utilities/apiUrl';
 
-const AppActorsDetails= ({castActors}) => {
-  console.log(castActors)
+const MovieActorsDetails = ({castActors}) => {
   const renderItem = ({item}) => {
     return (
       <View style={styles.actorCard}>
@@ -66,4 +65,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AppActorsDetails;
+export default MovieActorsDetails;

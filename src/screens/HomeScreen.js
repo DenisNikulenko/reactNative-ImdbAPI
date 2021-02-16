@@ -9,7 +9,7 @@ import {
 } from '../redux/actions/moviesActions';
 
 import AppIndicator from "../components/ui/AppIndicator";
-import MoviesList from '../components/MoviesList';
+import MovieList from '../components/MovieList';
 
 const HomeScreen = () => {
   const moviesReducer = useSelector((state) => state.moviesReducer);
@@ -19,6 +19,7 @@ const HomeScreen = () => {
   const [page, setPage] = useState(1)
 
   useEffect(() => {
+
     dispatch(fetchPopularMovies(page));
   },[page]);
 
@@ -49,7 +50,7 @@ const HomeScreen = () => {
     return (
       <View style={styles.container}>
         <Text style={styles.title}>ТОП популярных фильмов</Text>
-        <MoviesList
+        <MovieList
           addToBookMarkList={onTapAddToBookmarkList}
           removeFromBookmarks={onTapRemoveFromBookmarkList}
           isExist={isExist}

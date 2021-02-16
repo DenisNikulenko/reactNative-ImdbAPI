@@ -8,8 +8,8 @@ import {
 } from 'react-native';
 
 import AppImageDetails from "../components/ui/AppImageDetails";
-import AppActorsDetails from "./ui/AppActorsDetails";
-import {THEME} from '../utilities/theme';
+import MovieActorsDetails from "./ui/MovieActorsDetails";
+import {COLORS} from '../utilities/colors';
 
 export const Details = ({detailsMovie, castActors}) => {
   let {title, overview, genre} = detailsMovie;
@@ -40,7 +40,7 @@ export const Details = ({detailsMovie, castActors}) => {
             <Text style={{color:"white", fontSize: 18, marginTop: 7}}>{overview}</Text>
           </View>
 
-        <AppActorsDetails castActors={castActors} />
+        <MovieActorsDetails castActors={castActors} />
     </ScrollView>
   )
 };
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
   descriptionText:{
     width: Dimensions.get('screen').width,
     padding: 12,
-    backgroundColor: THEME.GREY,
+    backgroundColor: COLORS.GREY,
     borderBottomRightRadius: 60,
   },
 
@@ -63,11 +63,11 @@ const styles = StyleSheet.create({
     color:"white", 
     fontWeight: "bold", 
     fontSize: 24, 
-    borderLeftColor: THEME.MAIN_COLOR,
+    borderLeftColor: COLORS.MAIN_COLOR,
     borderLeftWidth: 1, 
     paddingLeft: 5, 
     borderBottomWidth: 1, 
-    borderColor: THEME.MAIN_COLOR, 
+    borderColor: COLORS.MAIN_COLOR, 
     width: 120,
   },
 

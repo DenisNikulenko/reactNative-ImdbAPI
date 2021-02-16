@@ -6,7 +6,7 @@ import {useDispatch} from "react-redux";
 import {removeFromBookmarks, searchByName} from "../redux/actions/moviesActions";
 
 import AppCardPreviewMovie from '../components/ui/AppCardPreviewMovie';
-import {THEME} from "../utilities/theme";
+import {COLORS} from "../utilities/colors";
 
 const BookmarksScreen = () => {
   const moviesReducer = useSelector((state) => state.moviesReducer);
@@ -65,8 +65,8 @@ const styles = StyleSheet.create({
 
   searchInput: {
     padding: 10,
-    backgroundColor: THEME.WHITE,
-    borderBottomColor: THEME.MAIN_COLOR,
+    backgroundColor: COLORS.WHITE,
+    borderBottomColor: COLORS.MAIN_COLOR,
     borderBottomWidth: 2,
     borderBottomRightRadius: 20,
     width: Dimensions.get("screen").width - 10,
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
   movieCardBtn: {
     flex: 2,
     height: '100%',
-    backgroundColor: THEME.MAIN_COLOR,
+    backgroundColor: COLORS.MAIN_COLOR,
     justifyContent: 'center',
     alignItems: 'center',
     borderTopRightRadius: 10,

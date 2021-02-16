@@ -4,7 +4,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { THEME } from '../../utilities/theme';
 
 //Не успел
-const AppSearchInput = ({value, onChangeText, onPress}) => {
+const MovieSearchInput = ({value, onChangeText, onPress}) => {
   return (
     <View style={styles.searchBlock}>
       <TextInput
@@ -43,4 +43,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default AppSearchInput
+export default MovieSearchInput;

@@ -13,7 +13,7 @@ import {useDispatch} from "react-redux";
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {IMAGE_URL} from '../../utilities/apiUrl';
-import { THEME } from '../../utilities/theme';
+import { COLORS } from '../../utilities/colors';
 
 const AppCardBookmark = ({item}) => {
   const navigation = useNavigation()
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
   movieCardBtn: {
     flex: 2,
     height: '100%',
-    backgroundColor: THEME.MAIN_COLOR,
+    backgroundColor: COLORS.MAIN_COLOR,
     justifyContent: 'center',
     alignItems: 'center',
     borderTopRightRadius: 10,

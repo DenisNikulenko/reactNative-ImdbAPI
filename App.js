@@ -7,13 +7,13 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
 
 //Redux
-import {Provider, useSelector} from 'react-redux';
+import {Provider} from 'react-redux';
 import {store, appPersist} from './src/redux/store';
 import {PersistGate} from 'redux-persist/integration/react';
 
 //Styles
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {THEME} from './src/utilities/theme';
+import {COLORS} from './src/utilities/colors';
 
 //Screens
 import HomeScreen from './src/screens/HomeScreen';
@@ -77,7 +77,7 @@ const App = () => {
               },
             })}
             tabBarOptions={{
-              activeTintColor: THEME.MAIN_COLOR,
+              activeTintColor: COLORS.MAIN_COLOR,
               inactiveTintColor: 'gray',
             }}>
             <Tab.Screen name="Home" component={HomeStack} />
