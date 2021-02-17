@@ -5,10 +5,11 @@ import MovieIndicator from '../components/ui/MovieIndicator';
 import {getMovieDetails, getMovieActors} from '../services/movieServices';
 
 const DetailsScreen = ({route}) => {
-  const id = route.params.id;
   const [isReady, setIsReady] = useState(true)
   const [movieDetails, setMovieDetails]= useState([]);
   const [movieDetailsActors, setMovieDetailsActors] = useState([]);
+  const id = route.params.id;
+
 
   useEffect(() => {
     fetchAPI(id);

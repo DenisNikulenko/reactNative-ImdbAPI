@@ -9,26 +9,40 @@ import {
   Dimensions,
   Image,
 } from 'react-native';
-import {useNavigation} from '@react-navigation/native';
 import Stars from 'react-native-stars';
+import {
+  addToBookmarks,
+  removeFromBookmarks,
+} from '../../redux/actions/moviesActions';
+import {useSelector, useDispatch} from 'react-redux';
+import {useNavigation} from '@react-navigation/native';
 
+import MovieIndicator from '../ui/MovieIndicator';
 import {IMAGE_URL} from '../../utilities/apiUrl';
 import {COLORS} from '../../utilities/colors';
-import MovieIndicator from "../ui/MovieIndicator"; 
 
-const MovieList = ({stateMovies, isExist, addToBookMarkList, removeFromBookmarks, scrollLoadMore}) => {
+const MovieList = ({stateMovies, scrollLoadMore}) => {
+  const dispatch = useDispatch();
+  const bookmarksList = useSelector(
+    ({moviesReducer}) => moviesReducer.bookmarksList,
+  );
   const navigation = useNavigation();
 
+  const isExist = (movie) => {
+    if (bookmarksList.filter((item) => item.id === movie.id).length > 0) {
+      return true;
+    }
+    return false;
+  };
+
   const renderItem = ({item}) => {
-    const {id,release_date, poster_path, vote_average} = item;
-    let {title} = item
-    title.length > 30 ? title = `${title.substr(0,29)}` : null;
-    
+    const {id, release_date, poster_path, vote_average} = item;
+    let {title} = item;
+    title.length > 30 ? (title = `${title.substr(0, 29)}`) : null;
+
     return (
       <View style={styles.movieItem}>
-        <TouchableOpacity
-          onPress={()=> navigation.navigate('Details',{id})}
-         >
+        <TouchableOpacity onPress={() => navigation.navigate('Details', {id})}>
           <View style={styles.infoTitle}>
             <Text style={styles.infoTitleText}>{title}</Text>
             <Text style={styles.infoTitleDate}>Релиз: {release_date}</Text>
@@ -56,19 +70,19 @@ const MovieList = ({stateMovies, isExist, addToBookMarkList, removeFromBookmarks
             </Text>
           </View>
         </TouchableOpacity>
-        {isExist(item) ?
+        {isExist(item) ? (
           <TouchableOpacity
             style={styles.btnAddBookmarkTrue}
-            onPress={()=> removeFromBookmarks(item)} >
+            onPress={() => dispatch(removeFromBookmarks(item))}>
             <Text style={styles.textAddBookMark}>Удалить из закладок</Text>
           </TouchableOpacity>
-          :
+        ) : (
           <TouchableOpacity
             style={styles.btnAddBookmarkFalse}
-            onPress={()=> addToBookMarkList(item)} >
+            onPress={() => dispatch(addToBookmarks(item))}>
             <Text style={styles.textAddBookMark}>Добавить в закладки</Text>
           </TouchableOpacity>
-      }
+        )}
       </View>
     );
   };
@@ -76,13 +90,13 @@ const MovieList = ({stateMovies, isExist, addToBookMarkList, removeFromBookmarks
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
-        showsVerticalScrollIndicator={false} 
+        showsVerticalScrollIndicator={false}
         data={stateMovies}
         renderItem={renderItem}
-        keyExtractor={ (item, index) => index.toString() }
-        onEndReached={()=> scrollLoadMore()}
+        keyExtractor={(item, index) => index.toString()}
+        onEndReached={() => scrollLoadMore()}
         onEndReachedThreshold={1}
-        ListFooterComponent={()=> <MovieIndicator />}
+        ListFooterComponent={() => <MovieIndicator />}
       />
     </SafeAreaView>
   );

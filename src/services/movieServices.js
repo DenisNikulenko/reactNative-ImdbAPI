@@ -1,4 +1,3 @@
-import React from 'react';
 const API_KEY = 'api_key=a0365c3dfe181648feb572b2dbf405c8';
 const BASE_URL = 'https://api.themoviedb.org/3';
 const IMAGE_URL = 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2';

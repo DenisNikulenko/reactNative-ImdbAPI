@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {
   View,
   StyleSheet,
+  Text,
   TextInput,
   TouchableOpacity,
   Dimensions,
@@ -22,22 +23,38 @@ const SearchScreen = () => {
   const navigation = useNavigation();
 
   const [movieSearch, setMovieSearch] = useState('');
-  const [foundItems, setFoundItems] = useState('');
+  const [foundItems, setFoundItems] = useState([]);
   const [page, setPage] = useState(1);
+  const [refreshing, setRefreshing] = useState(false);
 
   useEffect(() => {
     if (movieSearch.length > 3) {
       fetchAPI(movieSearch, page);
     }
-  }, [movieSearch, page]);
+  }, [movieSearch, page, refreshing]);
 
-  const fetchAPI = async (movieSearch, page) => {
-    setFoundItems([...foundItems, ...await getMovieSearch(movieSearch, page)]);
+  const fetchAPI = async (movieSearch, page = 1) => {
+    setFoundItems([
+      ...foundItems,
+      ...(await getMovieSearch(movieSearch, page)),
+    ]);
+    setRefreshing(false);
   };
+
+  const scrollOnRefresh = () => {
+    setMovieSearch("");
+    setRefreshing(true);
+    setFoundItems([]);
+    setPage(1);
+  }
 
   const scrollLoadMore = () => {
     setPage(page + 1);
   };
+
+  const tabOnSearch = () => {
+    fetchAPI(movieSearch);
+  }
 
   return (
     <View style={styles.conteainer}>
@@ -49,32 +66,38 @@ const SearchScreen = () => {
           placeholder="Введите название фильма..."
           maxLength={64}
         />
-        <TouchableOpacity style={styles.serchBtn} onPress={() => fetAPI()}>
+        <TouchableOpacity style={styles.serchBtn} onPress={tabOnSearch}>
           <Ionicons name="search" color={COLORS.MAIN_COLOR} size={30} />
         </TouchableOpacity>
       </View>
-      <View style={styles.contentBlock}>
-        <FlatList
-          onEndReached={()=> scrollLoadMore()}
-          onEndReachedThreshold={1}
-          ListFooterComponent={()=> <MovieIndicator />}
-          showsVerticalScrollIndicator={false}
-          data={foundItems}
-          keyExtractor={(item, idx) => idx.toString()}
-          renderItem={({item}) => (
-            <MovieSearchCard
-              item={item}
-              onPressNavigation={() =>
-                navigation.navigate('Details')
-              }
-              onPressBtn={() => dispatch(addToBookmarks(item))}
-              iconName="star-sharp"
-              iconColor="white"
-              iconSize={30}
-            />
-          )}
-        />
-      </View>
+      {foundItems.length ? (
+        <View style={styles.contentBlock}>
+          <FlatList
+            refreshing={refreshing}
+            onRefresh={() => scrollOnRefresh()}
+            onEndReached={() => scrollLoadMore()}
+            onEndReachedThreshold={1}
+            ListFooterComponent={() => <MovieIndicator />}
+            showsVerticalScrollIndicator={false}
+            data={foundItems}
+            keyExtractor={(item, idx) => idx.toString()}
+            renderItem={({item}) => (
+              <MovieSearchCard
+                item={item}
+                onPressNavigation={() => navigation.navigate('Details')}
+                onPressBtn={() => dispatch(addToBookmarks(item))}
+                iconName="star-sharp"
+                iconColor="white"
+                iconSize={30}
+              />
+            )}
+          />
+        </View>
+      ) : (
+        <View style={styles.textNoContent}>
+          <Text>Что будем искать?</Text>
+        </View>
+      )}
     </View>
   );
 };
@@ -113,6 +136,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: '15%',
     height: '100%',
+  },
+
+  textNoContent: {
+    flex: 1,
+    justifyContent: 'center',
   },
 });
 
