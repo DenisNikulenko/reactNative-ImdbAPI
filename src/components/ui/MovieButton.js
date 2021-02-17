@@ -2,7 +2,7 @@ import React from 'react';
 import {TouchableOpacity} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-export const AppButton = ({
+export const MovieButton = ({
   styles,
   onPress = ()=> console.log("hello"),
   iconName = "trash-outline",

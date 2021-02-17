@@ -1,6 +1,4 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
-
 //Navigation
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
@@ -20,9 +18,6 @@ import HomeScreen from './src/screens/HomeScreen';
 import BookmarksScreen from './src/screens/BookmarksScreen';
 import SearchScreen from './src/screens/SearchScreen';
 import DetailsScreen from './src/screens/DetailsScreen';
-
-//Components
-import Header from './src/components/Header';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -59,7 +54,6 @@ const App = () => {
     <Provider store={store}>
       <PersistGate loading={null} persistor={appPersist}>
         <NavigationContainer>
-          <Header />
           <Tab.Navigator
             screenOptions={({route}) => ({
               tabBarIcon: ({focused, color, size}) => {
@@ -92,12 +86,6 @@ const App = () => {
       </PersistGate>
     </Provider>
   );
-};
-
-const styles = StyleSheet.create({
-  container: {
-    marginBottom: 100,
-  },
-});
+}
 
 export default App;

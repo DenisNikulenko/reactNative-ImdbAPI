@@ -2,9 +2,9 @@ import React from 'react';
 import {View, StyleSheet, Text, StatusBar} from 'react-native';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {COLORS} from "../utilities/colors";
+import {COLORS} from "../../utilities/colors";
 
-const Header = () => {
+const MovieHeader = ({title}) => {
   return (
     <View style={styles.container}>
       <StatusBar
@@ -12,7 +12,7 @@ const Header = () => {
         backgroundColor={COLORS.MAIN_COLOR} />
       <Text style={styles.text}>
         <Ionicons color={COLORS.MAIN_COLOR} name="logo-tux" size={25} />
-        Movies <Text style={styles.textDB}>DB</Text>
+        {title}
       </Text>
     </View>
   );
@@ -31,4 +31,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Header;
+export default MovieHeader;

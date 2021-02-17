@@ -7,11 +7,11 @@ import {
   Dimensions,
 } from 'react-native';
 
-import AppImageDetails from "../components/ui/AppImageDetails";
-import MovieActorsDetails from "./ui/MovieActorsDetails";
-import {COLORS} from '../utilities/colors';
+import MovieDetailsImage from "./MovieDetailsImage";
+import MovieDetailsActors from "./MovieDetailsActors";
+import {COLORS} from '../../utilities/colors';
 
-export const Details = ({detailsMovie, castActors}) => {
+const MovieDetails = ({detailsMovie, castActors}) => {
   let {title, overview, genre} = detailsMovie;
   const {
     genres,
@@ -33,14 +33,14 @@ export const Details = ({detailsMovie, castActors}) => {
 
   return (
     <ScrollView style={styles.container}>
-      <AppImageDetails posterPath={poster_path} title={title} voteAverage={vote_average} runtime={runtime} />
+      <MovieDetailsImage posterPath={poster_path} title={title} voteAverage={vote_average} runtime={runtime} />
 
           <View style={styles.descriptionText}>
             <Text style={styles.descriptionTextPreview}>Описание: </Text>
             <Text style={{color:"white", fontSize: 18, marginTop: 7}}>{overview}</Text>
           </View>
 
-        <MovieActorsDetails castActors={castActors} />
+        <MovieDetailsActors castActors={castActors} />
     </ScrollView>
   )
 };
@@ -70,5 +70,6 @@ const styles = StyleSheet.create({
     borderColor: COLORS.MAIN_COLOR, 
     width: 120,
   },
+});
 
-})
+export default MovieDetails;

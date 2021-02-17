@@ -1,9 +1,9 @@
 import React from 'react';
 import {View, TextInput, TouchableOpacity} from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { THEME } from '../../utilities/theme';
+import { COLORS } from '../../utilities/colors';
 
-//Не успел
+//don`t use
 const MovieSearchInput = ({value, onChangeText, onPress}) => {
   return (
     <View style={styles.searchBlock}>
@@ -17,7 +17,7 @@ const MovieSearchInput = ({value, onChangeText, onPress}) => {
       <TouchableOpacity
         style={styles.serchBtn}
         onPress={}>
-        <Ionicons name="search" color={THEME.MAIN_COLOR} size={30} />
+        <Ionicons name="search" color={COLORS.MAIN_COLOR} size={30} />
       </TouchableOpacity>
     </View>
   );
@@ -27,8 +27,8 @@ const MovieSearchInput = ({value, onChangeText, onPress}) => {
 const styles = StyleSheet.create({
   searchInput: {
     padding: 10,
-    backgroundColor: THEME.WHITE,
-    borderBottomColor: THEME.MAIN_COLOR,
+    backgroundColor: COLORS.WHITE,
+    borderBottomColor: COLORS.MAIN_COLOR,
     borderBottomWidth: 2,
     borderBottomRightRadius: 20,
     width: "75%",

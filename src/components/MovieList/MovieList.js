@@ -14,7 +14,7 @@ import Stars from 'react-native-stars';
 
 import {IMAGE_URL} from '../../utilities/apiUrl';
 import {COLORS} from '../../utilities/colors';
-import AppIndicator from "../ui/AppIndicator"; 
+import MovieIndicator from "../ui/MovieIndicator"; 
 
 const MovieList = ({stateMovies, isExist, addToBookMarkList, removeFromBookmarks, scrollLoadMore}) => {
   const navigation = useNavigation();
@@ -82,7 +82,7 @@ const MovieList = ({stateMovies, isExist, addToBookMarkList, removeFromBookmarks
         keyExtractor={ (item, index) => index.toString() }
         onEndReached={()=> scrollLoadMore()}
         onEndReachedThreshold={1}
-        ListFooterComponent={()=> <AppIndicator />}
+        ListFooterComponent={()=> <MovieIndicator />}
       />
     </SafeAreaView>
   );

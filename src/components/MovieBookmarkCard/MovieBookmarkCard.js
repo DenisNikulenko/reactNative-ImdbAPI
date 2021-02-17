@@ -7,22 +7,24 @@ import {
   Dimensions,
 } from 'react-native';
 
-import {removeFromBookmarks} from "../../redux/actions/moviesActions"
+import {removeFromBookmarks} from '../../redux/actions/moviesActions';
 import {useNavigation} from '@react-navigation/native';
-import {useDispatch} from "react-redux";
+import {useDispatch} from 'react-redux';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {IMAGE_URL} from '../../utilities/apiUrl';
-import { COLORS } from '../../utilities/colors';
+import {COLORS} from '../../utilities/colors';
 
-const AppCardBookmark = ({item}) => {
-  const navigation = useNavigation()
-	const dispatch = useDispatch();
-  
-	const {poster_path, id, title} = item;
+const MovieBookmarkCard = ({item}) => {
+  const navigation = useNavigation();
+  const dispatch = useDispatch();
+
+  const {poster_path, id, title} = item;
 
   return (
-    <TouchableOpacity style={styles.movieCard} onPress={() => navigation.navigate('Details', {id,title})}>
+    <TouchableOpacity
+      style={styles.movieCard}
+      onPress={() => navigation.navigate('Details', {id, title})}>
       <Image
         style={styles.movieCardIamge}
         resizeMode="stretch"
@@ -33,8 +35,8 @@ const AppCardBookmark = ({item}) => {
       <Text style={styles.movieCardTitle}>{title}</Text>
       <TouchableOpacity
         style={styles.movieCardBtn}
-        onPress={() => dispatch(removeFromBookmarks(item))} >
-        	<Ionicons name="trash-outline" color="white" size={26} />
+        onPress={() => dispatch(removeFromBookmarks(item))}>
+        <Ionicons name="trash-outline" color="white" size={26} />
       </TouchableOpacity>
     </TouchableOpacity>
   );
@@ -76,7 +78,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderTopRightRadius: 10,
     borderBottomRightRadius: 10,
-  }
+  },
 });
 
-export default AppCardBookmark;
+export default MovieBookmarkCard;

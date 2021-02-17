@@ -1,9 +1,9 @@
 import React from 'react';
-import {View, ActivityIndicator, StyleSheet, Dimensions} from 'react-native';
+import {View, ActivityIndicator, StyleSheet} from 'react-native';
 
 import {COLORS} from '../../utilities/colors';
 
-export default AppIndicator = () => {
+export default MovieIndicator = () => {
   return (
     <View style={styles.indicator}>
       <ActivityIndicator size="large" color={COLORS.MAIN_COLOR} />

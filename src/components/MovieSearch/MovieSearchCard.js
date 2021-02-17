@@ -12,10 +12,10 @@ import {useSelector, useDispatch} from 'react-redux';
 import {addToBookmarks, removeFromBookmarks} from "../../redux/actions/moviesActions";
 
 import {IMAGE_URL} from '../../utilities/apiUrl';
-import {AppButton} from "./AppButton";
+import {MovieButton} from "../ui/MovieButton";
 import {COLORS} from "../../utilities/colors";
 
-const AppCardPreviewMovie = ({item, iconName, iconSize}) => {
+const MovieSearchCard = ({item, iconName, iconSize}) => {
   const dispatch = useDispatch();
   const navigation = useNavigation()
   const bookmarksList = useSelector((state) => state.moviesReducer.bookmarksList);
@@ -39,14 +39,14 @@ const AppCardPreviewMovie = ({item, iconName, iconSize}) => {
       />
       <Text style={styles.movieCardTitle}>{title}</Text>
       {isExist(item) ?
-        <AppButton 
+        <MovieButton 
           styles={styles.movieBtnFalse}  
           onPress={() => dispatch(removeFromBookmarks(item))}
           iconName={iconName}
           iconColor="white"
           iconSize={iconSize} />
         :
-        <AppButton 
+        <MovieButton 
           styles={styles.movieBtnTrue}  
           onPress={() => dispatch(addToBookmarks(item))}
           iconName={iconName}
@@ -106,4 +106,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default AppCardPreviewMovie;
+export default MovieSearchCard;

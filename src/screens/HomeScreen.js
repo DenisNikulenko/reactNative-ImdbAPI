@@ -1,31 +1,32 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
-import {useSelector, useDispatch} from 'react-redux';
+import {useSelector, useDispatch} from "react-redux";
 import {
   fetchPopularMovies,
   addToBookmarks,
   removeFromBookmarks,
 } from '../redux/actions/moviesActions';
 
-import AppIndicator from "../components/ui/AppIndicator";
+import MovieIndicator from '../components/ui/MovieIndicator';
 import MovieList from '../components/MovieList';
+import MovieHeader from '../components/MovieHeader'
 
 const HomeScreen = () => {
   const moviesReducer = useSelector((state) => state.moviesReducer);
   const {bookmarksList, movies} = moviesReducer;
   const dispatch = useDispatch();
 
-  const [page, setPage] = useState(1)
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
-
     dispatch(fetchPopularMovies(page));
-  },[page]);
+  }, [page]);
 
   const onTapAddToBookmarkList = (movie) => {
     dispatch(addToBookmarks(movie));
   };
+  
 
   const onTapRemoveFromBookmarkList = (movie) => {
     dispatch(removeFromBookmarks(movie));
@@ -39,17 +40,15 @@ const HomeScreen = () => {
   };
 
   const scrollLoadMore = () => {
-    setPage(page + 1)
-  }
+    setPage(page + 1);
+  };
 
   if (movies.length < 1) {
-    return (
-        <AppIndicator />
-    );
+    return <MovieIndicator />;
   } else {
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>ТОП популярных фильмов</Text>
+        <MovieHeader title="ТОП популярных фильмов" />
         <MovieList
           addToBookMarkList={onTapAddToBookmarkList}
           removeFromBookmarks={onTapRemoveFromBookmarkList}
@@ -72,7 +71,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     color: 'grey',
-  }
+  },
 });
 
 export default HomeScreen;

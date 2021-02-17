@@ -6,7 +6,7 @@ import {useNavigation} from '@react-navigation/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {IMAGE_URL} from '../../utilities/apiUrl';
 
-const AppImageDetails = ({posterPath, title, voteAverage, runtime}) => {
+const MovieDetailsImage = ({posterPath, title, voteAverage, runtime}) => {
   const navigation = useNavigation();
 
   return (
@@ -124,4 +124,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AppImageDetails;
+export default MovieDetailsImage;

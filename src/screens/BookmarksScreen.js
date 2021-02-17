@@ -5,7 +5,7 @@ import {useSelector} from 'react-redux';
 import {useDispatch} from "react-redux";
 import {removeFromBookmarks, searchByName} from "../redux/actions/moviesActions";
 
-import AppCardPreviewMovie from '../components/ui/AppCardPreviewMovie';
+import MovieBookmarkCard from '../components/MovieBookmarkCard';
 import {COLORS} from "../utilities/colors";
 
 const BookmarksScreen = () => {
@@ -37,13 +37,14 @@ const BookmarksScreen = () => {
           data={currentMovies}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({item}) =>  
-            <AppCardPreviewMovie
+            <MovieBookmarkCard
               item={item}
               onPressBtn={() => dispatch(removeFromBookmarks(item))}
               costumeStyle={styles.movieCardBtn}
               iconName="trash-outline" 
               iconColor="white" 
-              iconSize={26} />}
+              iconSize={26} />
+          }
         />
       </View>
     </View>

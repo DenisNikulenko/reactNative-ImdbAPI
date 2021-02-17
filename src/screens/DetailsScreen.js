@@ -3,10 +3,10 @@ import {View, StyleSheet} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import {fetchDetailsMovie, fetchActors} from '../redux/actions/moviesActions';
 
-import {Details} from '../components/Details';
-import AppIndicator from "../components/ui/AppIndicator";
+import MovieDetails from '../components/MovieDetails';
+import MovieIndicator from "../components/ui/MovieIndicator";
 
-const MovieDetails = ({route}) => {
+const DetailsScreen = ({route}) => {
   const dispatch = useDispatch();
   const moviesReducer = useSelector((state) => state.moviesReducer);
 
@@ -20,13 +20,13 @@ const MovieDetails = ({route}) => {
 
   if (isFetching) {
     return  (
-      <AppIndicator />
+      <MovieIndicator />
     );
   } else {
     return (
       <View style={styles.container}>
         <View>
-          <Details detailsMovie={detailsMovie} castActors={actors} />
+          <MovieDetails detailsMovie={detailsMovie} castActors={actors} />
         </View>
       </View>
     );
@@ -39,4 +39,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default MovieDetails;
+export default DetailsScreen;
