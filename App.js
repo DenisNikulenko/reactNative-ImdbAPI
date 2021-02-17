@@ -49,43 +49,41 @@ const SearchStack = () => {
   );
 };
 
+const screenOption = (route) => ({
+  tabBarIcon: ({color, size}) => {
+    let iconName;
+    const {name} = route
+
+    name === 'Home' ? iconName = 'home' : null;
+    name === 'Search' ? iconName = 'search' : null;
+    name === 'Bookmarks' ? iconName = 'bookmarks' : null;
+
+    return <Ionicons name={iconName} size={size} color={color} />;
+  }
+})
+
+const tabBarOptions = {
+  activeTintColor: COLORS.MAIN_COLOR,
+  inactiveTintColor: COLORS.GREY,
+}
+
 const App = () => {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={appPersist}>
         <NavigationContainer>
           <Tab.Navigator
-            screenOptions={({route}) => ({
-              tabBarIcon: ({focused, color, size}) => {
-                let iconName;
-
-                if (route.name === 'Home') {
-                  iconName = focused ? 'home' : 'home-outline';
-                } else if (route.name === 'Bookmarks') {
-                  iconName = focused ? 'star' : 'star-outline';
-                } else if (route.name === 'Search') {
-                  iconName = focused ? 'search' : 'search-outline';
-                }
-
-                return <Ionicons name={iconName} size={size} color={color} />;
-              },
-            })}
-            tabBarOptions={{
-              activeTintColor: COLORS.MAIN_COLOR,
-              inactiveTintColor: 'gray',
-            }}>
+            screenOptions={({route}) => screenOption(route)}
+            tabBarOptions={tabBarOptions} >
             <Tab.Screen name="Home" component={HomeStack} />
             <Tab.Screen name="Search" component={SearchStack} />
-            <Tab.Screen
-              name="Bookmarks"
-              component={BookmarksStack}
-              options={{tabBarBadge: 3}}
-            />
+            <Tab.Screen name="Bookmarks" component={BookmarksStack} />
           </Tab.Navigator>
         </NavigationContainer>
       </PersistGate>
     </Provider>
   );
 }
+
 
 export default App;

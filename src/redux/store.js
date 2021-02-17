@@ -1,18 +1,18 @@
-import {createStore, combineReducers, applyMiddleware} from "redux";
-import thunk from "redux-thunk";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { persistStore, persistReducer } from 'redux-persist';
+import {createStore, combineReducers, applyMiddleware} from 'redux';
+import thunk from 'redux-thunk';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {persistStore, persistReducer} from 'redux-persist';
 
-import moviesReducer from "./reducers/moviesReducer";
+import moviesReducer from './reducers/moviesReducer';
 
 const persistConfig = {
-    key: "root",
-    storage: AsyncStorage,
-    whitelist: ["bookmarksList"] 
+  key: 'root',
+  storage: AsyncStorage,
+  whitelist: ['bookmarksList'],
 };
 
 const rootReducer = combineReducers({
-    moviesReducer: persistReducer(persistConfig, moviesReducer)
+  moviesReducer: persistReducer(persistConfig, moviesReducer),
 });
 
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);

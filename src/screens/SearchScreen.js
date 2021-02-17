@@ -8,70 +8,72 @@ import {
   FlatList,
 } from 'react-native';
 
-import {useSelector, useDispatch} from 'react-redux';
-import {fetchSearchMovies} from '../redux/actions/moviesActions';
-
+import {useDispatch} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import {addToBookmarks} from '../redux/actions/moviesActions';
-
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {COLORS} from '../utilities/colors';
-import MovieIndicator from '../components/ui/MovieIndicator';
 import MovieSearchCard from '../components/MovieSearch/MovieSearchCard';
+import {getMovieSearch} from '../services/movieServices';
+import MovieIndicator from '../components/ui/MovieIndicator';
 
 const SearchScreen = () => {
   const dispatch = useDispatch();
-  const {isFetching, searchData} = useSelector((state) => state.moviesReducer);
   const navigation = useNavigation();
 
-  const [valueSearch, setValueSearch] = useState('');
+  const [movieSearch, setMovieSearch] = useState('');
+  const [foundItems, setFoundItems] = useState('');
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
-    if (valueSearch !== '' && valueSearch.length > 3) {
-      dispatch(fetchSearchMovies(valueSearch));
+    if (movieSearch.length > 3) {
+      fetchAPI(movieSearch, page);
     }
-  }, [valueSearch]);
+  }, [movieSearch, page]);
+
+  const fetchAPI = async (movieSearch, page) => {
+    setFoundItems([...foundItems, ...await getMovieSearch(movieSearch, page)]);
+  };
+
+  const scrollLoadMore = () => {
+    setPage(page + 1);
+  };
 
   return (
     <View style={styles.conteainer}>
       <View style={styles.searchBlock}>
         <TextInput
-          value={valueSearch}
-          onChangeText={setValueSearch}
+          value={movieSearch}
+          onChangeText={setMovieSearch}
           style={styles.searchInput}
           placeholder="Введите название фильма..."
           maxLength={64}
         />
-        <TouchableOpacity
-          style={styles.serchBtn}
-          onPress={() => dispatch(fetchSearchMovies(title))}>
+        <TouchableOpacity style={styles.serchBtn} onPress={() => fetAPI()}>
           <Ionicons name="search" color={COLORS.MAIN_COLOR} size={30} />
         </TouchableOpacity>
       </View>
       <View style={styles.contentBlock}>
-        {isFetching ? (
-          <MovieIndicator />
-        ) : (
-          <View>
-            <FlatList
-              showsVerticalScrollIndicator={false}
-              data={searchData}
-              keyExtractor={(item, idx) => idx.toString()}
-              renderItem={({item}) => (
-                <MovieSearchCard
-                  item={item}
-                  onPressNavigation={() =>
-                    navigation.navigate('Details', {id, title})
-                  }
-                  onPressBtn={() => dispatch(addToBookmarks(item))}
-                  iconName="star-sharp"
-                  iconColor="white"
-                  iconSize={30}
-                />
-              )}
+        <FlatList
+          onEndReached={()=> scrollLoadMore()}
+          onEndReachedThreshold={1}
+          ListFooterComponent={()=> <MovieIndicator />}
+          showsVerticalScrollIndicator={false}
+          data={foundItems}
+          keyExtractor={(item, idx) => idx.toString()}
+          renderItem={({item}) => (
+            <MovieSearchCard
+              item={item}
+              onPressNavigation={() =>
+                navigation.navigate('Details')
+              }
+              onPressBtn={() => dispatch(addToBookmarks(item))}
+              iconName="star-sharp"
+              iconColor="white"
+              iconSize={30}
             />
-          </View>
-        )}
+          )}
+        />
       </View>
     </View>
   );

@@ -22,10 +22,10 @@ const HomeScreen = () => {
   const [popularMovie, setPopularMovie] = useState([])
 
   useEffect(() => {
-    fetchAPI();
+    fetchAPI(page);
   }, [page]);
 
-  const fetchAPI = async () => {
+  const fetchAPI = async (page) => {
     setPopularMovie([...popularMovie, ...await getPopularMovies(page)])
     setIsReady(false);
   };
