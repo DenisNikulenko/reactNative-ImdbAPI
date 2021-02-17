@@ -11,16 +11,18 @@ import MovieDetailsImage from "./MovieDetailsImage";
 import MovieDetailsActors from "./MovieDetailsActors";
 import {COLORS} from '../../utilities/colors';
 
-const MovieDetails = ({detailsMovie, castActors}) => {
-  let {title, overview, genre} = detailsMovie;
+const MovieDetails = ({movieDetails, movieDetailsActors}) => {
+  console.log(movieDetails)
+  let {title, overview, genre} = movieDetails;
   const {
     genres,
     poster_path,
+    backdrop_path,
     release_date,
     budget,
     runtime,
     vote_average,
-  } = detailsMovie;
+  } = movieDetails;
 
   typeof title === 'string' ? title.length > 30 ? (title = `${title.substr(0, 29)}`) : null : null;
   typeof overview === "string" ? overview.length < 5 ? overview = "нет описания :(" : null : null;
@@ -40,7 +42,7 @@ const MovieDetails = ({detailsMovie, castActors}) => {
             <Text style={{color:"white", fontSize: 18, marginTop: 7}}>{overview}</Text>
           </View>
 
-        <MovieDetailsActors castActors={castActors} />
+        <MovieDetailsActors movieDetailsActors={movieDetailsActors} />
     </ScrollView>
   )
 };

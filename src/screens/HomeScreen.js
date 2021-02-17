@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 
 import {useSelector, useDispatch} from "react-redux";
 import {
@@ -11,23 +11,29 @@ import {
 import MovieIndicator from '../components/ui/MovieIndicator';
 import MovieList from '../components/MovieList';
 import MovieHeader from '../components/MovieHeader'
+import {getPopularMovies} from "../services/movieServices";
 
 const HomeScreen = () => {
-  const moviesReducer = useSelector((state) => state.moviesReducer);
-  const {bookmarksList, movies} = moviesReducer;
+  const bookmarksList = useSelector(({moviesReducer}) => moviesReducer.bookmarksList);
   const dispatch = useDispatch();
 
+  const [isReady, setIsReady] = useState(true)
   const [page, setPage] = useState(1);
+  const [popularMovie, setPopularMovie] = useState([])
 
   useEffect(() => {
-    dispatch(fetchPopularMovies(page));
+    fetchAPI();
   }, [page]);
+
+  const fetchAPI = async () => {
+    setPopularMovie([...popularMovie, ...await getPopularMovies(page)])
+    setIsReady(false);
+  };
 
   const onTapAddToBookmarkList = (movie) => {
     dispatch(addToBookmarks(movie));
   };
   
-
   const onTapRemoveFromBookmarkList = (movie) => {
     dispatch(removeFromBookmarks(movie));
   };
@@ -43,7 +49,7 @@ const HomeScreen = () => {
     setPage(page + 1);
   };
 
-  if (movies.length < 1) {
+  if (isReady) {
     return <MovieIndicator />;
   } else {
     return (
@@ -53,7 +59,7 @@ const HomeScreen = () => {
           addToBookMarkList={onTapAddToBookmarkList}
           removeFromBookmarks={onTapRemoveFromBookmarkList}
           isExist={isExist}
-          stateMovies={movies}
+          stateMovies={popularMovie}
           scrollLoadMore={scrollLoadMore}
         />
       </View>

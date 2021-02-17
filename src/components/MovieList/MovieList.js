@@ -20,7 +20,7 @@ const MovieList = ({stateMovies, isExist, addToBookMarkList, removeFromBookmarks
   const navigation = useNavigation();
 
   const renderItem = ({item}) => {
-    const {id,release_date, backdrop_path, vote_average} = item;
+    const {id,release_date, poster_path, vote_average} = item;
     let {title} = item
     title.length > 30 ? title = `${title.substr(0,29)}` : null;
     
@@ -36,7 +36,7 @@ const MovieList = ({stateMovies, isExist, addToBookMarkList, removeFromBookmarks
           <Image
             style={styles.movieImage}
             source={{
-              uri: `${IMAGE_URL}/${backdrop_path}`,
+              uri: `${IMAGE_URL}/${poster_path}`,
             }}
           />
           <View style={styles.infoRaite}>

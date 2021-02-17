@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet, Text, Dimensions, ImageBackground, TouchableOpacity} from 'react-native';
+import {View, StyleSheet, Text, Dimensions, Image, TouchableOpacity} from 'react-native';
 
 import {useNavigation} from '@react-navigation/native';
 
@@ -11,8 +11,8 @@ const MovieDetailsImage = ({posterPath, title, voteAverage, runtime}) => {
 
   return (
     <View>
-      <ImageBackground
-        resizeMethod="scale"
+      <Image
+        resizeMode="center"
         style={styles.imageHeader}
         source={{
           uri: `${IMAGE_URL}/${posterPath}`,

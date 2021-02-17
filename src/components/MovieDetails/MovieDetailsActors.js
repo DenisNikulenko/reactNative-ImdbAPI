@@ -11,7 +11,7 @@ import {
 
 import { IMAGE_URL } from '../../utilities/apiUrl';
 
-const MovieDetailsActors = ({castActors}) => {
+const MovieDetailsActors = ({movieDetailsActors}) => {
   const renderItem = ({item}) => {
     return (
       <View style={styles.actorCard}>
@@ -32,7 +32,7 @@ const MovieDetailsActors = ({castActors}) => {
     <View style={styles.container}>
       <FlatList
         showsVerticalScrollIndicator={false}
-        data={castActors}
+        data={movieDetailsActors}
         renderItem={renderItem}
         keyExtractor={(item, index) => index.toString()}
         horizontal={true}
