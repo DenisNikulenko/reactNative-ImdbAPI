@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   StyleSheet,
@@ -7,35 +7,48 @@ import {
   Dimensions,
   Text,
 } from 'react-native';
+import {useSelector, useDispatch} from 'react-redux';
+import {removeFromBookmarks} from '../redux/actions/moviesActions';
 
-import {useSelector} from 'react-redux';
-import {useDispatch} from 'react-redux';
-import {
-  removeFromBookmarks,
-  searchByName,
-} from '../redux/actions/moviesActions';
-
-import MovieBookmarkCard from '../components/MovieBookmarkCard';
 import {COLORS} from '../utilities/colors';
+import MovieBookmarkCard from '../components/MovieBookmarkCard';
 
 const BookmarksScreen = () => {
-  const moviesReducer = useSelector((state) => state.moviesReducer);
-
-  const {bookmarksList} = moviesReducer;
   const dispatch = useDispatch();
-  // const isSearchActive = false;
-  // const currentMovies = isSearchActive ? filteredBookmarkList : bookmarksList
+  const bookmarksList = useSelector(
+    ({moviesReducer}) => moviesReducer.bookmarksList,
+  );
+  
+  const [isSearchActive, setIsSearchActive] = useState(false);
+  const [filteredBookmarkList, setFilterBookmarkList] = useState([]);
 
-  const onChange = (text) => {
-    const searchText = text.trim().replace(/""/g, '');
-    searchByName(searchText)(dispatch);
+  useEffect(() => {}, [isSearchActive]);
+
+  const onChangeSearch = (text) => {
+    if (text.length > 2 && text !== '') {
+      const searchText = text.trim().replace(/""/g, '');
+
+      setIsSearchActive(true);      
+      
+      setFilterBookmarkList(
+        bookmarksList.filter((movie) => {
+          return (
+            movie.title.toLowerCase().search(searchText.toLowerCase()) !== -1
+          );
+        }),
+      );
+    } else {
+      setIsSearchActive(false)
+    }
   };
 
+  const currentMovies = isSearchActive ? filteredBookmarkList : bookmarksList;
+  console.log(bookmarksList)
   return (
     <View style={styles.container}>
       <View style={styles.searchBlock}>
         <TextInput
-          onChangeText={onChange}
+          onChangeText={onChangeSearch}
           style={styles.searchInput}
           placeholder="Введите название фильма..."
           maxLength={64}
@@ -45,7 +58,7 @@ const BookmarksScreen = () => {
         {bookmarksList.length ? (
           <FlatList
             showsVerticalScrollIndicator={false}
-            data={bookmarksList}
+            data={currentMovies}
             keyExtractor={(item) => item.id.toString()}
             renderItem={({item}) => (
               <MovieBookmarkCard
@@ -100,10 +113,10 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 10,
     borderBottomRightRadius: 10,
   },
-  textNoItems:{
+  textNoItems: {
     flex: 1,
-    justifyContent: "center"
-  }
+    justifyContent: 'center',
+  },
 });
 
 export default BookmarksScreen;

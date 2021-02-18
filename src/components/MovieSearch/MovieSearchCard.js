@@ -19,8 +19,8 @@ const MovieSearchCard = ({item, iconName, iconSize}) => {
   const dispatch = useDispatch();
   const navigation = useNavigation()
   const bookmarksList = useSelector((state) => state.moviesReducer.bookmarksList);
-	const {poster_path, id, title} = item;
-
+	const {poster_path, backdrop_path, id, title} = item;
+  
   const isExist = (movie) => {
     if (bookmarksList.filter((item) => item.id === movie.id).length > 0) {
       return true;
@@ -32,9 +32,8 @@ const MovieSearchCard = ({item, iconName, iconSize}) => {
     <TouchableOpacity style={styles.movieCard} onPress={() => navigation.navigate('Details', {id,title})}>
       <Image
         style={styles.movieCardIamge}
-        resizeMode="stretch"
         source={{
-          uri: `${IMAGE_URL}/${poster_path}`,
+          uri: `${IMAGE_URL}/${backdrop_path}`,
         }}
       />
       <Text style={styles.movieCardTitle}>{title}</Text>

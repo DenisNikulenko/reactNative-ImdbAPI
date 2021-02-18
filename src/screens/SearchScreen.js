@@ -32,7 +32,7 @@ const SearchScreen = () => {
       fetchAPI(movieSearch, page);
     }
   }, [movieSearch, page, refreshing]);
-
+  
   const fetchAPI = async (movieSearch, page = 1) => {
     setFoundItems([
       ...foundItems,
@@ -40,7 +40,6 @@ const SearchScreen = () => {
     ]);
     setRefreshing(false);
   };
-
   const scrollOnRefresh = () => {
     setMovieSearch("");
     setRefreshing(true);

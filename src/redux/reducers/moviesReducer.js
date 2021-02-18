@@ -27,15 +27,6 @@ const moviesReducer = (state = initialState, action) => {
         ),
       };
 
-    case SERCH_BY_NAME_BOOKMARKS: //Перенести в компонент
-      return {
-        ...state,
-        isSearchActive: !!action.payload.length > 0 || false,
-        filteredBookmarkList: state.bookmarksList.filter(movie => {
-          return movie.title.toLowerCase().search(action.payload.toLowerCase()) !== -1
-
-        })
-      }
     default:
       return state;
   }

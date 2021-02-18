@@ -38,10 +38,11 @@ export const getMovieActors = async (id) => {
 export const getMovieSearch = async (search, page = 1) => {
   try {
     const response = await fetch(`${BASE_URL}/search/multi?${API_KEY}&${LANGUAGE}&query=${search}&page=${page}`);
+    console.log(response)
     const json = await response.json();
     const result = json.results.filter(i => !i.name && i.poster_path)
     return result;
   } catch (error) {
-    return error;
+    return console.log(error);
   }
 };

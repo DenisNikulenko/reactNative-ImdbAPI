@@ -18,8 +18,7 @@ import {COLORS} from '../../utilities/colors';
 const MovieBookmarkCard = ({item}) => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
-
-  const {poster_path, id, title} = item;
+  const { poster_path, id, title} = item;
 
   return (
     <TouchableOpacity
@@ -28,6 +27,7 @@ const MovieBookmarkCard = ({item}) => {
       <Image
         style={styles.movieCardIamge}
         resizeMode="stretch"
+        resizeMethod="auto"
         source={{
           uri: `${IMAGE_URL}/${poster_path}`,
         }}
@@ -45,7 +45,7 @@ const MovieBookmarkCard = ({item}) => {
 const styles = StyleSheet.create({
   movieCard: {
     width: Dimensions.get('screen').width - 10,
-    height: 95,
+    height: 100,
     backgroundColor: '#fff',
     margin: 5,
     borderRadius: 10,
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
 
   movieCardIamge: {
     margin: 5,
-    flex: 4,
+    flex: 3,
     resizeMode: 'cover',
     borderRadius: 5,
     height: '90%',
@@ -65,9 +65,10 @@ const styles = StyleSheet.create({
   },
 
   movieCardTitle: {
-    flex: 6,
+    flex: 5,
     padding: 10,
     fontSize: 14,
+    fontWeight: 'bold'
   },
 
   movieCardBtn: {
