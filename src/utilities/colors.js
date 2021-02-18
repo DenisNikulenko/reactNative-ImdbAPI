@@ -1,6 +1,6 @@
 export const COLORS = {
   MAIN_COLOR: '#ff4d4d',
-  LIGHT_GREY: '#f2f2f2',
+  LIGHT_GREY: '#e6e6e6',
   GREY: '#737373',
   WHITE: '#ffffff',
   GREEN: 'lightgreen',

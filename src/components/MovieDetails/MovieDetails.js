@@ -1,39 +1,34 @@
 import React from 'react';
-import {
-  ScrollView,
-  View,
-  Text,
-  StyleSheet,
-  Dimensions,
-} from 'react-native';
+import {ScrollView, View, Text, StyleSheet, Dimensions} from 'react-native';
 
-import MovieDetailsImage from "./MovieDetailsImage";
-import MovieDetailsActors from "./MovieDetailsActors";
+import MovieDetailsImage from './MovieDetailsImage';
+import MovieDetailsActors from './MovieDetailsActors';
 import {COLORS} from '../../utilities/colors';
 
 const MovieDetails = ({movieDetails, movieDetailsActors}) => {
   let {overview} = movieDetails;
-  const {
-    title,
-    poster_path,
-    runtime,
-    vote_average,
-  } = movieDetails;
+  const {title, poster_path, runtime, vote_average} = movieDetails;
 
-   overview.length < 5 ? overview = "нет описания :(" : null;
+  overview.length < 5 ? (overview = 'нет описания :(') : null;
 
   return (
     <ScrollView style={styles.container}>
-      <MovieDetailsImage movieDetails={movieDetails} posterPath={poster_path} title={title} voteAverage={vote_average} runtime={runtime} />
+      <MovieDetailsImage
+        movieDetails={movieDetails}
+        posterPath={poster_path}
+        title={title}
+        voteAverage={vote_average}
+        runtime={runtime}
+      />
 
-          <View style={styles.descriptionText}>
-            <Text style={styles.descriptionTextPreview}>Описание: </Text>
-            <Text style={{color:"white", fontSize: 18, marginTop: 7}}>{overview}</Text>
-          </View>
+      <View style={styles.text}>
+        <Text style={styles.textPreview}>Описание: </Text>
+        <Text style={styles.textOverview}>{overview}</Text>
+      </View>
 
-        <MovieDetailsActors movieDetailsActors={movieDetailsActors} />
+      <MovieDetailsActors movieDetailsActors={movieDetailsActors} />
     </ScrollView>
-  )
+  );
 };
 
 const styles = StyleSheet.create({
@@ -41,22 +36,28 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 
-  descriptionText:{
+  text: {
     width: Dimensions.get('screen').width,
     padding: 12,
-    backgroundColor: COLORS.GREY,
+    backgroundColor: COLORS.LIGHT_GREY,
     borderBottomRightRadius: 60,
   },
 
-  descriptionTextPreview: {
-    color:"white", 
-    fontWeight: "bold", 
-    fontSize: 22, 
-    borderLeftWidth: 1, 
-    paddingLeft: 5, 
-    borderBottomWidth: 1, 
-    borderColor: COLORS.MAIN_COLOR, 
+  textPreview: {
+    color: 'black',
+    fontWeight: 'bold',
+    fontSize: 20,
+    borderLeftWidth: 1,
+    paddingLeft: 5,
+    borderBottomWidth: 1,
+    borderColor: COLORS.MAIN_COLOR,
     width: 200,
+  },
+
+  textOverview: {
+    color: 'black',
+    fontSize: 16,
+    marginTop: 5,
   },
 });
 

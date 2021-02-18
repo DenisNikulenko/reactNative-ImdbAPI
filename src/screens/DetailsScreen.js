@@ -5,6 +5,7 @@ import MovieIndicator from '../components/ui/MovieIndicator';
 import {getMovieDetails, getMovieActors} from '../services/movieServices';
 
 const DetailsScreen = ({route}) => {
+
   const [isReady, setIsReady] = useState(true);
   const [movieDetails, setMovieDetails] = useState([]);
   const [movieDetailsActors, setMovieDetailsActors] = useState([]);

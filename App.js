@@ -18,6 +18,7 @@ import HomeScreen from './src/screens/HomeScreen';
 import BookmarksScreen from './src/screens/BookmarksScreen';
 import SearchScreen from './src/screens/SearchScreen';
 import DetailsScreen from './src/screens/DetailsScreen';
+import ActorScreen from './src/screens/ActorScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -27,6 +28,8 @@ const HomeStack = () => {
     <Stack.Navigator headerMode="none">
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="Details" component={DetailsScreen} />
+      <Stack.Screen name="Actor" component={ActorScreen} />
+
     </Stack.Navigator>
   );
 };
@@ -36,6 +39,7 @@ const BookmarksStack = () => {
     <Stack.Navigator headerMode="none">
       <Stack.Screen name="Bookmarks" component={BookmarksScreen} />
       <Stack.Screen name="Details" component={DetailsScreen} />
+      <Stack.Screen name="Actor" component={ActorScreen} />
     </Stack.Navigator>
   );
 };
@@ -45,9 +49,11 @@ const SearchStack = () => {
     <Stack.Navigator headerMode="none">
       <Stack.Screen name="Search" component={SearchScreen} />
       <Stack.Screen name="Details" component={DetailsScreen} />
+      <Stack.Screen name="Actor" component={ActorScreen} />
     </Stack.Navigator>
   );
 };
+
 
 const screenOption = (route) => ({
   tabBarIcon: ({color, size}) => {

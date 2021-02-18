@@ -8,61 +8,61 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 
 import { IMAGE_URL } from '../../utilities/apiUrl';
 
 const MovieDetailsActors = ({movieDetailsActors}) => {
+  const navigation = useNavigation();
+
   const renderItem = ({item}) => {
     return (
       <View style={styles.actorCard}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('Actor')}>
           <Image
             style={styles.image}
             source={{
               uri: `${IMAGE_URL}${item.profile_path}`,
             }}
           />
-          <Text style={{marginLeft: 7}}>{item.name}</Text>
+          <Text style={styles.text}>{item.name}</Text>
         </TouchableOpacity>
       </View>
     );
   };
 
   return (
-    <View style={styles.container}>
       <FlatList
-        showsVerticalScrollIndicator={false}
+        showsVerticalScrollInstylesdicator={false}
         data={movieDetailsActors}
         renderItem={renderItem}
         keyExtractor={(item, index) => index.toString()}
         horizontal={true}
       />
-    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    marginTop: 5,
-    marginBottom: 20,
-  },
-
   actorCard: {
     width: Dimensions.get('screen').width / 3.5,
-    backgroundColor: '#FFF',
+    backgroundColor: '#fff',
     margin: 5,
     borderRadius: 20,
-    height: 220,
+    height: 210,
     alignContent: "center",
     justifyContent: "center"    
   },
 
   image: {
     width: "100%",
-    height: "85%",  
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10  
+    height: "90%",  
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20  
   },
+
+  text: {
+    marginLeft: 5
+  }
 });
 
 export default MovieDetailsActors;

@@ -32,13 +32,13 @@ const MovieDetailsImage = ({movieDetails}) => {
   const BtnStarTrue = () => (
     <TouchableOpacity
       onPress={() => dispatch(removeFromBookmarks(movieDetails))}>
-      <Ionicons style={styles.iconStarZ} name="star" size={30} />
+      <Ionicons style={styles.iconStarGold} name="star" size={30} />
     </TouchableOpacity>
   );
 
   const BtnStarFalse = () => (
     <TouchableOpacity onPress={() => dispatch(addToBookmarks(movieDetails))}>
-      <Ionicons style={styles.iconStar} name="star" size={30} />
+      <Ionicons style={styles.iconStarWhite} name="star" size={30} />
     </TouchableOpacity>
   );
 
@@ -69,10 +69,10 @@ const MovieDetailsImage = ({movieDetails}) => {
 
       <View style={styles.descriptionBottom}>
         <Text style={styles.textInfo}>
-          <Ionicons name="star" color="yellow" size={15} /> {vote_average}
+          <Ionicons name="star" color="yellow" size={18} /> {vote_average}
         </Text>
         <Text style={styles.textInfo}>
-          <Ionicons name="time" color="white" size={15} /> {runtime} мин.
+          <Ionicons name="time" color="white" size={18} /> {runtime} мин.
         </Text>
       </View>
     </View>
@@ -113,17 +113,16 @@ const styles = StyleSheet.create({
   },
 
   textTitle: {
-    // marginRight: 65,
     width: Dimensions.get('screen').width / 1.4,
     color: 'white',
     fontSize: 22,
   },
 
-  iconStar: {
+  iconStarWhite: {
     color: 'white',
     marginRight: 10,
   },
-  iconStarZ: {
+  iconStarGold: {
     color: 'gold',
     marginRight: 10,
   },
