@@ -68,7 +68,6 @@ const styles = StyleSheet.create({
     flex: 5,
     padding: 10,
     fontSize: 14,
-    fontWeight: 'bold'
   },
 
   movieCardBtn: {

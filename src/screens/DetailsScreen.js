@@ -5,11 +5,10 @@ import MovieIndicator from '../components/ui/MovieIndicator';
 import {getMovieDetails, getMovieActors} from '../services/movieServices';
 
 const DetailsScreen = ({route}) => {
-  const [isReady, setIsReady] = useState(true)
-  const [movieDetails, setMovieDetails]= useState([]);
+  const [isReady, setIsReady] = useState(true);
+  const [movieDetails, setMovieDetails] = useState([]);
   const [movieDetailsActors, setMovieDetailsActors] = useState([]);
   const id = route.params.id;
-
 
   useEffect(() => {
     fetchAPI(id);
@@ -18,25 +17,27 @@ const DetailsScreen = ({route}) => {
   const fetchAPI = async (id) => {
     setMovieDetails(await getMovieDetails(id));
     setMovieDetailsActors(await getMovieActors(id));
-    setIsReady(false)
-  }
-
-  if (isReady) {
-    return <MovieIndicator />;
-  } else {
-    return (
-      <View style={styles.container}>
-        <View>
-          <MovieDetails movieDetails={movieDetails} movieDetailsActors={movieDetailsActors} />
-        </View>
-      </View>
-    );
-  }
+    setIsReady(false);
+  };
+  return (
+    <View style={styles.container}>
+      {isReady ? (
+        <MovieIndicator />
+      ) : (
+        <MovieDetails
+          movieDetails={movieDetails}
+          movieDetailsActors={movieDetailsActors}
+        />
+      )}
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 100,
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 

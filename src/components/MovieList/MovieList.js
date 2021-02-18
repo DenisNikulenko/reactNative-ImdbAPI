@@ -20,31 +20,24 @@ import {useNavigation} from '@react-navigation/native';
 import MovieIndicator from '../ui/MovieIndicator';
 import {IMAGE_URL} from '../../utilities/apiUrl';
 import {COLORS} from '../../utilities/colors';
+import {isExist} from '../../utilities/funcHelpers';
 
 const MovieList = ({stateMovies, scrollLoadMore}) => {
   const dispatch = useDispatch();
   const bookmarksList = useSelector(
     ({moviesReducer}) => moviesReducer.bookmarksList,
   );
+  
   const navigation = useNavigation();
 
-  const isExist = (movie) => {
-    if (bookmarksList.filter((item) => item.id === movie.id).length > 0) {
-      return true;
-    }
-    return false;
-  };
-
   const renderItem = ({item}) => {
-    const {id, release_date, poster_path, vote_average} = item;
-    let {title} = item;
-    title.length > 30 ? (title = `${title.substr(0, 29)}`) : null;
+    const {id, title, release_date, poster_path, vote_average} = item;
 
     return (
       <View style={styles.movieItem}>
         <TouchableOpacity onPress={() => navigation.navigate('Details', {id})}>
           <View style={styles.infoTitle}>
-            <Text style={styles.infoTitleText}>{title}</Text>
+            <Text numberOfLines={1} style={styles.infoTitleText}>{title}</Text>
             <Text style={styles.infoTitleDate}>Релиз: {release_date}</Text>
           </View>
           <Image
@@ -70,7 +63,7 @@ const MovieList = ({stateMovies, scrollLoadMore}) => {
             </Text>
           </View>
         </TouchableOpacity>
-        {isExist(item) ? (
+        {isExist(item, bookmarksList) ? (
           <TouchableOpacity
             style={styles.btnAddBookmarkTrue}
             onPress={() => dispatch(removeFromBookmarks(item))}>
@@ -121,6 +114,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   infoTitleText: {
+    marginLeft: 30,
+    marginRight: 30,
     fontSize: 20,
     color: 'grey',
   },
@@ -132,7 +127,6 @@ const styles = StyleSheet.create({
   movieImage: {
     resizeMode: 'contain',
     marginTop: 10,
-    width: Dimensions.get('screen').width / 1.3,
     height: '75%',
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,

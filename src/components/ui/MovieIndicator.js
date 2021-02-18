@@ -1,20 +1,11 @@
 import React from 'react';
-import {View, ActivityIndicator, StyleSheet} from 'react-native';
 
-import {COLORS} from '../../utilities/colors';
+import {PacmanIndicator} from 'react-native-indicators';
 
-export default MovieIndicator = () => {
+const MovieIndicator = () => {
   return (
-    <View style={styles.indicator}>
-      <ActivityIndicator size="large" color={COLORS.MAIN_COLOR} />
-    </View>
-  );
-};
+    <PacmanIndicator  color="#ff4d4d"  size={100}/>
+  )
+}
 
-const styles = StyleSheet.create({
-  indicator: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default MovieIndicator;

@@ -9,18 +9,24 @@ import {
 
 import {useNavigation} from '@react-navigation/native';
 import {useSelector, useDispatch} from 'react-redux';
-import {addToBookmarks, removeFromBookmarks} from "../../redux/actions/moviesActions";
+import {
+  addToBookmarks,
+  removeFromBookmarks,
+} from '../../redux/actions/moviesActions';
 
 import {IMAGE_URL} from '../../utilities/apiUrl';
-import {MovieButton} from "../ui/MovieButton";
-import {COLORS} from "../../utilities/colors";
+import {MovieButton} from '../ui/MovieButton';
+import {COLORS} from '../../utilities/colors';
 
 const MovieSearchCard = ({item, iconName, iconSize}) => {
   const dispatch = useDispatch();
-  const navigation = useNavigation()
-  const bookmarksList = useSelector((state) => state.moviesReducer.bookmarksList);
-	const {poster_path, backdrop_path, id, title} = item;
-  
+  const bookmarksList = useSelector(
+    (state) => state.moviesReducer.bookmarksList,
+  );
+  const navigation = useNavigation();
+
+  const {poster_path, id, title} = item;
+
   const isExist = (movie) => {
     if (bookmarksList.filter((item) => item.id === movie.id).length > 0) {
       return true;
@@ -29,29 +35,33 @@ const MovieSearchCard = ({item, iconName, iconSize}) => {
   };
 
   return (
-    <TouchableOpacity style={styles.movieCard} onPress={() => navigation.navigate('Details', {id,title})}>
+    <TouchableOpacity
+      style={styles.movieCard}
+      onPress={() => navigation.navigate('Details', {id})}>
       <Image
         style={styles.movieCardIamge}
         source={{
-          uri: `${IMAGE_URL}/${backdrop_path}`,
+          uri: `${IMAGE_URL}/${poster_path}`,
         }}
       />
       <Text style={styles.movieCardTitle}>{title}</Text>
-      {isExist(item) ?
-        <MovieButton 
-          styles={styles.movieBtnFalse}  
+      {isExist(item) ? (
+        <MovieButton
+          styles={styles.movieBtnFalse}
           onPress={() => dispatch(removeFromBookmarks(item))}
           iconName={iconName}
           iconColor="white"
-          iconSize={iconSize} />
-        :
-        <MovieButton 
-          styles={styles.movieBtnTrue}  
+          iconSize={iconSize}
+        />
+      ) : (
+        <MovieButton
+          styles={styles.movieBtnTrue}
           onPress={() => dispatch(addToBookmarks(item))}
           iconName={iconName}
           iconColor="white"
-          iconSize={iconSize} />
-      }
+          iconSize={iconSize}
+        />
+      )}
     </TouchableOpacity>
   );
 };
@@ -59,7 +69,7 @@ const MovieSearchCard = ({item, iconName, iconSize}) => {
 const styles = StyleSheet.create({
   movieCard: {
     width: Dimensions.get('screen').width - 10,
-    height: 95,
+    height: 100,
     backgroundColor: '#fff',
     margin: 5,
     borderRadius: 10,
@@ -83,7 +93,7 @@ const styles = StyleSheet.create({
     padding: 10,
     fontSize: 14,
   },
-  
+
   movieBtnTrue: {
     flex: 2,
     height: '100%',
@@ -102,7 +112,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderTopRightRadius: 10,
     borderBottomRightRadius: 10,
-  }
+  },
 });
 
 export default MovieSearchCard;

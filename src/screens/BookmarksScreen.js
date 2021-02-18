@@ -18,7 +18,7 @@ const BookmarksScreen = () => {
   const bookmarksList = useSelector(
     ({moviesReducer}) => moviesReducer.bookmarksList,
   );
-  
+
   const [isSearchActive, setIsSearchActive] = useState(false);
   const [filteredBookmarkList, setFilterBookmarkList] = useState([]);
 
@@ -28,8 +28,8 @@ const BookmarksScreen = () => {
     if (text.length > 2 && text !== '') {
       const searchText = text.trim().replace(/""/g, '');
 
-      setIsSearchActive(true);      
-      
+      setIsSearchActive(true);
+
       setFilterBookmarkList(
         bookmarksList.filter((movie) => {
           return (
@@ -38,19 +38,19 @@ const BookmarksScreen = () => {
         }),
       );
     } else {
-      setIsSearchActive(false)
+      setIsSearchActive(false);
     }
   };
 
   const currentMovies = isSearchActive ? filteredBookmarkList : bookmarksList;
-  console.log(bookmarksList)
+
   return (
     <View style={styles.container}>
       <View style={styles.searchBlock}>
         <TextInput
           onChangeText={onChangeSearch}
           style={styles.searchInput}
-          placeholder="Введите название фильма..."
+          placeholder='Введите название фильма...'
           maxLength={64}
         />
       </View>

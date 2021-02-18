@@ -1,6 +1,5 @@
 const API_KEY = 'api_key=a0365c3dfe181648feb572b2dbf405c8';
 const BASE_URL = 'https://api.themoviedb.org/3';
-const IMAGE_URL = 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2';
 const LANGUAGE = 'language=ru';
 const TOP_POPULAR = 'movie/top_rated';
 
@@ -38,9 +37,9 @@ export const getMovieActors = async (id) => {
 export const getMovieSearch = async (search, page = 1) => {
   try {
     const response = await fetch(`${BASE_URL}/search/multi?${API_KEY}&${LANGUAGE}&query=${search}&page=${page}`);
-    console.log(response)
     const json = await response.json();
     const result = json.results.filter(i => !i.name && i.poster_path)
+    console.log(result)
     return result;
   } catch (error) {
     return console.log(error);

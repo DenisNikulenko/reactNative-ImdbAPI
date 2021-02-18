@@ -12,30 +12,19 @@ import MovieDetailsActors from "./MovieDetailsActors";
 import {COLORS} from '../../utilities/colors';
 
 const MovieDetails = ({movieDetails, movieDetailsActors}) => {
-  console.log(movieDetails)
-  let {title, overview, genre} = movieDetails;
+  let {overview} = movieDetails;
   const {
-    genres,
+    title,
     poster_path,
-    backdrop_path,
-    release_date,
-    budget,
     runtime,
     vote_average,
   } = movieDetails;
 
-  typeof title === 'string' ? title.length > 30 ? (title = `${title.substr(0, 29)}`) : null : null;
-  typeof overview === "string" ? overview.length < 5 ? overview = "нет описания :(" : null : null;
-
-  genres ? (genre = genres.map((g, indx) => (
-        <View key={indx}>
-          <Text style={styles.descriptioninfoText}>{g.name}</Text>
-        </View>
-  ))) : (genre = <Text>Пусто</Text>);
+   overview.length < 5 ? overview = "нет описания :(" : null;
 
   return (
     <ScrollView style={styles.container}>
-      <MovieDetailsImage posterPath={poster_path} title={title} voteAverage={vote_average} runtime={runtime} />
+      <MovieDetailsImage movieDetails={movieDetails} posterPath={poster_path} title={title} voteAverage={vote_average} runtime={runtime} />
 
           <View style={styles.descriptionText}>
             <Text style={styles.descriptionTextPreview}>Описание: </Text>
@@ -49,9 +38,7 @@ const MovieDetails = ({movieDetails, movieDetailsActors}) => {
 
 const styles = StyleSheet.create({
   container: {
-    width: Dimensions.get('screen').width,
-    height: Dimensions.get('screen').height - 80,
-    backgroundColor: "grey",
+    flex: 1,
   },
 
   descriptionText:{
@@ -64,13 +51,12 @@ const styles = StyleSheet.create({
   descriptionTextPreview: {
     color:"white", 
     fontWeight: "bold", 
-    fontSize: 24, 
-    borderLeftColor: COLORS.MAIN_COLOR,
+    fontSize: 22, 
     borderLeftWidth: 1, 
     paddingLeft: 5, 
     borderBottomWidth: 1, 
     borderColor: COLORS.MAIN_COLOR, 
-    width: 120,
+    width: 200,
   },
 });
 

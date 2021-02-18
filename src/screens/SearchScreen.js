@@ -10,12 +10,13 @@ import {
 } from 'react-native';
 
 import {useDispatch} from 'react-redux';
-import {useNavigation} from '@react-navigation/native';
 import {addToBookmarks} from '../redux/actions/moviesActions';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import {COLORS} from '../utilities/colors';
-import MovieSearchCard from '../components/MovieSearch/MovieSearchCard';
+import {useNavigation} from '@react-navigation/native';
+
 import {getMovieSearch} from '../services/movieServices';
+import {COLORS} from '../utilities/colors';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import MovieSearchCard from '../components/MovieSearch/MovieSearchCard';
 import MovieIndicator from '../components/ui/MovieIndicator';
 
 const SearchScreen = () => {
@@ -32,7 +33,7 @@ const SearchScreen = () => {
       fetchAPI(movieSearch, page);
     }
   }, [movieSearch, page, refreshing]);
-  
+
   const fetchAPI = async (movieSearch, page = 1) => {
     setFoundItems([
       ...foundItems,
@@ -41,11 +42,11 @@ const SearchScreen = () => {
     setRefreshing(false);
   };
   const scrollOnRefresh = () => {
-    setMovieSearch("");
+    setMovieSearch('');
     setRefreshing(true);
     setFoundItems([]);
     setPage(1);
-  }
+  };
 
   const scrollLoadMore = () => {
     setPage(page + 1);
@@ -53,7 +54,7 @@ const SearchScreen = () => {
 
   const tabOnSearch = () => {
     fetchAPI(movieSearch);
-  }
+  };
 
   return (
     <View style={styles.conteainer}>

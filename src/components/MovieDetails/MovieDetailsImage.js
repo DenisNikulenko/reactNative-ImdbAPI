@@ -1,64 +1,86 @@
 import React from 'react';
-import {View, StyleSheet, Text, Dimensions, Image, TouchableOpacity} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Text,
+  Dimensions,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
 
+import {useDispatch, useSelector} from 'react-redux';
+import {
+  addToBookmarks,
+  removeFromBookmarks,
+} from '../../redux/actions/moviesActions';
 import {useNavigation} from '@react-navigation/native';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {IMAGE_URL} from '../../utilities/apiUrl';
+import {isExist} from '../../utilities/funcHelpers';
 
-const MovieDetailsImage = ({posterPath, title, voteAverage, runtime}) => {
+const MovieDetailsImage = ({movieDetails}) => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+
+  const bookmarksList = useSelector(
+    ({moviesReducer}) => moviesReducer.bookmarksList,
+  );
+
+  const {poster_path, title, vote_average, runtime} = movieDetails;
+
+  const BtnStarTrue = () => (
+    <TouchableOpacity
+      onPress={() => dispatch(removeFromBookmarks(movieDetails))}>
+      <Ionicons style={styles.iconStarZ} name="star" size={30} />
+    </TouchableOpacity>
+  );
+
+  const BtnStarFalse = () => (
+    <TouchableOpacity onPress={() => dispatch(addToBookmarks(movieDetails))}>
+      <Ionicons style={styles.iconStar} name="star" size={30} />
+    </TouchableOpacity>
+  );
 
   return (
     <View>
       <Image
-        resizeMode="center"
         style={styles.imageHeader}
         source={{
-          uri: `${IMAGE_URL}/${posterPath}`,
+          uri: `${IMAGE_URL}/${poster_path}`,
         }}
       />
 
       <View style={styles.opacityBlockTop}></View>
 
       <View style={styles.title}>
-        <TouchableOpacity
-          style={styles.btnBack}
-          activeOpacity={0.2}
-          onPress={() => navigation.goBack()}>
-          <Ionicons
-            onPress={() => navigation.goBack()}
-            style={styles.iconBack}
-            name="arrow-back"
-            size={40}
-          />
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Ionicons style={styles.iconBack} name="arrow-back" size={40} />
         </TouchableOpacity>
-        <Text style={styles.textTitle}>{title}</Text>
+
+        <Text numberOfLines={1} style={styles.textTitle}>
+          {title}
+        </Text>
+
+        {isExist(movieDetails, bookmarksList) ? <BtnStarTrue /> : <BtnStarFalse />}
       </View>
 
       <View style={styles.opacityBlockBottom}></View>
 
       <View style={styles.descriptionBottom}>
-        <Text style={{color: 'white', fontSize: 16}}>
-          Рейтинг:  
-          <Text style={styles.textBold}>
-            {voteAverage} < Ionicons name="star" color="yellow"  size={15} />
-            </Text>
+        <Text style={styles.textInfo}>
+          <Ionicons name="star" color="yellow" size={15} /> {vote_average}
         </Text>
-        <Text style={{color: 'white'}}>
-          Длительность: <Text style={styles.textBold}>{runtime}</Text> мин
+        <Text style={styles.textInfo}>
+          <Ionicons name="time" color="white" size={15} /> {runtime} мин.
         </Text>
       </View>
-
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   imageHeader: {
-    resizeMode: 'cover',
-    borderRadius: 5,
-    width: Dimensions.get('screen').width,
     height: Dimensions.get('screen').height / 2,
   },
 
@@ -77,12 +99,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    width: Dimensions.get('screen').width,
+    width: '100%',
   },
 
   btnBack: {
-    height: Dimensions.get('screen').height / 18,
-    width: Dimensions.get('screen').width / 8,
     marginLeft: 5,
   },
 
@@ -93,18 +113,28 @@ const styles = StyleSheet.create({
   },
 
   textTitle: {
-    marginRight: 10,
+    // marginRight: 65,
+    width: Dimensions.get('screen').width / 1.4,
     color: 'white',
-    fontSize: 24,
+    fontSize: 22,
+  },
+
+  iconStar: {
+    color: 'white',
+    marginRight: 10,
+  },
+  iconStarZ: {
+    color: 'gold',
+    marginRight: 10,
   },
 
   opacityBlockBottom: {
     backgroundColor: 'black',
     position: 'absolute',
     width: Dimensions.get('screen').width,
-    height: Dimensions.get('screen').height / 20,
+    height: 50,
     opacity: 0.3,
-    top: Dimensions.get('screen').width / 1.08,
+    top: Dimensions.get('screen').width - 25,
     borderTopRightRadius: 20,
     borderTopLeftRadius: 20,
   },
@@ -114,8 +144,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    width: Dimensions.get('screen').width,
-    top: Dimensions.get('screen').width / 1.08 + 10,
+    width: '100%',
+    top: Dimensions.get('screen').width - 20,
+  },
+
+  textInfo: {
+    color: 'white',
+    fontSize: 18,
   },
 
   textBold: {

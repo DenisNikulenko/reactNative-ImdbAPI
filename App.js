@@ -52,20 +52,20 @@ const SearchStack = () => {
 const screenOption = (route) => ({
   tabBarIcon: ({color, size}) => {
     let iconName;
-    const {name} = route
+    const {name} = route;
 
-    name === 'Home' ? iconName = 'home' : null;
-    name === 'Search' ? iconName = 'search' : null;
-    name === 'Bookmarks' ? iconName = 'bookmarks' : null;
+    name === 'Home' ? (iconName = 'home') : null;
+    name === 'Search' ? (iconName = 'search') : null;
+    name === 'Bookmarks' ? (iconName = 'bookmarks') : null;
 
     return <Ionicons name={iconName} size={size} color={color} />;
-  }
-})
+  },
+});
 
 const tabBarOptions = {
   activeTintColor: COLORS.MAIN_COLOR,
   inactiveTintColor: COLORS.GREY,
-}
+};
 
 const App = () => {
   return (
@@ -74,7 +74,7 @@ const App = () => {
         <NavigationContainer>
           <Tab.Navigator
             screenOptions={({route}) => screenOption(route)}
-            tabBarOptions={tabBarOptions} >
+            tabBarOptions={tabBarOptions}>
             <Tab.Screen name="Home" component={HomeStack} />
             <Tab.Screen name="Search" component={SearchStack} />
             <Tab.Screen name="Bookmarks" component={BookmarksStack} />
@@ -83,7 +83,6 @@ const App = () => {
       </PersistGate>
     </Provider>
   );
-}
-
+};
 
 export default App;
