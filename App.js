@@ -25,11 +25,10 @@ const Stack = createStackNavigator();
 
 const HomeStack = () => {
   return (
-    <Stack.Navigator headerMode="none">
-      <Stack.Screen name="Home" component={HomeScreen} />
+    <Stack.Navigator headerMode="none" > 
+      <Stack.Screen  name="Home" component={HomeScreen} />
       <Stack.Screen name="Details" component={DetailsScreen} />
       <Stack.Screen name="Actor" component={ActorScreen} />
-
     </Stack.Navigator>
   );
 };
@@ -92,3 +91,4 @@ const App = () => {
 };
 
 export default App;
+1

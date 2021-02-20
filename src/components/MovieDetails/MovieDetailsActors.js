@@ -14,11 +14,11 @@ import { IMAGE_URL } from '../../utilities/apiUrl';
 
 const MovieDetailsActors = ({movieDetailsActors}) => {
   const navigation = useNavigation();
-
+  
   const renderItem = ({item}) => {
     return (
       <View style={styles.actorCard}>
-        <TouchableOpacity onPress={() => navigation.navigate('Actor')}>
+        <TouchableOpacity onPress={() => navigation.navigate('Actor', {item})}>
           <Image
             style={styles.image}
             source={{

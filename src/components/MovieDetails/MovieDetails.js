@@ -7,7 +7,26 @@ import {COLORS} from '../../utilities/colors';
 
 const MovieDetails = ({movieDetails, movieDetailsActors}) => {
   let {overview} = movieDetails;
-  const {title, poster_path, runtime, vote_average} = movieDetails;
+  const {
+    title,
+    poster_path,
+    runtime,
+    vote_average,
+    genres,
+    production_companies,
+  } = movieDetails;
+
+  const Genre = genres.map((item, idx) => (
+    <Text style={styles.textOverview}>
+      {idx + 1}. {item.name}
+    </Text>
+  ));
+  
+  const ProductionCompany = production_companies.map((item, idx) => (
+    <Text style={styles.textOverview}>
+      {idx + 1}. {item.name}
+    </Text>
+  ));
 
   overview.length < 5 ? (overview = 'нет описания :(') : null;
 
@@ -20,10 +39,21 @@ const MovieDetails = ({movieDetails, movieDetailsActors}) => {
         voteAverage={vote_average}
         runtime={runtime}
       />
-
-      <View style={styles.text}>
-        <Text style={styles.textPreview}>Описание: </Text>
-        <Text style={styles.textOverview}>{overview}</Text>
+      <View>
+        <View style={styles.text}>
+          <Text style={styles.textTitle}>Описание: </Text>
+          <Text style={styles.textOverview}>{overview}</Text>
+        </View>
+        <View style={styles.blockDetails}>
+          <View>
+            <Text style={styles.textTitle}>Жанры:</Text>
+            {Genre}
+          </View>
+          <View>
+            <Text style={styles.textTitle}>Компании:</Text>
+            {ProductionCompany}
+          </View>
+        </View>
       </View>
 
       <MovieDetailsActors movieDetailsActors={movieDetailsActors} />
@@ -58,6 +88,31 @@ const styles = StyleSheet.create({
     color: 'black',
     fontSize: 16,
     marginTop: 5,
+  },
+
+  blockDetails: {
+    width: Dimensions.get('screen').width,
+    paddingLeft: 20,
+    paddingRight: 20,
+    borderTopColor: COLORS.MAIN_COLOR,
+    borderTopWidth: 1,
+    backgroundColor: COLORS.LIGHT_GREY,
+    // alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+
+  textTitle: {
+    fontSize: 19,
+    borderColor: 'red',
+    borderLeftWidth: 1,
+    borderBottomWidth: 1,
+    fontWeight: 'bold',
+    paddingLeft: 10,
+    color: 'black',
+  },
+
+  textCompany: {
   },
 });
 
