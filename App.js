@@ -25,7 +25,11 @@ const Stack = createStackNavigator();
 
 const HomeStack = () => {
   return (
-    <Stack.Navigator headerMode="none" > 
+    <Stack.Navigator
+    screenOptions={{
+      headerTintColor: 'white',
+      headerStyle: { backgroundColor: COLORS.MAIN_COLOR, height: 40,},
+    }} > 
       <Stack.Screen  name="Home" component={HomeScreen} />
       <Stack.Screen name="Details" component={DetailsScreen} />
       <Stack.Screen name="Actor" component={ActorScreen} />
@@ -35,7 +39,7 @@ const HomeStack = () => {
 
 const BookmarksStack = () => {
   return (
-    <Stack.Navigator headerMode="none">
+    <Stack.Navigator>
       <Stack.Screen name="Bookmarks" component={BookmarksScreen} />
       <Stack.Screen name="Details" component={DetailsScreen} />
       <Stack.Screen name="Actor" component={ActorScreen} />
@@ -45,7 +49,7 @@ const BookmarksStack = () => {
 
 const SearchStack = () => {
   return (
-    <Stack.Navigator headerMode="none">
+    <Stack.Navigator>
       <Stack.Screen name="Search" component={SearchScreen} />
       <Stack.Screen name="Details" component={DetailsScreen} />
       <Stack.Screen name="Actor" component={ActorScreen} />

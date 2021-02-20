@@ -16,6 +16,7 @@ import {IMAGE_URL} from '../../utilities/apiUrl';
 import {COLORS} from '../../utilities/colors';
 
 const MovieBookmarkCard = ({item}) => {
+  console.log(item)
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const { poster_path, id, title} = item;

@@ -8,39 +8,15 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-import {useDispatch, useSelector} from 'react-redux';
-import {
-  addToBookmarks,
-  removeFromBookmarks,
-} from '../../redux/actions/moviesActions';
 import {useNavigation} from '@react-navigation/native';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {IMAGE_URL} from '../../utilities/apiUrl';
-import {isExist} from '../../utilities/funcHelpers';
 
 const MovieDetailsImage = ({movieDetails}) => {
   const navigation = useNavigation();
-  const dispatch = useDispatch();
-
-  const bookmarksList = useSelector(
-    ({moviesReducer}) => moviesReducer.bookmarksList,
-  );
 
   const {poster_path, title, vote_average, runtime} = movieDetails;
-
-  const BtnStarTrue = () => (
-    <TouchableOpacity
-      onPress={() => dispatch(removeFromBookmarks(movieDetails))}>
-      <Ionicons style={styles.iconStarGold} name="star" size={30} />
-    </TouchableOpacity>
-  );
-
-  const BtnStarFalse = () => (
-    <TouchableOpacity onPress={() => dispatch(addToBookmarks(movieDetails))}>
-      <Ionicons style={styles.iconStarWhite} name="star" size={30} />
-    </TouchableOpacity>
-  );
 
   return (
     <View>
@@ -62,7 +38,6 @@ const MovieDetailsImage = ({movieDetails}) => {
           {title}
         </Text>
 
-        {isExist(movieDetails, bookmarksList) ? <BtnStarTrue /> : <BtnStarFalse />}
       </View>
 
       <View style={styles.opacityBlockBottom}></View>
@@ -116,15 +91,6 @@ const styles = StyleSheet.create({
     width: Dimensions.get('screen').width / 1.4,
     color: 'white',
     fontSize: 22,
-  },
-
-  iconStarWhite: {
-    color: 'white',
-    marginRight: 10,
-  },
-  iconStarGold: {
-    color: 'gold',
-    marginRight: 10,
   },
 
   opacityBlockBottom: {

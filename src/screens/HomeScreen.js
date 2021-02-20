@@ -1,10 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, StatusBar} from 'react-native';
 
 import {getPopularMovies} from '../services/movieServices';
 
 import MovieList from '../components/MovieList';
-import MovieHeader from '../components/MovieHeader';
 import MovieIndicator from '../components/ui/MovieIndicator';
 import {COLORS} from '../utilities/colors';
 
@@ -31,7 +30,7 @@ const HomeScreen = () => {
   } else {
     return (
       <View style={styles.container}>
-        <MovieHeader title="ТОП популярных фильмов" />
+        <StatusBar barStyle='light-content' hidden = {false} backgroundColor = {COLORS.MAIN_COLOR} />
         <MovieList
           stateMovies={popularMovie}
           scrollLoadMore={scrollLoadMore}
