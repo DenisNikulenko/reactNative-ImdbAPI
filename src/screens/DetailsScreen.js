@@ -12,7 +12,7 @@ import {
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MovieDetails from '../components/MovieDetails';
 import MovieIndicator from '../components/ui/MovieIndicator';
-import {getMovieDetails, getMovieActors} from '../services/movieServices';
+import {getMovieDetails, getMovieActors, getMovieTrailer} from '../services/movieServices';
 import {isExist} from '../utilities/funcHelpers';
 
 const DetailsScreen = ({route}) => {
@@ -24,6 +24,7 @@ const DetailsScreen = ({route}) => {
   const [isReady, setIsReady] = useState(true);
   const [movieDetails, setMovieDetails] = useState([]);
   const [movieDetailsActors, setMovieDetailsActors] = useState([]);
+  const [movieTrailer, setMovieTrailer] = useState('');
   const id = route.params.id;
 
   const navigation = useNavigation();
@@ -41,6 +42,7 @@ const DetailsScreen = ({route}) => {
   const fetchAPI = async (id) => {
     setMovieDetails(await getMovieDetails(id));
     setMovieDetailsActors(await getMovieActors(id));
+    setMovieTrailer(await getMovieTrailer(id));
     setIsReady(false);
   };
 
@@ -64,6 +66,7 @@ const DetailsScreen = ({route}) => {
       ) : (
         <MovieDetails
           movieDetails={movieDetails}
+          movieTrailer={movieTrailer}
           movieDetailsActors={movieDetailsActors}
         />
       )}

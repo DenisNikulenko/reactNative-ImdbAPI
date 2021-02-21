@@ -5,7 +5,7 @@ import MovieDetailsImage from './MovieDetailsImage';
 import MovieDetailsActors from './MovieDetailsActors';
 import {COLORS} from '../../utilities/colors';
 
-const MovieDetails = ({movieDetails, movieDetailsActors}) => {
+const MovieDetails = ({movieDetails, movieDetailsActors, movieTrailer}) => {
   let {overview} = movieDetails;
   const {
     title,
@@ -34,6 +34,7 @@ const MovieDetails = ({movieDetails, movieDetailsActors}) => {
     <ScrollView style={styles.container}>
       <MovieDetailsImage
         movieDetails={movieDetails}
+        movieTrailer={movieTrailer}
         posterPath={poster_path}
         title={title}
         voteAverage={vote_average}

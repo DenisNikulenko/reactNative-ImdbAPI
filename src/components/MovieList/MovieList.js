@@ -27,17 +27,39 @@ const MovieList = ({stateMovies, scrollLoadMore}) => {
   const bookmarksList = useSelector(
     ({moviesReducer}) => moviesReducer.bookmarksList,
   );
-  
+
   const navigation = useNavigation();
 
   const renderItem = ({item}) => {
     const {id, title, release_date, poster_path, vote_average} = item;
 
+    const BtnAddBookmark = () => {
+      return (
+        <TouchableOpacity
+          style={styles.btnAddBookmarkFalse}
+          onPress={() => dispatch(addToBookmarks(item))}>
+          <Text style={styles.textAddBookMark}>Добавить в закладки</Text>
+        </TouchableOpacity>
+      );
+    };
+
+    const BtnRemoveFromBookmark = () => {
+      return (
+        <TouchableOpacity
+          style={styles.btnAddBookmarkTrue}
+          onPress={() => dispatch(removeFromBookmarks(item))}>
+          <Text style={styles.textAddBookMark}>Удалить из закладок</Text>
+        </TouchableOpacity>
+      );
+    };
+
     return (
       <View style={styles.movieItem}>
         <TouchableOpacity onPress={() => navigation.navigate('Details', {id})}>
           <View style={styles.infoTitle}>
-            <Text numberOfLines={1} style={styles.infoTitleText}>{title}</Text>
+            <Text numberOfLines={1} style={styles.infoTitleText}>
+              {title}
+            </Text>
             <Text style={styles.infoTitleDate}>Релиз: {release_date}</Text>
           </View>
           <Image
@@ -64,17 +86,9 @@ const MovieList = ({stateMovies, scrollLoadMore}) => {
           </View>
         </TouchableOpacity>
         {isExist(item, bookmarksList) ? (
-          <TouchableOpacity
-            style={styles.btnAddBookmarkTrue}
-            onPress={() => dispatch(removeFromBookmarks(item))}>
-            <Text style={styles.textAddBookMark}>Удалить из закладок</Text>
-          </TouchableOpacity>
+          <BtnRemoveFromBookmark />
         ) : (
-          <TouchableOpacity
-            style={styles.btnAddBookmarkFalse}
-            onPress={() => dispatch(addToBookmarks(item))}>
-            <Text style={styles.textAddBookMark}>Добавить в закладки</Text>
-          </TouchableOpacity>
+          <BtnAddBookmark />
         )}
       </View>
     );
@@ -98,10 +112,9 @@ const MovieList = ({stateMovies, scrollLoadMore}) => {
 const styles = StyleSheet.create({
   movieItem: {
     width: Dimensions.get('screen').width - 20,
-    backgroundColor: '#FFF',
+    backgroundColor: '#fff',
     borderRadius: 20,
     height: Dimensions.get('screen').height / 2,
-    // justifyContent: 'space-between',
     marginVertical: 10,
     paddingBottom: 15,
   },

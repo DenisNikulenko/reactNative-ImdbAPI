@@ -1,11 +1,13 @@
 import React from 'react';
-import {View, StyleSheet, Text, Dimensions, Image} from 'react-native';
+import {View, StyleSheet, Text, Dimensions, Image, TouchableOpacity, Linking} from 'react-native';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {IMAGE_URL} from '../../utilities/apiUrl';
 
-const MovieDetailsImage = ({movieDetails}) => {
+const MovieDetailsImage = ({movieDetails, movieTrailer}) => {
+  console.log(movieTrailer)
   const {poster_path, title, vote_average, runtime} = movieDetails;
+  const trailerLink = movieTrailer ? movieTrailer : 'https://www.youtube.com';
 
   return (
     <View>
@@ -21,6 +23,10 @@ const MovieDetailsImage = ({movieDetails}) => {
       <Text numberOfLines={1} style={styles.title}>
         {title}
       </Text>
+
+      <TouchableOpacity style={styles.iconPlay} onPress={() => Linking.openURL(trailerLink)}>
+        <Ionicons  name='play-outline' size={70} color='white'/>
+      </TouchableOpacity>
 
       <View style={styles.opacityBlockBottom}></View>
 
@@ -58,6 +64,15 @@ const styles = StyleSheet.create({
     fontSize: 22,
     marginLeft: 20,
     marginRight: 20,
+  },
+
+  iconPlay: {
+    position: 'absolute',
+    width: '100%',
+    height: 100,
+    top: Dimensions.get('screen').width / 2.5,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 
   opacityBlockBottom: {
