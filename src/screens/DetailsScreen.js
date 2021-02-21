@@ -27,12 +27,9 @@ const DetailsScreen = ({route}) => {
   const id = route.params.id;
 
   const navigation = useNavigation();
-    console.log(movieDetails)
   useEffect(() => {
-
-
     fetchAPI(id);
-  }, [id, ]);
+  }, [id]);
 
   useLayoutEffect(() => {
     navigation.setOptions({

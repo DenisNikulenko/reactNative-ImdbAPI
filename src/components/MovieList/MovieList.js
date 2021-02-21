@@ -97,20 +97,16 @@ const MovieList = ({stateMovies, scrollLoadMore}) => {
 
 const styles = StyleSheet.create({
   movieItem: {
-    flexDirection: 'column',
-    width: Dimensions.get('screen').width / 1.1 - 10,
+    width: Dimensions.get('screen').width - 20,
     backgroundColor: '#FFF',
     borderRadius: 20,
-    height: Dimensions.get('screen').height / 2 - 10,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginHorizontal: 10,
+    height: Dimensions.get('screen').height / 2,
+    // justifyContent: 'space-between',
     marginVertical: 10,
     paddingBottom: 15,
   },
 
   infoTitle: {
-    justifyContent: 'space-around',
     alignItems: 'center',
   },
   infoTitleText: {
@@ -165,7 +161,7 @@ const styles = StyleSheet.create({
 
   textAddBookMark: {
     color: '#fff',
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: '600',
   },
 });

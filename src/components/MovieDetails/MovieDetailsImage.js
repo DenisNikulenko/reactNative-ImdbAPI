@@ -1,21 +1,10 @@
 import React from 'react';
-import {
-  View,
-  StyleSheet,
-  Text,
-  Dimensions,
-  Image,
-  TouchableOpacity,
-} from 'react-native';
-
-import {useNavigation} from '@react-navigation/native';
+import {View, StyleSheet, Text, Dimensions, Image} from 'react-native';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {IMAGE_URL} from '../../utilities/apiUrl';
 
 const MovieDetailsImage = ({movieDetails}) => {
-  const navigation = useNavigation();
-
   const {poster_path, title, vote_average, runtime} = movieDetails;
 
   return (
@@ -29,16 +18,9 @@ const MovieDetailsImage = ({movieDetails}) => {
 
       <View style={styles.opacityBlockTop}></View>
 
-      <View style={styles.title}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Ionicons style={styles.iconBack} name="arrow-back" size={40} />
-        </TouchableOpacity>
-
-        <Text numberOfLines={1} style={styles.textTitle}>
-          {title}
-        </Text>
-
-      </View>
+      <Text numberOfLines={1} style={styles.title}>
+        {title}
+      </Text>
 
       <View style={styles.opacityBlockBottom}></View>
 
@@ -63,7 +45,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
     position: 'absolute',
     width: Dimensions.get('screen').width,
-    height: 45,
+    height: 35,
     opacity: 0.3,
     borderBottomRightRadius: 20,
     borderBottomLeftRadius: 20,
@@ -71,26 +53,11 @@ const styles = StyleSheet.create({
 
   title: {
     position: 'absolute',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    width: '100%',
-  },
-
-  btnBack: {
-    marginLeft: 5,
-  },
-
-  iconBack: {
-    color: 'white',
-    width: 50,
-    height: 50,
-  },
-
-  textTitle: {
-    width: Dimensions.get('screen').width / 1.4,
+    width: '90%',
     color: 'white',
     fontSize: 22,
+    marginLeft: 20,
+    marginRight: 20,
   },
 
   opacityBlockBottom: {

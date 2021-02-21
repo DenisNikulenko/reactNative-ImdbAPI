@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Dimensions,
   FlatList,
+  StatusBar
 } from 'react-native';
 
 import {useDispatch} from 'react-redux';
@@ -127,8 +128,8 @@ const styles = StyleSheet.create({
     borderBottomColor: COLORS.MAIN_COLOR,
     borderBottomWidth: 2,
     borderBottomRightRadius: 20,
-    width: '75%',
-    height: 55,
+    width: '80%',
+    height: 50,
   },
 
   serchBtn: {

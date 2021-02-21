@@ -26,37 +26,80 @@ const Stack = createStackNavigator();
 const HomeStack = () => {
   return (
     <Stack.Navigator
-    screenOptions={{
-      headerTintColor: 'white',
-      headerStyle: { backgroundColor: COLORS.MAIN_COLOR, height: 40,},
-    }} > 
-      <Stack.Screen  name="Home" component={HomeScreen} />
-      <Stack.Screen name="Details" component={DetailsScreen} />
-      <Stack.Screen name="Actor" component={ActorScreen} />
-    </Stack.Navigator>
-  );
-};
-
-const BookmarksStack = () => {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen name="Bookmarks" component={BookmarksScreen} />
-      <Stack.Screen name="Details" component={DetailsScreen} />
-      <Stack.Screen name="Actor" component={ActorScreen} />
+      screenOptions={{
+        headerTintColor: 'white',
+        headerStyle: {backgroundColor: COLORS.MAIN_COLOR, height: 40},
+      }}>
+      <Stack.Screen
+        name="Home"
+        options={{title: 'Популярные фильмы'}}
+        component={HomeScreen}
+      />
+      <Stack.Screen
+        name="Details"
+        options={{title: 'Детали фильма'}}
+        component={DetailsScreen}
+      />
+      <Stack.Screen
+        name="Actor"
+        options={{title: 'Детали актера'}}
+        component={ActorScreen}
+      />
     </Stack.Navigator>
   );
 };
 
 const SearchStack = () => {
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="Search" component={SearchScreen} />
-      <Stack.Screen name="Details" component={DetailsScreen} />
-      <Stack.Screen name="Actor" component={ActorScreen} />
+    <Stack.Navigator
+      screenOptions={{
+        headerTintColor: 'white',
+        headerStyle: {backgroundColor: COLORS.MAIN_COLOR, height: 40},
+      }}>
+      <Stack.Screen
+        name="Search"
+        options={{title: 'Поиск по названию'}}
+        component={SearchScreen}
+      />
+      <Stack.Screen
+        name="Details"
+        options={{title: 'Детали фильма'}}
+        component={DetailsScreen}
+      />
+      <Stack.Screen
+        name="Actor"
+        options={{title: 'Детали актера'}}
+        component={ActorScreen}
+      />
     </Stack.Navigator>
   );
 };
 
+const BookmarksStack = () => {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerTintColor: 'white',
+        headerStyle: {backgroundColor: COLORS.MAIN_COLOR, height: 40},
+      }}>
+      <Stack.Screen
+        name="Bookmarks"
+        options={{title: 'Закладки'}}
+        component={BookmarksScreen}
+      />
+      <Stack.Screen
+        name="Details"
+        options={{title: 'Детали фильма'}}
+        component={DetailsScreen}
+      />
+      <Stack.Screen
+        name="Actor"
+        options={{title: 'Детали актера'}}
+        component={ActorScreen}
+      />
+    </Stack.Navigator>
+  );
+};
 
 const screenOption = (route) => ({
   tabBarIcon: ({color, size}) => {
@@ -95,4 +138,4 @@ const App = () => {
 };
 
 export default App;
-1
+1;
