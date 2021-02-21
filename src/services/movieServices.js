@@ -2,7 +2,7 @@ const API_KEY = 'api_key=a0365c3dfe181648feb572b2dbf405c8';
 const BASE_URL = 'https://api.themoviedb.org/3';
 const LANGUAGE = 'language=ru';
 const TOP_POPULAR = 'movie/top_rated';
-const YOUTUBE = 'https://www.youtube.com/watch?v=';
+const YOUTUBE = 'https://www.youtube.com/watch?v';
 
 export const getPopularMovies = async (page) => {
   try {
@@ -52,7 +52,7 @@ export const getMovieTrailer = async (id) => {
     const json = await response.json();
     const result = json.results[0].key
 
-    const link = `https://www.youtube.com/watch?v=${result}`
+    const link = `${YOUTUBE}=${result}`
     return link;
   } catch (error) {
     return console.log(error);

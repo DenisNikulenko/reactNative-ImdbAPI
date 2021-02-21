@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   Image,
   Dimensions,
+  ToastAndroid
 } from 'react-native';
 
 import {removeFromBookmarks} from '../../redux/actions/moviesActions';
@@ -36,7 +37,10 @@ const MovieBookmarkCard = ({item}) => {
       <Text style={styles.movieCardTitle}>{title}</Text>
       <TouchableOpacity
         style={styles.movieCardBtn}
-        onPress={() => dispatch(removeFromBookmarks(item))}>
+        onPress={() => {
+          dispatch(removeFromBookmarks(item))
+          ToastAndroid.show("Удален из закладок", 2000)
+        }}>
         <Ionicons name="trash-outline" color="white" size={26} />
       </TouchableOpacity>
     </TouchableOpacity>

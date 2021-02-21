@@ -18,7 +18,6 @@ const BookmarksScreen = () => {
   const bookmarksList = useSelector(
     ({moviesReducer}) => moviesReducer.bookmarksList,
   );
-  console.log(bookmarksList)
 
   const [isSearchActive, setIsSearchActive] = useState(false);
   const [filteredBookmarkList, setFilterBookmarkList] = useState([]);

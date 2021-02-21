@@ -5,7 +5,6 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import {IMAGE_URL} from '../../utilities/apiUrl';
 
 const MovieDetailsImage = ({movieDetails, movieTrailer}) => {
-  console.log(movieTrailer)
   const {poster_path, title, vote_average, runtime} = movieDetails;
   const trailerLink = movieTrailer ? movieTrailer : 'https://www.youtube.com';
 

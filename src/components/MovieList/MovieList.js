@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   Dimensions,
   Image,
+  ToastAndroid
 } from 'react-native';
 import Stars from 'react-native-stars';
 import {
@@ -37,7 +38,10 @@ const MovieList = ({stateMovies, scrollLoadMore}) => {
       return (
         <TouchableOpacity
           style={styles.btnAddBookmarkFalse}
-          onPress={() => dispatch(addToBookmarks(item))}>
+          onPress={() => {
+            dispatch(addToBookmarks(item))
+            ToastAndroid.show("Добавлен в закладки", 2000)  
+          }}>
           <Text style={styles.textAddBookMark}>Добавить в закладки</Text>
         </TouchableOpacity>
       );
@@ -47,7 +51,10 @@ const MovieList = ({stateMovies, scrollLoadMore}) => {
       return (
         <TouchableOpacity
           style={styles.btnAddBookmarkTrue}
-          onPress={() => dispatch(removeFromBookmarks(item))}>
+          onPress={() => {
+            dispatch(removeFromBookmarks(item))
+            ToastAndroid.show("Удален из закладок", 2000)
+          }}>
           <Text style={styles.textAddBookMark}>Удалить из закладок</Text>
         </TouchableOpacity>
       );

@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useLayoutEffect} from 'react';
-import {View, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, StyleSheet, TouchableOpacity, ToastAndroid} from 'react-native';
 
 import {useNavigation} from '@react-navigation/native';
 
@@ -48,13 +48,19 @@ const DetailsScreen = ({route}) => {
 
   const BtnStarTrue = () => (
     <TouchableOpacity
-      onPress={() => dispatch(removeFromBookmarks(movieDetails))}>
+      onPress={() => {
+        dispatch(removeFromBookmarks(movieDetails))
+        ToastAndroid.show("Удален из закладок", 2000)
+      }}>
       <Ionicons style={styles.iconStarGold} name="star" size={30} />
     </TouchableOpacity>
   );
 
   const BtnStarFalse = () => (
-    <TouchableOpacity onPress={() => dispatch(addToBookmarks(movieDetails))}>
+    <TouchableOpacity onPress={() => {
+      dispatch(addToBookmarks(movieDetails))
+      ToastAndroid.show("Добавлен в закладки", 2000)
+    }}>
       <Ionicons style={styles.iconStarWhite} name="star" size={30} />
     </TouchableOpacity>
   );
