@@ -1,7 +1,7 @@
 import {
   ADD_TO_BOOKMARKS,
   REMOVE_FROM_BOOKMARKS,
-} from '../types';
+} from './contants';
 
 //BOOKMARS
 export const addToBookmarks = (movie) =>  {

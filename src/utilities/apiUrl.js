@@ -5,8 +5,4 @@ export const LANGUAGE = 'language=ru';
 export const TOP_POPULAR = 'movie/top_rated';
 export const SEARCH_MULTI = 'search/multi';
 
-//Трейлер
-//https://api.themoviedb.org/3/movie/761053/videos?api_key=a0365c3dfe181648feb572b2dbf405c8&language=en-US
-//https://www.youtube.com/watch?v=mjPUGem9SaY
-
 //numberOfFiles //poste_path //ASPECT_RATIO// text?.length

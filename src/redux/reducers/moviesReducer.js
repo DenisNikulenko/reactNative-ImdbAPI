@@ -1,12 +1,10 @@
 import {
   ADD_TO_BOOKMARKS,
   REMOVE_FROM_BOOKMARKS,
-} from '../types';
+} from '../actions/contants';
 
 const initialState = {
   bookmarksList: [],
-  filteredBookmarkList: [],
-  isSearchActive: false,
 };
 
 const moviesReducer = (state = initialState, action) => {
