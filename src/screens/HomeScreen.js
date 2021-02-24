@@ -1,6 +1,9 @@
 import React, {useState, useEffect, useLayoutEffect} from 'react';
 import {View, StyleSheet, StatusBar, TouchableOpacity} from 'react-native';
 
+import { useSelector, useDispatch } from 'react-redux';
+import auth from '@react-native-firebase/auth';
+
 import {useNavigation} from '@react-navigation/native';
 
 import {getPopularMovies} from '../services/movieServices';
@@ -21,7 +24,7 @@ const HomeScreen = () => {
     fetchAPI(page);
     navigation.setOptions({
       headerRight: () => (
-         <BtnLogOut /> 
+         <BtnLogout /> 
       )
     })
   }, [page, navigation]);
@@ -31,12 +34,18 @@ const HomeScreen = () => {
     setIsReady(false);
   };
 
-  
-  const BtnLogOut = () => (
+  const logaut = async () => {
+    try {
+      auth().signOut();
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const BtnLogout = () => (
     <TouchableOpacity
-      onPress={() => {        
-      }}>
-      <Ionicons style={styles.iconLogOut} name="exit-outline" size={30} />
+      onPress={() => logaut()}>
+      <Ionicons style={styles.iconLogout} name="exit-outline" size={30} />
     </TouchableOpacity>
   );
 
@@ -70,7 +79,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: COLORS.GREY,
   },
-  iconLogOut: {
+  iconLogout: {
     color: 'white',
     marginRight: 10,
   }

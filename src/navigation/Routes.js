@@ -31,8 +31,6 @@ const Routes = () => {
   return (
     <NavigationContainer>
       {user ? <MovieTabs /> : <AuthStack />}
-      {/* <MovieTabs />  */}
-      {/* <AuthStack /> */}
     </NavigationContainer>
   )
 }
