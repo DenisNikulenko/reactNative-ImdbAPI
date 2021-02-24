@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
+
+import {useNavigation} from '@react-navigation/native';
 
 import FormButton from '../components/ui/FormButton';
 import FormInput from '../components/ui/FormInput';
@@ -7,22 +9,24 @@ import SocialButton from '../components/ui/SocialButton';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
-const LoginScreen = ({navigate}) => {
+const LoginScreen = () => {
+  const navigation = useNavigation();
+
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
   return (
     <View style={styles.container}> 
-      {/* <Image 
+      <Image 
         style={styles.logo} 
-        source={require('')} /> */}
+        source={require('../images/movie-logo.png')} />
       <Text style={styles.text}>Movie App</Text>
 
-      <FormInput 
+       <FormInput 
         labelValue={email}
         onChangeText={(userEmail) => setEmail(userEmail)}
         placeholderText='Email'
-        iconName='user'
+        iconType='user'
         keyboardType='email-address'
         autoCapitalize='none'
         autoCorrect={false} />
@@ -35,23 +39,23 @@ const LoginScreen = ({navigate}) => {
         secureTextEntry={true} />
 
       <FormButton 
-        buttonTitle="Sing in"
-        inPress={() => console.log("Sign in")} />
+        buttonTitle="Войти"
+        onPress={() => console.log("Sign in")} />
 
       <TouchableOpacity style={styles.forgotButton} onPress={() => console.log('forgot password')}>
-        <Text style={styles.navBtnText}>Forgot password</Text>
+        <Text style={styles.navBtnText}>Забыл пароль?</Text>
       </TouchableOpacity>
 
       <SocialButton 
-        buttonTitle='Sign in with Google'
+        btnTitle='Войти через Google'
         btnType='google'
-        color='red'
-        backgroundColor='#e6eaf4'
+        color='#ff6666'
+        backgroundColor='#ffcccc'
         onPress={() => console.log('clicked google')}
       />
 
-      <TouchableOpacity style={styles.forgotButton} onPress={() => console.log('navigate to Sign Up')}>
-        <Text style={styles.navBtnText}>Создание аккаунта.</Text>
+      <TouchableOpacity style={styles.forgotButton} onPress={() => navigation.navigate('SignUp')}>
+        <Text style={styles.navBtnText}>Создать аккаунт..</Text>
       </TouchableOpacity>
     </View>
   )

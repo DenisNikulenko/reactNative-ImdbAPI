@@ -4,6 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {persistStore, persistReducer} from 'redux-persist';
 
 import moviesReducer from './reducers/moviesReducer';
+import userReducer from './reducers/userReducer';
 
 const persistConfig = {
   key: 'root',
@@ -13,6 +14,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   moviesReducer: persistReducer(persistConfig, moviesReducer),
+  userReducer: userReducer
 });
 
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);

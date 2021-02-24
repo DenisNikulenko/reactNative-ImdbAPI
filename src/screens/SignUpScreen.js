@@ -1,11 +1,15 @@
 import React, {useState} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 
+import {useNavigation} from '@react-navigation/native';
+
 import FormButton from '../components/ui/FormButton';
 import FormInput from '../components/ui/FormInput';
 import SocialButton from '../components/ui/SocialButton';
 
-const SignUpScreen = ({navigate}) => {
+const SignUpScreen = () => {
+  const navigation = useNavigation();
+
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
@@ -41,35 +45,21 @@ const SignUpScreen = ({navigate}) => {
       />
 
       <FormButton
-        buttonTitle="Sign Up"
+        buttonTitle="Создать"
         onPress={() => console.log('Sign Up')}
       />
 
-      <View style={styles.textPrivate}>
-        <Text style={styles.colorTextPrivate}>
-          TEXT
-        </Text>
-        <TouchableOpacity onPress={() => alert('Terms Clicked')}>
-          <Text style={[styles.color_textProvate, {color: '#e88832'}]}>
-            TEXT
-          </Text>
-        </TouchableOpacity>
-        <Text style={styles.color_textProvate}>and</Text>
-        <Text style={[styles.color_textProvate, {color: '#e88832'}]}>
-          TEXT
-        </Text>
-      </View>
-
       <SocialButton 
-        buttonTitle='Войти через Google'
+        btnTitle='Войти через Google'
         btnType='google'
-        color='#4867aa'
-        backgroundColor='#e6eaf4'
-        onPress={() => console.log('login in Google')} />
+        color='#ff6666'
+        backgroundColor='#ffcccc'
+        onPress={() => console.log('clicked google')}
+      />
 
       <TouchableOpacity 
         style={styles.navBtn}
-        onPress={() => console.log('navigate to loginScreen')} >
+        onPress={() => navigation.navigate('Login')} >
         <Text style={styles.navBtnText}>Есть аккаунт? Войти...</Text>
       </TouchableOpacity>
 
@@ -91,11 +81,8 @@ const styles = StyleSheet.create({
     color: '#051d5f',
   },
 
-  textPrivate: {},
-  colorTextPrivate: {},
-
   navBtn: {
-    marginTop: 15,
+    marginTop: 50,
   },
 
   navBtnText: {
