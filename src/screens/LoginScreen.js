@@ -3,11 +3,11 @@ import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 
 import {useNavigation} from '@react-navigation/native';
 
+import auth from '@react-native-firebase/auth';
+
 import FormButton from '../components/ui/FormButton';
 import FormInput from '../components/ui/FormInput';
 import SocialButton from '../components/ui/SocialButton';
-
-import AntDesign from 'react-native-vector-icons/AntDesign';
 
 const LoginScreen = () => {
   const navigation = useNavigation();
@@ -15,6 +15,13 @@ const LoginScreen = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
+  const login = async(email, password) => {
+    try {
+      await auth().signInWithEmailAndPassword(email, password);
+    } catch (error) {
+      console.log(error);
+    }
+  }
   return (
     <View style={styles.container}> 
       <Image 
@@ -40,7 +47,7 @@ const LoginScreen = () => {
 
       <FormButton 
         buttonTitle="Войти"
-        onPress={() => console.log("Sign in")} />
+        onPress={() => login(email, password)} />
 
       <TouchableOpacity style={styles.forgotButton} onPress={() => console.log('forgot password')}>
         <Text style={styles.navBtnText}>Забыл пароль?</Text>

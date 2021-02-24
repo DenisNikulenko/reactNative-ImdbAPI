@@ -3,6 +3,8 @@ import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 
 import {useNavigation} from '@react-navigation/native';
 
+import auth from '@react-native-firebase/auth';
+
 import FormButton from '../components/ui/FormButton';
 import FormInput from '../components/ui/FormInput';
 import SocialButton from '../components/ui/SocialButton';
@@ -13,6 +15,14 @@ const SignUpScreen = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
+
+  const register = async (email, password) => {
+    try {
+      await auth().createUserWithEmailAndPassword(email, password);
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <View style={styles.container}>
@@ -46,7 +56,7 @@ const SignUpScreen = () => {
 
       <FormButton
         buttonTitle="Создать"
-        onPress={() => console.log('Sign Up')}
+        onPress={() => register(email,password)}
       />
 
       <SocialButton 

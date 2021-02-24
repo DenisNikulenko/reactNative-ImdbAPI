@@ -2,5 +2,6 @@ export const ADD_TO_BOOKMARKS = 'ADD_TO_BOOKMARKS';
 export const REMOVE_FROM_BOOKMARKS = 'REMOVE_FROM_BOOKMARKS';
 
 export const SET_USER_DATA = 'SET_USER_DATA';
+export const CLEAR_DATA = 'CLEAR_DATA'
 
 
