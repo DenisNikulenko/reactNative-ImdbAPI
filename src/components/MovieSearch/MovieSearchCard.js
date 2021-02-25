@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
   movieCard: {
     width: windowWidth - 10,
     height: 100,
-    backgroundColor: '#fff',
+    backgroundColor: COLORS.WHITE,
     margin: 5,
     borderRadius: 10,
     flexDirection: 'row',

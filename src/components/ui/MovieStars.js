@@ -9,9 +9,9 @@ const MovieStars = ({voteAverage}) => (
     spacing={voteAverage}
     starSize={12}
     half={true}
-    fullStar={require('../../images/starFilled.png')}
-    emptyStar={require('../../images/starEmpty.png')}
-    halfStar={require('../../images/starHalf.png')}
+    fullStar={require('../../assests/images/stars/starFilled.png')}
+    emptyStar={require('../../assests/images/stars/starEmpty.png')}
+    halfStar={require('../../assests/images/stars/starHalf.png')}
     disabled={true} />
 )
 

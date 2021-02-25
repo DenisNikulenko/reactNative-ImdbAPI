@@ -1,13 +1,15 @@
 import React, {useState} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, Image, StatusBar} from 'react-native';
 
 import {useNavigation} from '@react-navigation/native';
 
-import {login} from '../services/authServices';
+import {login, googleLogin} from '../services/authServices';
 
 import FormButton from '../components/ui/FormButton';
 import FormInput from '../components/ui/FormInput';
 import SocialButton from '../components/ui/SocialButton';
+
+import {COLORS} from '../utilities/colors';
 
 const LoginScreen = () => {
   const navigation = useNavigation();
@@ -17,9 +19,10 @@ const LoginScreen = () => {
 
   return (
     <View style={styles.container}> 
+    <StatusBar backgroundColor={COLORS.MAIN_COLOR} />
       <Image 
         style={styles.logo} 
-        source={require('../images/movie-logo.png')} />
+        source={require('../assests/images/movie-logo.png')} />
       <Text style={styles.text}>Movie App</Text>
 
        <FormInput 
@@ -49,9 +52,9 @@ const LoginScreen = () => {
       <SocialButton 
         btnTitle='Войти через Google'
         btnType='google'
-        color='#ff6666'
+        color='red'
         backgroundColor='#ffcccc'
-        onPress={() => console.log('clicked google')}
+        onPress={() => googleLogin()}
       />
 
       <TouchableOpacity style={styles.forgotButton} onPress={() => navigation.navigate('SignUp')}>

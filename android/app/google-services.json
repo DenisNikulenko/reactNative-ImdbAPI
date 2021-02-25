@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "917206495600-s7d63s87uqf0avrdfaamm01gmdj0co94.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.imdbapi",
+            "certificate_hash": "51022a03c56e59a9dd658af95b0cec101c5b3b43"
+          }
+        },
+        {
           "client_id": "917206495600-0t1b8p215kshb4e3tv2bvqd6piosuaq2.apps.googleusercontent.com",
           "client_type": 3
         }

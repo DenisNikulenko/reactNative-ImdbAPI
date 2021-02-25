@@ -28,7 +28,7 @@ const MovieBookmarkCard = ({item}) => {
       onPress={() => navigation.navigate('Details', {id, title})}>
       <Image
         style={styles.movieCardIamge}
-        resizeMode='contain'
+        resizeMode='stretch'
         source={{
           uri: `${IMAGE_URL}/${poster_path}`,
         }}
