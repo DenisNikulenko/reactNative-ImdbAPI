@@ -1,16 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import {
-  View,
-  StyleSheet,
-  FlatList,
-  TextInput,
-  Dimensions,
-  Text,
-} from 'react-native';
+import {View, StyleSheet, FlatList, TextInput, Text} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import {removeFromBookmarks} from '../redux/actions/moviesActions';
 
 import {COLORS} from '../utilities/colors';
+import {windowWidth} from '../utilities/dimensions';
 import MovieBookmarkCard from '../components/MovieBookmarkCard';
 
 const BookmarksScreen = () => {
@@ -50,7 +44,7 @@ const BookmarksScreen = () => {
         <TextInput
           onChangeText={onChangeSearch}
           style={styles.searchInput}
-          placeholder='Введите название фильма...'
+          placeholder="Введите название фильма..."
           maxLength={64}
         />
       </View>
@@ -91,7 +85,7 @@ const styles = StyleSheet.create({
 
   header: {
     fontWeight: 'bold',
-    color: 'red',
+    color: COLORS.MAIN_COLOR,
   },
 
   searchInput: {
@@ -100,7 +94,7 @@ const styles = StyleSheet.create({
     borderBottomColor: COLORS.MAIN_COLOR,
     borderBottomWidth: 2,
     borderBottomRightRadius: 20,
-    width: Dimensions.get('screen').width - 10,
+    width: windowWidth - 10,
     height: 55,
   },
 

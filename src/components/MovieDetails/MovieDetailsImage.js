@@ -1,6 +1,8 @@
 import React from 'react';
-import {View, StyleSheet, Text, Dimensions, Image, TouchableOpacity, Linking} from 'react-native';
+import {View, StyleSheet, Text, Image, TouchableOpacity, Linking} from 'react-native';
 
+import {windowHeight, windowWidth} from '../../utilities/dimensions';
+import {COLORS} from '../../utilities/colors';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {IMAGE_URL} from '../../utilities/apiUrl';
 
@@ -43,13 +45,13 @@ const MovieDetailsImage = ({movieDetails, movieTrailer}) => {
 
 const styles = StyleSheet.create({
   imageHeader: {
-    height: Dimensions.get('screen').height / 2,
+    height: windowHeight / 2,
   },
 
   opacityBlockTop: {
-    backgroundColor: 'black',
+    backgroundColor: COLORS.BLACK,
     position: 'absolute',
-    width: Dimensions.get('screen').width,
+    width: windowWidth,
     height: 35,
     opacity: 0.3,
     borderBottomRightRadius: 20,
@@ -59,7 +61,7 @@ const styles = StyleSheet.create({
   title: {
     position: 'absolute',
     width: '90%',
-    color: 'white',
+    color: COLORS.WHITE,
     fontSize: 22,
     marginLeft: 20,
     marginRight: 20,
@@ -69,20 +71,18 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: '100%',
     height: 100,
-    top: Dimensions.get('screen').width / 2.5,
+    top: windowWidth / 2.5,
     justifyContent: 'center',
     alignItems: 'center',
   },
 
   opacityBlockBottom: {
-    backgroundColor: 'black',
+    backgroundColor: COLORS.BLACK,
     position: 'absolute',
-    width: Dimensions.get('screen').width,
-    height: 50,
+    width: windowWidth,
+    height: 35,
     opacity: 0.3,
-    top: Dimensions.get('screen').width - 25,
-    borderTopRightRadius: 20,
-    borderTopLeftRadius: 20,
+    top: windowWidth - 10,
   },
 
   descriptionBottom: {
@@ -91,11 +91,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
     width: '100%',
-    top: Dimensions.get('screen').width - 20,
+    top: windowWidth - 5,
   },
 
   textInfo: {
-    color: 'white',
+    color: COLORS.WHITE,
     fontSize: 18,
   },
 

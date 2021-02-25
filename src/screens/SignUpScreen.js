@@ -3,7 +3,7 @@ import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 
 import {useNavigation} from '@react-navigation/native';
 
-import auth from '@react-native-firebase/auth';
+import {register} from '../services/authServices';
 
 import FormButton from '../components/ui/FormButton';
 import FormInput from '../components/ui/FormInput';
@@ -16,14 +16,6 @@ const SignUpScreen = () => {
   const [password, setPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
 
-  const register = async (email, password) => {
-    try {
-      await auth().createUserWithEmailAndPassword(email, password);
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Создание нового аккаунта</Text>
@@ -35,44 +27,38 @@ const SignUpScreen = () => {
         iconType="user"
         keyboardType="email-address"
         autoCapitalize="none"
-        autoCorrect={false}
-      />
+        autoCorrect={false} />
 
       <FormInput
         labelValue={password}
         onChangeText={(userPassword) => setPassword(userPassword)}
         placeholderText="Password"
         iconType="lock"
-        secureTextEntry={true}
-      />
+        secureTextEntry={true} />
 
       <FormInput
         labelValue={confirmPassword}
         onChangeText={(userPassword) => setConfirmPassword(userPassword)}
         placeholderText="Password"
         iconType="lock"
-        secureTextEntry={true}
-      />
+        secureTextEntry={true} />
 
       <FormButton
         buttonTitle="Создать"
-        onPress={() => register(email,password)}
-      />
+        onPress={() => register(email,password)} />
 
       <SocialButton 
         btnTitle='Войти через Google'
         btnType='google'
         color='#ff6666'
         backgroundColor='#ffcccc'
-        onPress={() => console.log('clicked google')}
-      />
+        onPress={() => console.log('clicked google')} />
 
       <TouchableOpacity 
         style={styles.navBtn}
         onPress={() => navigation.navigate('Login')} >
         <Text style={styles.navBtnText}>Есть аккаунт? Войти...</Text>
       </TouchableOpacity>
-
     </View>
   );
 };

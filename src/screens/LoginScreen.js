@@ -3,7 +3,7 @@ import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 
 import {useNavigation} from '@react-navigation/native';
 
-import auth from '@react-native-firebase/auth';
+import {login} from '../services/authServices';
 
 import FormButton from '../components/ui/FormButton';
 import FormInput from '../components/ui/FormInput';
@@ -15,13 +15,6 @@ const LoginScreen = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
-  const login = async(email, password) => {
-    try {
-      await auth().signInWithEmailAndPassword(email, password);
-    } catch (error) {
-      console.log(error);
-    }
-  }
   return (
     <View style={styles.container}> 
       <Image 

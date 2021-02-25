@@ -12,7 +12,6 @@ import ActorScreen from '../screens/ActorScreen';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {COLORS} from '../utilities/colors';
 
-
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 

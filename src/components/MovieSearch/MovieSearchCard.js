@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  Image,
-  Dimensions,
-} from 'react-native';
+import {Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 
 import {useNavigation} from '@react-navigation/native';
 import {useSelector, useDispatch} from 'react-redux';
@@ -14,25 +8,40 @@ import {
   removeFromBookmarks,
 } from '../../redux/actions/moviesActions';
 
-import {IMAGE_URL} from '../../utilities/apiUrl';
 import {MovieButton} from '../ui/MovieButton';
+import {isExist} from '../../utilities/funcHelpers';
+import {windowWidth} from '../../utilities/dimensions';
+import {IMAGE_URL} from '../../utilities/apiUrl';
 import {COLORS} from '../../utilities/colors';
 
-const MovieSearchCard = ({item, iconName, iconSize}) => {
+const MovieSearchCard = ({item}) => {
   const dispatch = useDispatch();
   const bookmarksList = useSelector(
     (state) => state.moviesReducer.bookmarksList,
   );
+
   const navigation = useNavigation();
 
   const {poster_path, id, title} = item;
 
-  const isExist = (movie) => {
-    if (bookmarksList.filter((item) => item.id === movie.id).length > 0) {
-      return true;
-    }
-    return false;
-  };
+  const BtnAddToBookmark = () => (
+    <MovieButton
+      styles={styles.btnAdd}
+      onPress={() => dispatch(addToBookmarks(item))}
+      iconName='star-sharp'
+      iconColor="white"
+      iconSize={30}
+    />
+  );
+
+  const BtnRemoveFromBookmark = () => (
+    <MovieButton
+      styles={styles.btnRemove}
+      onPress={() => dispatch(removeFromBookmarks(item))}
+      iconColor="white"
+      iconSize={30}
+    />
+  );
 
   return (
     <TouchableOpacity
@@ -45,22 +54,10 @@ const MovieSearchCard = ({item, iconName, iconSize}) => {
         }}
       />
       <Text style={styles.movieCardTitle}>{title}</Text>
-      {isExist(item) ? (
-        <MovieButton
-          styles={styles.movieBtnFalse}
-          onPress={() => dispatch(removeFromBookmarks(item))}
-          iconName={iconName}
-          iconColor="white"
-          iconSize={iconSize}
-        />
+      {isExist(item, bookmarksList) ? (
+        <BtnRemoveFromBookmark />
       ) : (
-        <MovieButton
-          styles={styles.movieBtnTrue}
-          onPress={() => dispatch(addToBookmarks(item))}
-          iconName={iconName}
-          iconColor="white"
-          iconSize={iconSize}
-        />
+        <BtnAddToBookmark />
       )}
     </TouchableOpacity>
   );
@@ -68,7 +65,7 @@ const MovieSearchCard = ({item, iconName, iconSize}) => {
 
 const styles = StyleSheet.create({
   movieCard: {
-    width: Dimensions.get('screen').width - 10,
+    width: windowWidth - 10,
     height: 100,
     backgroundColor: '#fff',
     margin: 5,
@@ -94,7 +91,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
 
-  movieBtnTrue: {
+  btnAdd: {
     flex: 2,
     height: '100%',
     backgroundColor: COLORS.GREEN,
@@ -104,7 +101,7 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 10,
   },
 
-  movieBtnFalse: {
+  btnRemove: {
     flex: 2,
     height: '100%',
     backgroundColor: COLORS.MAIN_COLOR,

@@ -6,22 +6,24 @@ import {
   View,
   Text,
   TouchableOpacity,
-  Dimensions,
   Image,
   ToastAndroid
 } from 'react-native';
-import Stars from 'react-native-stars';
+
+import {useSelector, useDispatch} from 'react-redux';
 import {
   addToBookmarks,
   removeFromBookmarks,
 } from '../../redux/actions/moviesActions';
-import {useSelector, useDispatch} from 'react-redux';
+
 import {useNavigation} from '@react-navigation/native';
 
 import MovieIndicator from '../ui/MovieIndicator';
+import MovieStars from '../ui/MovieStars';
+import {isExist} from '../../utilities/funcHelpers';
+import {windowWidth, windowHeight} from '../../utilities/dimensions';
 import {IMAGE_URL} from '../../utilities/apiUrl';
 import {COLORS} from '../../utilities/colors';
-import {isExist} from '../../utilities/funcHelpers';
 
 const MovieList = ({stateMovies, scrollLoadMore}) => {
   const dispatch = useDispatch();
@@ -37,7 +39,7 @@ const MovieList = ({stateMovies, scrollLoadMore}) => {
     const BtnAddBookmark = () => {
       return (
         <TouchableOpacity
-          style={styles.btnAddBookmarkFalse}
+        style={[styles.BtnBookmark, {backgroundColor: COLORS.MAIN_COLOR}]}
           onPress={() => {
             dispatch(addToBookmarks(item))
             ToastAndroid.show("Добавлен в закладки", 2000)  
@@ -50,7 +52,7 @@ const MovieList = ({stateMovies, scrollLoadMore}) => {
     const BtnRemoveFromBookmark = () => {
       return (
         <TouchableOpacity
-          style={styles.btnAddBookmarkTrue}
+          style={styles.BtnBookmark}
           onPress={() => {
             dispatch(removeFromBookmarks(item))
             ToastAndroid.show("Удален из закладок", 2000)
@@ -78,17 +80,7 @@ const MovieList = ({stateMovies, scrollLoadMore}) => {
           <View style={styles.infoRaite}>
             <Text style={styles.infoRaiteText}>
               Рейтиг: {vote_average}
-              <Stars
-                default={vote_average}
-                count={10}
-                spacing={vote_average}
-                starSize={12}
-                half={true}
-                fullStar={require('../../images/starFilled.png')}
-                emptyStar={require('../../images/starEmpty.png')}
-                halfStar={require('../../images/starHalf.png')}
-                disabled={true}
-              />
+              <MovieStars voteAverage={vote_average} />
             </Text>
           </View>
         </TouchableOpacity>
@@ -118,12 +110,12 @@ const MovieList = ({stateMovies, scrollLoadMore}) => {
 
 const styles = StyleSheet.create({
   movieItem: {
-    width: Dimensions.get('screen').width - 20,
-    backgroundColor: '#fff',
+    width: windowWidth - 20,
+    backgroundColor: COLORS.WHITE,
     borderRadius: 20,
-    height: Dimensions.get('screen').height / 2,
+    height: windowHeight / 1.70,
     marginVertical: 10,
-    paddingBottom: 15,
+    paddingBottom: 20,
   },
 
   infoTitle: {
@@ -133,11 +125,11 @@ const styles = StyleSheet.create({
     marginLeft: 30,
     marginRight: 30,
     fontSize: 20,
-    color: 'grey',
+    color: COLORS.GREY,
   },
   infoTitleDate: {
     fontSize: 14,
-    color: 'grey',
+    color: COLORS.GREY,
   },
 
   movieImage: {
@@ -156,23 +148,14 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   infoRaiteText: {
-    color: 'grey',
+    color: COLORS.GREY,
     fontSize: 18,
   },
 
-  btnAddBookmarkTrue: {
+  BtnBookmark: {
     backgroundColor: COLORS.GREEN,
     width: '100%',
-    height: Dimensions.get('screen').height / 20,
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  btnAddBookmarkFalse: {
-    backgroundColor: COLORS.MAIN_COLOR,
-    width: '100%',
-    height: Dimensions.get('screen').height / 20,
+    height: windowHeight / 20,
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
     justifyContent: 'center',
@@ -180,7 +163,7 @@ const styles = StyleSheet.create({
   },
 
   textAddBookMark: {
-    color: '#fff',
+    color: COLORS.WHITE,
     fontSize: 18,
     fontWeight: '600',
   },

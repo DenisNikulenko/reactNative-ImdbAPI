@@ -1,8 +1,10 @@
 import React from 'react';
-import {ScrollView, View, Text, StyleSheet, Dimensions} from 'react-native';
+import {ScrollView, View, Text, StyleSheet} from 'react-native';
 
 import MovieDetailsImage from './MovieDetailsImage';
 import MovieDetailsActors from './MovieDetailsActors';
+
+import {windowWidth} from '../../utilities/dimensions';
 import {COLORS} from '../../utilities/colors';
 
 const MovieDetails = ({movieDetails, movieDetailsActors, movieTrailer}) => {
@@ -68,14 +70,14 @@ const styles = StyleSheet.create({
   },
 
   text: {
-    width: Dimensions.get('screen').width,
+    width: windowWidth,
     padding: 12,
     backgroundColor: COLORS.LIGHT_GREY,
     borderBottomRightRadius: 60,
   },
 
   textPreview: {
-    color: 'black',
+    color: COLORS.BLACK,
     fontWeight: 'bold',
     fontSize: 20,
     borderLeftWidth: 1,
@@ -86,34 +88,30 @@ const styles = StyleSheet.create({
   },
 
   textOverview: {
-    color: 'black',
+    color: COLORS.BLACK,
     fontSize: 16,
     marginTop: 5,
   },
 
   blockDetails: {
-    width: Dimensions.get('screen').width,
+    width: windowWidth,
     paddingLeft: 20,
     paddingRight: 20,
     borderTopColor: COLORS.MAIN_COLOR,
     borderTopWidth: 1,
     backgroundColor: COLORS.LIGHT_GREY,
-    // alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
 
   textTitle: {
     fontSize: 19,
-    borderColor: 'red',
+    borderColor: COLORS.MAIN_COLOR,
     borderLeftWidth: 1,
     borderBottomWidth: 1,
     fontWeight: 'bold',
     paddingLeft: 10,
-    color: 'black',
-  },
-
-  textCompany: {
+    color: COLORS.BLACK,
   },
 });
 

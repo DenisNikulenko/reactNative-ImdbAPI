@@ -5,25 +5,18 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  Dimensions,
   FlatList,
-  StatusBar
 } from 'react-native';
 
-import {useDispatch} from 'react-redux';
-import {addToBookmarks} from '../redux/actions/moviesActions';
-import {useNavigation} from '@react-navigation/native';
-
 import {getMovieSearch} from '../services/movieServices';
-import {COLORS} from '../utilities/colors';
+
+import MovieIndicator from '../components/ui/MovieIndicator';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MovieSearchCard from '../components/MovieSearch/MovieSearchCard';
-import MovieIndicator from '../components/ui/MovieIndicator';
+import {windowWidth, windowHeight} from '../utilities/dimensions';
+import {COLORS} from '../utilities/colors';
 
 const SearchScreen = () => {
-  const dispatch = useDispatch();
-  const navigation = useNavigation();
-
   const [movieSearch, setMovieSearch] = useState('');
   const [foundItems, setFoundItems] = useState([]);
   const [page, setPage] = useState(1);
@@ -40,8 +33,10 @@ const SearchScreen = () => {
       ...foundItems,
       ...(await getMovieSearch(movieSearch, page)),
     ]);
+
     setRefreshing(false);
   };
+
   const scrollOnRefresh = () => {
     setMovieSearch('');
     setRefreshing(true);
@@ -82,17 +77,7 @@ const SearchScreen = () => {
             showsVerticalScrollIndicator={false}
             data={foundItems}
             keyExtractor={(item, idx) => idx.toString()}
-            renderItem={({item}) => (
-              <MovieSearchCard
-                item={item}
-                onPressNavigation={() => navigation.navigate('Details')}
-                onPressBtn={() => dispatch(addToBookmarks(item))}
-                iconName="star-sharp"
-                iconColor="white"
-                iconSize={30}
-              />
-            )}
-          />
+            renderItem={({item}) => <MovieSearchCard item={item} />} />
         </View>
       ) : (
         <View style={styles.textNoContent}>
@@ -106,14 +91,14 @@ const SearchScreen = () => {
 const styles = StyleSheet.create({
   conteainer: {
     flex: 1,
-    width: Dimensions.get('screen').width - 10,
-    height: Dimensions.get('screen').height,
+    width: windowWidth - 10,
+    height: windowHeight,
     alignItems: 'center',
     marginBottom: 60,
   },
 
   searchBlock: {
-    width: Dimensions.get('screen').width - 10,
+    width: windowWidth - 10,
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',

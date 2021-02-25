@@ -1,12 +1,10 @@
-import React, {useState, useEffect, useLayoutEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, StyleSheet, StatusBar, TouchableOpacity} from 'react-native';
-
-import { useSelector, useDispatch } from 'react-redux';
-import auth from '@react-native-firebase/auth';
 
 import {useNavigation} from '@react-navigation/native';
 
 import {getPopularMovies} from '../services/movieServices';
+import {logaut} from '../services/authServices';
 
 import MovieList from '../components/MovieList';
 import MovieIndicator from '../components/ui/MovieIndicator';
@@ -23,10 +21,8 @@ const HomeScreen = () => {
   useEffect(() => {
     fetchAPI(page);
     navigation.setOptions({
-      headerRight: () => (
-         <BtnLogout /> 
-      )
-    })
+      headerRight: () => <BtnLogout />,
+    });
   }, [page, navigation]);
 
   const fetchAPI = async (page) => {
@@ -34,43 +30,41 @@ const HomeScreen = () => {
     setIsReady(false);
   };
 
-  const logaut = async () => {
-    try {
-      auth().signOut();
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  const BtnLogout = () => (
-    <TouchableOpacity
-      onPress={() => logaut()}>
-      <Ionicons style={styles.iconLogout} name="exit-outline" size={30} />
-    </TouchableOpacity>
-  );
-
   const scrollLoadMore = () => {
     setPage(page + 1);
   };
 
-  if (isReady) {
-    return <MovieIndicator />;
-  } else {
-    return (
-      <View style={styles.container}>
-        <StatusBar barStyle='light-content' hidden = {false} backgroundColor = {COLORS.MAIN_COLOR} />
-        <MovieList
-          stateMovies={popularMovie}
-          scrollLoadMore={scrollLoadMore}
-        />
-      </View>
-    );
-  }
+  const BtnLogout = () => (
+    <TouchableOpacity onPress={() => logaut()}>
+      <Ionicons style={styles.iconLogout} name="exit-outline" size={30} />
+    </TouchableOpacity>
+  );
+
+  return (
+    <View style={styles.container}>
+      {isReady ? (
+        <MovieIndicator />
+      ) : (
+        <View>
+          <StatusBar
+            barStyle="light-content"
+            hidden={false}
+            backgroundColor={COLORS.MAIN_COLOR}
+          />
+          <MovieList
+            stateMovies={popularMovie}
+            scrollLoadMore={scrollLoadMore}
+          />
+        </View>
+      )}
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: COLORS.LIGHT_GREY,
     alignItems: 'center',
   },
 
@@ -79,10 +73,11 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: COLORS.GREY,
   },
+  
   iconLogout: {
     color: 'white',
     marginRight: 10,
-  }
+  },
 });
 
 export default HomeScreen;

@@ -4,8 +4,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   Image,
-  Dimensions,
-  ToastAndroid
+  ToastAndroid,
 } from 'react-native';
 
 import {removeFromBookmarks} from '../../redux/actions/moviesActions';
@@ -14,13 +13,14 @@ import {useDispatch} from 'react-redux';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {IMAGE_URL} from '../../utilities/apiUrl';
+import {windowWidth} from '../../utilities/dimensions';
 import {COLORS} from '../../utilities/colors';
 
 const MovieBookmarkCard = ({item}) => {
-  console.log(item)
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  const { poster_path, id, title} = item;
+
+  const {poster_path, id, title} = item;
 
   return (
     <TouchableOpacity
@@ -28,8 +28,7 @@ const MovieBookmarkCard = ({item}) => {
       onPress={() => navigation.navigate('Details', {id, title})}>
       <Image
         style={styles.movieCardIamge}
-        resizeMode="stretch"
-        resizeMethod="auto"
+        resizeMode='contain'
         source={{
           uri: `${IMAGE_URL}/${poster_path}`,
         }}
@@ -38,10 +37,10 @@ const MovieBookmarkCard = ({item}) => {
       <TouchableOpacity
         style={styles.movieCardBtn}
         onPress={() => {
-          dispatch(removeFromBookmarks(item))
-          ToastAndroid.show("Удален из закладок", 2000)
+          dispatch(removeFromBookmarks(item));
+          ToastAndroid.show('Удален из закладок', 2000);
         }}>
-        <Ionicons name="trash-outline" color="white" size={26} />
+        <Ionicons name="trash-outline" color={COLORS.WHITE} size={26} />
       </TouchableOpacity>
     </TouchableOpacity>
   );
@@ -49,9 +48,9 @@ const MovieBookmarkCard = ({item}) => {
 
 const styles = StyleSheet.create({
   movieCard: {
-    width: Dimensions.get('screen').width - 10,
+    width: windowWidth - 10,
     height: 100,
-    backgroundColor: '#fff',
+    backgroundColor: COLORS.WHITE,
     margin: 5,
     borderRadius: 10,
     flexDirection: 'row',
@@ -62,9 +61,8 @@ const styles = StyleSheet.create({
   movieCardIamge: {
     margin: 5,
     flex: 3,
-    resizeMode: 'cover',
     borderRadius: 5,
-    height: '90%',
+    height: '100%',
     borderTopLeftRadius: 10,
     borderBottomRightRadius: 10,
   },

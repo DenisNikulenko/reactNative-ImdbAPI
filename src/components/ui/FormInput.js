@@ -22,8 +22,6 @@ const FormInput = ({labelValue, placeholderText, iconType, ...rest}) => {
   );
 };
 
-export default FormInput;
-
 const styles = StyleSheet.create({
   inputContainer: {
     marginTop: 5,
@@ -47,7 +45,7 @@ const styles = StyleSheet.create({
     borderRightWidth: 1,
     width: 50,
   },
-  
+
   input: {
     padding: 10,
     flex: 1,
@@ -69,3 +67,5 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
 });
+
+export default FormInput;
