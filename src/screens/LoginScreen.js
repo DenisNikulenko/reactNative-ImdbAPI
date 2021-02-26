@@ -54,8 +54,7 @@ const LoginScreen = () => {
         btnType='google'
         color='red'
         backgroundColor='#ffcccc'
-        onPress={() => googleLogin()}
-      />
+        onPress={() => googleLogin()} />     
 
       <TouchableOpacity style={styles.forgotButton} onPress={() => navigation.navigate('SignUp')}>
         <Text style={styles.navBtnText}>Создать аккаунт..</Text>

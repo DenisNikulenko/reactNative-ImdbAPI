@@ -9,11 +9,13 @@ import SignUpScreen from '../screens/SignUpScreen';
 const Stack = createStackNavigator();
 
 const AuthStack = () => {
-  useEffect(()=>{
+  
+  useEffect(() => {
+    // initialize the Google SDK
     GoogleSignin.configure({
-      webClientId: '',
+      webClientId: '917206495600-0t1b8p215kshb4e3tv2bvqd6piosuaq2.apps.googleusercontent.com',
     });
-  }, [])
+  }, []);
 
   return (
     <Stack.Navigator>

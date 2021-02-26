@@ -11,6 +11,7 @@ export const login = async (email, password) => {
 
 export const googleLogin = async () => {
   try {
+    console.log('1 этап')
     const {idToken} = await GoogleSignin.signIn();
 
     const googleCredential = auth.GoogleAuthProvider.credential(idToken);
