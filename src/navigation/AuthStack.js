@@ -13,7 +13,7 @@ const AuthStack = () => {
   useEffect(() => {
     // initialize the Google SDK
     GoogleSignin.configure({
-      webClientId: '917206495600-0t1b8p215kshb4e3tv2bvqd6piosuaq2.apps.googleusercontent.com',
+      webClientId: '129562092658-fdeeh9scs3f2vqcm9cbt9dfcnoaodsvo.apps.googleusercontent.com',
     });
   }, []);
 

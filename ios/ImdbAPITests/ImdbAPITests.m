@@ -7,11 +7,11 @@
 #define TIMEOUT_SECONDS 600
 #define TEXT_TO_LOOK_FOR @"Welcome to React"
 
-@interface ImdbAPITests : XCTestCase
+@interface imdbAPITests : XCTestCase
 
 @end
 
-@implementation ImdbAPITests
+@implementation imdbAPITests
 
 - (BOOL)findSubviewInView:(UIView *)view matching:(BOOL(^)(UIView *view))test
 {

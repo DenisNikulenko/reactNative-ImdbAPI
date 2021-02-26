@@ -1,20 +1,20 @@
 {
   "project_info": {
-    "project_number": "917206495600",
-    "project_id": "imdbapi-1a582",
-    "storage_bucket": "movieapi-1a582.appspot.com"
+    "project_number": "129562092658",
+    "project_id": "imdbapi-2b483",
+    "storage_bucket": "imdbapi-2b483.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:917206495600:android:514aaac3e4795cb21b5fb5",
+        "mobilesdk_app_id": "1:129562092658:android:571ee98e17adbc0ef30eeb",
         "android_client_info": {
           "package_name": "com.imdbapi"
         }
       },
       "oauth_client": [
         {
-          "client_id": "917206495600-1snnqjusir2p91tk3ejql5sgaa4tc8ve.apps.googleusercontent.com",
+          "client_id": "129562092658-28vb68bbqns50qsavkgp1s5t2qkf4sbi.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.imdbapi",
@@ -22,20 +22,20 @@
           }
         },
         {
-          "client_id": "917206495600-0t1b8p215kshb4e3tv2bvqd6piosuaq2.apps.googleusercontent.com",
+          "client_id": "129562092658-fdeeh9scs3f2vqcm9cbt9dfcnoaodsvo.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyALO10YzhEF438MVf8KBu1PXhrDNko3iRY"
+          "current_key": "AIzaSyA2N_l_vZF-gz26qJZJOSIzSON_2tTEU3Y"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "917206495600-0t1b8p215kshb4e3tv2bvqd6piosuaq2.apps.googleusercontent.com",
+              "client_id": "129562092658-fdeeh9scs3f2vqcm9cbt9dfcnoaodsvo.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
