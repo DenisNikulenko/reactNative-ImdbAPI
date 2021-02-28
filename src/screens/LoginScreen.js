@@ -5,8 +5,6 @@ import {
   StyleSheet,
   TouchableOpacity,
   Image,
-  StatusBar,
-  Dimensions
 } from 'react-native';
 
 import {useNavigation} from '@react-navigation/native';
@@ -16,9 +14,7 @@ import {login, googleLogin} from '../services/authServices';
 
 import FormButton from '../components/ui/FormButton';
 import FormInput from '../components/ui/FormInput';
-import SocialButton from '../components/ui/SocialButton';
 
-import {COLORS} from '../utilities/colors';
 import {windowHeight} from '../utilities/dimensions';
 
 const LoginScreen = () => {
@@ -29,7 +25,6 @@ const LoginScreen = () => {
 
   return (
     <View style={styles.container}>
-      <StatusBar backgroundColor={COLORS.MAIN_COLOR} />
       <Image
         style={styles.logo}
         source={require('../assests/images/movie-logo.png')}

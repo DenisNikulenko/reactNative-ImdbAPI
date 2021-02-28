@@ -7,7 +7,7 @@ import {
   Text,
   TouchableOpacity,
   Image,
-  ToastAndroid
+  ToastAndroid,
 } from 'react-native';
 
 import {useSelector, useDispatch} from 'react-redux';
@@ -39,10 +39,10 @@ const MovieList = ({stateMovies, scrollLoadMore}) => {
     const BtnAddBookmark = () => {
       return (
         <TouchableOpacity
-        style={[styles.BtnBookmark, {backgroundColor: COLORS.MAIN_COLOR}]}
+          style={[styles.BtnBookmark, {backgroundColor: COLORS.MAIN_COLOR}]}
           onPress={() => {
-            dispatch(addToBookmarks(item))
-            ToastAndroid.show("Добавлен в закладки", 2000)  
+            dispatch(addToBookmarks(item));
+            ToastAndroid.show('Добавлен в закладки', 2000);
           }}>
           <Text style={styles.textAddBookMark}>Добавить в закладки</Text>
         </TouchableOpacity>
@@ -54,8 +54,8 @@ const MovieList = ({stateMovies, scrollLoadMore}) => {
         <TouchableOpacity
           style={styles.BtnBookmark}
           onPress={() => {
-            dispatch(removeFromBookmarks(item))
-            ToastAndroid.show("Удален из закладок", 2000)
+            dispatch(removeFromBookmarks(item));
+            ToastAndroid.show('Удален из закладок', 2000);
           }}>
           <Text style={styles.textAddBookMark}>Удалить из закладок</Text>
         </TouchableOpacity>
@@ -110,12 +110,12 @@ const MovieList = ({stateMovies, scrollLoadMore}) => {
 
 const styles = StyleSheet.create({
   movieItem: {
-    width: windowWidth - 20,
+    width: windowWidth - 40,
     backgroundColor: COLORS.WHITE,
     borderRadius: 20,
-    height: windowHeight / 1.70,
+    height: windowHeight / 2,
     marginVertical: 10,
-    paddingBottom: 20,
+    paddingBottom: 15,
   },
 
   infoTitle: {

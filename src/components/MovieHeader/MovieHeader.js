@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet, Text, StatusBar} from 'react-native';
+import {View, StyleSheet, Text} from 'react-native';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {COLORS} from "../../utilities/colors";
@@ -7,9 +7,6 @@ import {COLORS} from "../../utilities/colors";
 const MovieHeader = ({title}) => {
   return (
     <View style={styles.container}>
-      <StatusBar
-        animated={true}
-        backgroundColor={COLORS.MAIN_COLOR} />
       <Text style={styles.text}>
         <Ionicons color={COLORS.MAIN_COLOR} name="logo-tux" size={25} />
         {title}

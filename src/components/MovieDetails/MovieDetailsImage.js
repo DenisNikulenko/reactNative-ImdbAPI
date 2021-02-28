@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     width: windowWidth,
     height: 35,
     opacity: 0.3,
-    top: windowWidth - 10,
+    top: windowWidth - 20,
   },
 
   descriptionBottom: {
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
     width: '100%',
-    top: windowWidth - 5,
+    top: windowWidth - 15,
   },
 
   textInfo: {

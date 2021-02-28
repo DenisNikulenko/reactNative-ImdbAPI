@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import {View, StyleSheet, StatusBar, TouchableOpacity} from 'react-native';
+import {View, StyleSheet, TouchableOpacity} from 'react-native';
 
 import {useNavigation} from '@react-navigation/native';
 
 import {useDispatch} from 'react-redux';
 import {getPopularMovies} from '../services/movieServices';
-import {clearData} from '../redux/actions/authActions'
+import {clearData} from '../redux/actions/authActions';
 import {logaut} from '../services/authServices';
 
 import MovieList from '../components/MovieList';
@@ -38,10 +38,11 @@ const HomeScreen = () => {
   };
 
   const BtnLogout = () => (
-    <TouchableOpacity onPress={() => {
-      dispatch(clearData());
-      logaut();
-    }}>
+    <TouchableOpacity
+      onPress={() => {
+        dispatch(clearData());
+        logaut();
+      }}>
       <Ionicons style={styles.iconLogout} name="exit-outline" size={30} />
     </TouchableOpacity>
   );
@@ -51,17 +52,9 @@ const HomeScreen = () => {
       {isReady ? (
         <MovieIndicator />
       ) : (
-        <View>
-          <StatusBar
-            barStyle="light-content"
-            hidden={false}
-            backgroundColor={COLORS.MAIN_COLOR}
-          />
           <MovieList
             stateMovies={popularMovie}
-            scrollLoadMore={scrollLoadMore}
-          />
-        </View>
+            scrollLoadMore={scrollLoadMore} />
       )}
     </View>
   );
@@ -75,12 +68,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: COLORS.GREY,
-  },
-  
   iconLogout: {
     color: 'white',
     marginRight: 10,
