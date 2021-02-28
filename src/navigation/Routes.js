@@ -17,6 +17,7 @@ const Routes = () => {
   const [initializing, setInitializing] = useState(true);
 
   const onAuthStateChanged = (user) => {
+    console.log(user);
     dispatch(setUserData(user));
     if (initializing) setInitializing(false);
   }

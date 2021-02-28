@@ -19,13 +19,13 @@ const MovieDetails = ({movieDetails, movieDetailsActors, movieTrailer}) => {
   } = movieDetails;
 
   const Genre = genres.map((item, idx) => (
-    <Text style={styles.textOverview}>
+    <Text style={styles.textOverview} key={idx}>
       {idx + 1}. {item.name}
     </Text>
   ));
   
   const ProductionCompany = production_companies.map((item, idx) => (
-    <Text style={styles.textOverview}>
+    <Text style={styles.textOverview} key={idx}>
       {idx + 1}. {item.name}
     </Text>
   ));

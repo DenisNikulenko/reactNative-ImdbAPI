@@ -3,7 +3,9 @@ import {View, StyleSheet, StatusBar, TouchableOpacity} from 'react-native';
 
 import {useNavigation} from '@react-navigation/native';
 
+import {useDispatch} from 'react-redux';
 import {getPopularMovies} from '../services/movieServices';
+import {clearData} from '../redux/actions/authActions'
 import {logaut} from '../services/authServices';
 
 import MovieList from '../components/MovieList';
@@ -16,6 +18,7 @@ const HomeScreen = () => {
   const [page, setPage] = useState(1);
   const [popularMovie, setPopularMovie] = useState([]);
 
+  const dispatch = useDispatch();
   const navigation = useNavigation();
 
   useEffect(() => {
@@ -35,7 +38,10 @@ const HomeScreen = () => {
   };
 
   const BtnLogout = () => (
-    <TouchableOpacity onPress={() => logaut()}>
+    <TouchableOpacity onPress={() => {
+      dispatch(clearData());
+      logaut();
+    }}>
       <Ionicons style={styles.iconLogout} name="exit-outline" size={30} />
     </TouchableOpacity>
   );
@@ -65,6 +71,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: COLORS.LIGHT_GREY,
+    justifyContent: 'center',
     alignItems: 'center',
   },
 

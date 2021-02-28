@@ -7,8 +7,10 @@ const initialState = {
 const userReducer = (state = initialState, action) => {
   switch(action.type) {
     case SET_USER_DATA:
-      console.log(action.payload)
-      return {...state, currentUser: action.payload}
+      return {
+        ...state, 
+        currentUser: action.payload
+    }
 
     case CLEAR_DATA:
       return initialState
