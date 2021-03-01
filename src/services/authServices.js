@@ -21,6 +21,10 @@ export const googleLogin = async () => {
   }
 };
 
+export const phoneLogin = async (phoneNumber) => {
+  await auth().signInWithPhoneNumber(phoneNumber);
+};
+
 export const register = async (email, password) => {
   try {
     await auth().createUserWithEmailAndPassword(email, password);

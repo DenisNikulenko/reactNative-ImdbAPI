@@ -3,11 +3,11 @@ import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 
 import {useNavigation} from '@react-navigation/native';
 
-import {register} from '../services/authServices';
-import {GoogleSigninButton} from '@react-native-community/google-signin';
+import {register, googleLogin} from '../services/authServices';
 
-import FormButton from '../components/ui/FormButton';
 import FormInput from '../components/ui/FormInput';
+import FormButton from '../components/ui/FormButton';
+import SocialButton from '../components/ui/SocialButton';
 
 import {windowHeight} from '../utilities/dimensions';
 
@@ -57,11 +57,19 @@ const SignUpScreen = () => {
         buttonTitle="Создать"
         onPress={() => validationRegistrer(email, password)} />
 
-      <GoogleSigninButton
-        style={styles.googleBtn}
-        size={GoogleSigninButton.Size.Wide}
-        color={GoogleSigninButton.Color.Light}
-        onPress={() => googleLogin()} />
+      <SocialButton 
+        btnTitle='Регистрация через Google'
+        btnType='google'
+        color='#ff4d4d'
+        backgroundColor='#ffb3b3'
+        onPress={() =>  googleLogin()} />
+      
+      <SocialButton 
+        btnTitle='Регистрация по номеру'
+        btnType='phone'
+        color='white'
+        backgroundColor='#bfbfbf'
+        onPress={() => navigation.navigate('Phone')} />
 
       <TouchableOpacity
         style={styles.navBtn}

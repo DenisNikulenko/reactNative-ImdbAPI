@@ -5,7 +5,9 @@ import {windowHeight} from '../../utilities/dimensions';
 
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
-const SocialButton = ({backgroundColor, btnType, color, btnTitle, ...rest}) => {
+import {COLORS} from '../../utilities/colors';
+
+const SocialButton = ({backgroundColor='white', btnType, color='grey', btnTitle, ...rest}) => {
   let bgColor = backgroundColor;
 
   return (
@@ -20,7 +22,7 @@ const SocialButton = ({backgroundColor, btnType, color, btnTitle, ...rest}) => {
           color={color} />
       </View>
       <View style={styles.btnTextWrapper}>
-        <Text style={[styles.btnText, {color: color}]}>{btnTitle}</Text>
+        <Text style={[styles.btnText]}>{btnTitle}</Text>
       </View>
     </TouchableOpacity>
   );
@@ -34,16 +36,16 @@ const styles = StyleSheet.create({
     padding: 10,
     flexDirection: 'row',
     borderRadius: 3,
+    elevation: 2,
+    borderLeftWidth: 0.5,
+    borderBottomWidth: 0.5,
+    borderRightWidth: 0.2,
   },
 
   iconWrapper: {
     width: 30,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-
-  icon: {
-    fontWeight: 'bold',
   },
 
   btnTextWrapper: {
@@ -53,8 +55,8 @@ const styles = StyleSheet.create({
   },
 
   btnText: {
-    fontSize: 18,
     fontWeight: 'bold',
+    color: 'white'
   },
 });
 
