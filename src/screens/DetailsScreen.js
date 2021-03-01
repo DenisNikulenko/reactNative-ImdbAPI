@@ -12,7 +12,11 @@ import {
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MovieDetails from '../components/MovieDetails';
 import MovieIndicator from '../components/ui/MovieIndicator';
-import {getMovieDetails, getMovieActors, getMovieTrailer} from '../services/movieServices';
+import {
+  getMovieDetails,
+  getMovieActors,
+  getMovieTrailer,
+} from '../services/movieServices';
 import {isExist} from '../utilities/funcHelpers';
 
 const DetailsScreen = ({route}) => {
@@ -20,7 +24,7 @@ const DetailsScreen = ({route}) => {
     ({moviesReducer}) => moviesReducer.bookmarksList,
   );
   const dispatch = useDispatch();
-  
+
   const [isReady, setIsReady] = useState(true);
   const [movieDetails, setMovieDetails] = useState([]);
   const [movieDetailsActors, setMovieDetailsActors] = useState([]);
@@ -34,10 +38,14 @@ const DetailsScreen = ({route}) => {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      headerRight: () => (
-        isExist(movieDetails, bookmarksList) ? <BtnStarTrue /> : <BtnStarFalse />
-      )})
-  },[navigation, movieDetails, bookmarksList])
+      headerRight: () =>
+        isExist(movieDetails, bookmarksList) ? (
+          <BtnStarTrue />
+        ) : (
+          <BtnStarFalse />
+        ),
+    });
+  }, [navigation, movieDetails, bookmarksList]);
 
   const fetchAPI = async (id) => {
     setMovieDetails(await getMovieDetails(id));
@@ -49,19 +57,20 @@ const DetailsScreen = ({route}) => {
   const BtnStarTrue = () => (
     <TouchableOpacity
       onPress={() => {
-        dispatch(removeFromBookmarks(movieDetails))
-        ToastAndroid.show("Удален из закладок", 2000)
+        dispatch(removeFromBookmarks(movieDetails));
+        ToastAndroid.show('Удален из закладок', 2000);
       }}>
-      <Ionicons style={styles.iconStarGold} name="star" size={30} />
+      <Ionicons style={styles.iconStarGold} name="star" size={26} />
     </TouchableOpacity>
   );
 
   const BtnStarFalse = () => (
-    <TouchableOpacity onPress={() => {
-      dispatch(addToBookmarks(movieDetails))
-      ToastAndroid.show("Добавлен в закладки", 2000)
-    }}>
-      <Ionicons style={styles.iconStarWhite} name="star" size={30} />
+    <TouchableOpacity
+      onPress={() => {
+        dispatch(addToBookmarks(movieDetails));
+        ToastAndroid.show('Добавлен в закладки', 2000);
+      }}>
+      <Ionicons style={styles.iconStarWhite} name="star" size={26} />
     </TouchableOpacity>
   );
 
@@ -86,7 +95,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  
+
   iconStarWhite: {
     color: 'white',
     marginRight: 10,

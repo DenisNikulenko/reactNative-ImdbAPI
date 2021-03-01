@@ -9,8 +9,7 @@ const MainLoading = () => {
       <LottieView
         source={require('../../assests/movie-loading.json')}
         autoPlay
-        loop
-      />
+        loop />
     </View>
   );
 };

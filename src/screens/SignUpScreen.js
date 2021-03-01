@@ -8,13 +8,12 @@ import {GoogleSigninButton} from '@react-native-community/google-signin';
 
 import FormButton from '../components/ui/FormButton';
 import FormInput from '../components/ui/FormInput';
-import SocialButton from '../components/ui/SocialButton';
 
 import {windowHeight} from '../utilities/dimensions';
 
 const SignUpScreen = () => {
   const navigation = useNavigation();
-  
+
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
@@ -22,7 +21,6 @@ const SignUpScreen = () => {
   const validationRegistrer = (email, password) => {
     if (password === confirmPassword) {
       register(email, password);
-      console.log(register);
     } else {
       alert('Пароли не совпадают');
     }
@@ -39,47 +37,35 @@ const SignUpScreen = () => {
         iconType="user"
         keyboardType="email-address"
         autoCapitalize="none"
-        autoCorrect={false}
-      />
+        autoCorrect={false} />
 
       <FormInput
         labelValue={password}
         onChangeText={(userPassword) => setPassword(userPassword)}
         placeholderText="Password"
         iconType="lock"
-        secureTextEntry={true}
-      />
+        secureTextEntry={true} />
 
       <FormInput
         labelValue={confirmPassword}
         onChangeText={(userPassword) => setConfirmPassword(userPassword)}
         placeholderText="Password"
         iconType="lock"
-        secureTextEntry={true}
-      />
+        secureTextEntry={true} />
 
       <FormButton
         buttonTitle="Создать"
-        onPress={() => validationRegistrer(email, password)}
-      />
-
-      {/* <SocialButton 
-        btnTitle='Войти через Google'
-        btnType='google'
-        color='#ff6666'
-        backgroundColor='#ffcccc'
-        onPress={() => console.log('clicked google')} /> */}
+        onPress={() => validationRegistrer(email, password)} />
 
       <GoogleSigninButton
         style={styles.googleBtn}
         size={GoogleSigninButton.Size.Wide}
         color={GoogleSigninButton.Color.Light}
-        onPress={() => googleLogin()}
-      />
+        onPress={() => googleLogin()} />
 
       <TouchableOpacity
         style={styles.navBtn}
-        onPress={() => navigation.navigate('Login')}>
+        onPress={() => navigation.navigate('Login')} >
         <Text style={styles.navBtnText}>Есть аккаунт? Войти...</Text>
       </TouchableOpacity>
     </View>
@@ -89,7 +75,6 @@ const SignUpScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
   },

@@ -26,6 +26,8 @@ const HomeScreen = () => {
     navigation.setOptions({
       headerRight: () => <BtnLogout />,
     });
+
+    return () => dispatch(clearData());
   }, [page, navigation]);
 
   const fetchAPI = async (page) => {
@@ -38,11 +40,7 @@ const HomeScreen = () => {
   };
 
   const BtnLogout = () => (
-    <TouchableOpacity
-      onPress={() => {
-        dispatch(clearData());
-        logaut();
-      }}>
+    <TouchableOpacity onPress={() => logaut()}>
       <Ionicons style={styles.iconLogout} name="exit-outline" size={30} />
     </TouchableOpacity>
   );
@@ -52,9 +50,7 @@ const HomeScreen = () => {
       {isReady ? (
         <MovieIndicator />
       ) : (
-          <MovieList
-            stateMovies={popularMovie}
-            scrollLoadMore={scrollLoadMore} />
+        <MovieList stateMovies={popularMovie} scrollLoadMore={scrollLoadMore} />
       )}
     </View>
   );

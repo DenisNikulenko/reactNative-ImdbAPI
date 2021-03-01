@@ -20,7 +20,7 @@ const HomeStack = () => {
     <Stack.Navigator
       screenOptions={{
         headerTintColor: 'white',
-        headerStyle: {backgroundColor: COLORS.MAIN_COLOR, height: 40},
+        headerStyle: {backgroundColor: COLORS.MAIN_COLOR, height: 35},
       }}>
       <Stack.Screen
         name="Home"
@@ -46,7 +46,7 @@ const SearchStack = () => {
     <Stack.Navigator
       screenOptions={{
         headerTintColor: 'white',
-        headerStyle: {backgroundColor: COLORS.MAIN_COLOR, height: 40},
+        headerStyle: {backgroundColor: COLORS.MAIN_COLOR, height: 35},
       }}>
       <Stack.Screen
         name="Search"
@@ -72,7 +72,7 @@ const BookmarksStack = () => {
     <Stack.Navigator
       screenOptions={{
         headerTintColor: 'white',
-        headerStyle: {backgroundColor: COLORS.MAIN_COLOR, height: 40},
+        headerStyle: {backgroundColor: COLORS.MAIN_COLOR, height: 35},
       }}>
       <Stack.Screen
         name="Bookmarks"

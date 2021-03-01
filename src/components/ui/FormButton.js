@@ -3,6 +3,7 @@ import {Text, TouchableOpacity, StyleSheet} from 'react-native';
 
 import {windowHeight} from '../../utilities/dimensions';
 import {COLORS} from '../../utilities/colors';
+
 const FormButton = ({buttonTitle, ...rest}) => {
   return (
     <TouchableOpacity style={styles.btnContainer} {...rest}>
@@ -21,7 +22,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 5,
-    // borderWidth: 2,
     borderTopWidth: 2,
     borderLeftWidth: 1,
     borderRightWidth: 1,

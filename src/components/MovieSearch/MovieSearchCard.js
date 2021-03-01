@@ -30,8 +30,7 @@ const MovieSearchCard = ({item}) => {
       onPress={() => dispatch(addToBookmarks(item))}
       iconName='star-sharp'
       iconColor="white"
-      iconSize={30}
-    />
+      iconSize={30} />
   );
 
   const BtnRemoveFromBookmark = () => (
@@ -39,20 +38,18 @@ const MovieSearchCard = ({item}) => {
       styles={styles.btnRemove}
       onPress={() => dispatch(removeFromBookmarks(item))}
       iconColor="white"
-      iconSize={30}
-    />
+      iconSize={30} />
   );
 
   return (
     <TouchableOpacity
       style={styles.movieCard}
-      onPress={() => navigation.navigate('Details', {id})}>
+      onPress={() => navigation.navigate('Details', {id})} >
       <Image
         style={styles.movieCardIamge}
         source={{
           uri: `${IMAGE_URL}/${poster_path}`,
-        }}
-      />
+        }} />
       <Text style={styles.movieCardTitle}>{title}</Text>
       {isExist(item, bookmarksList) ? (
         <BtnRemoveFromBookmark />

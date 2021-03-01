@@ -54,18 +54,19 @@ const SearchScreen = () => {
 
   return (
     <View style={styles.conteainer}>
+      
       <View style={styles.searchBlock}>
         <TextInput
           value={movieSearch}
           onChangeText={setMovieSearch}
           style={styles.searchInput}
           placeholder="Введите название фильма..."
-          maxLength={64}
-        />
+          maxLength={64} />
         <TouchableOpacity style={styles.serchBtn} onPress={tabOnSearch}>
           <Ionicons name="search" color={COLORS.MAIN_COLOR} size={30} />
         </TouchableOpacity>
       </View>
+
       {foundItems.length ? (
         <View style={styles.contentBlock}>
           <FlatList
@@ -84,6 +85,7 @@ const SearchScreen = () => {
           <Text>Что будем искать?</Text>
         </View>
       )}
+      
     </View>
   );
 };

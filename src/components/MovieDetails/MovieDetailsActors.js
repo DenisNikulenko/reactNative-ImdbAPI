@@ -23,8 +23,7 @@ const MovieDetailsActors = ({movieDetailsActors}) => {
             style={styles.image}
             source={{
               uri: `${IMAGE_URL}${item.profile_path}`,
-            }}
-          />
+            }} />
           <Text style={styles.text}>{item.name}</Text>
         </TouchableOpacity>
       </View>
@@ -37,8 +36,7 @@ const MovieDetailsActors = ({movieDetailsActors}) => {
       data={movieDetailsActors}
       renderItem={renderItem}
       keyExtractor={(item, index) => index.toString()}
-      horizontal={true}
-    />
+      horizontal={true} />
   );
 };
 

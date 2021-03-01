@@ -21,17 +21,16 @@ const App = () => {
   }, [isLoading]);
 
   if (isLoading) {
-    return (
-      <MainLoading />
-    );
+    return <MainLoading />;
   } else {
     return (
       <Provider store={store}>
         <PersistGate loading={null} persistor={appPersist}>
-          <StatusBar 
-            backgroundColor={COLORS.MAIN_COLOR} 
-            barStyle='light-content'
-            hidden={false} />
+          <StatusBar
+            backgroundColor={COLORS.MAIN_COLOR}
+            barStyle="light-content"
+            hidden={false}
+          />
           <Routes />
         </PersistGate>
       </Provider>

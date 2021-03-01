@@ -16,8 +16,7 @@ const FormInput = ({labelValue, placeholderText, iconType, ...rest}) => {
         numberOfLines={1}
         placeholder={placeholderText}
         placeholderTextColor="#666"
-        {...rest}
-      />
+        {...rest} />
     </View>
   );
 };

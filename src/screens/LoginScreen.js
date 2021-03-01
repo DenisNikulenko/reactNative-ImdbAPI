@@ -1,11 +1,5 @@
 import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  Image,
-} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 
 import {useNavigation} from '@react-navigation/native';
 
@@ -27,8 +21,7 @@ const LoginScreen = () => {
     <View style={styles.container}>
       <Image
         style={styles.logo}
-        source={require('../assests/images/movie-logo.png')}
-      />
+        source={require('../assests/images/movie-logo.png')} />
       <Text style={styles.text}>Movie App</Text>
 
       <FormInput
@@ -38,16 +31,14 @@ const LoginScreen = () => {
         iconType="user"
         keyboardType="email-address"
         autoCapitalize="none"
-        autoCorrect={false}
-      />
+        autoCorrect={false} />
 
       <FormInput
         labelValue={password}
         onChangeText={(userPassword) => setPassword(userPassword)}
         placeholderText="Password"
         iconType="lock"
-        secureTextEntry={true}
-      />
+        secureTextEntry={true} />
 
       <FormButton buttonTitle="Войти" onPress={() => login(email, password)} />
 
@@ -57,13 +48,6 @@ const LoginScreen = () => {
         <Text style={styles.navBtnText}>Забыл пароль?</Text>
       </TouchableOpacity>
 
-      {/* <SocialButton
-        btnTitle="Войти через Google"
-        btnType="google"
-        color="red"
-        backgroundColor="#ffcccc"
-        onPress={() => googleLogin()}
-      /> */}
       <GoogleSigninButton
         style={styles.googleBtn}
         size={GoogleSigninButton.Size.Wide}
@@ -72,7 +56,7 @@ const LoginScreen = () => {
 
       <TouchableOpacity
         style={styles.createBtn}
-        onPress={() => navigation.navigate('SignUp')}>
+        onPress={() => navigation.navigate('SignUp')} >
         <Text style={styles.navBtnText}>Создать аккаунт...</Text>
       </TouchableOpacity>
     </View>
@@ -99,10 +83,8 @@ const styles = StyleSheet.create({
   },
 
   forgotButton: {
-    // justifyContent: 'center',
     marginBottom: 15,
   },
-
 
   googleBtn: {
     marginTop: 10,
@@ -113,8 +95,8 @@ const styles = StyleSheet.create({
   createBtn: {
     flex: 1,
     justifyContent: 'flex-end',
-    alignItems:'center',
-  },  
+    alignItems: 'center',
+  },
 
   navBtnText: {
     fontSize: 14,

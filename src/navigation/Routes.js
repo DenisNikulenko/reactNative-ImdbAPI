@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 
 import {NavigationContainer} from '@react-navigation/native';
 
-import { useSelector, useDispatch } from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import {setUserData} from '../redux/actions/authActions';
 
 import auth from '@react-native-firebase/auth';
@@ -17,15 +17,14 @@ const Routes = () => {
   const [initializing, setInitializing] = useState(true);
 
   const onAuthStateChanged = (user) => {
-    console.log(user);
     dispatch(setUserData(user));
     if (initializing) setInitializing(false);
-  }
-  
-  useEffect(() =>{
+  };
+
+  useEffect(() => {
     const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-    return subscriber; 
-  }, [user])
+    return subscriber;
+  }, [user]);
 
   if (initializing) return null;
 
@@ -33,7 +32,7 @@ const Routes = () => {
     <NavigationContainer>
       {user ? <MovieTabs /> : <AuthStack />}
     </NavigationContainer>
-  )
-}
+  );
+};
 
-export default Routes
+export default Routes;
