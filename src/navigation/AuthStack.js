@@ -10,7 +10,6 @@ import PhoneScreen from '../screens/PhoneScreen';
 import OTPScrean from '../screens/OTPScrenn';
 
 const Stack = createStackNavigator();
-
 // const PhoneStack = () => {};
 
 const AuthStack = () => {
@@ -35,13 +34,12 @@ const AuthStack = () => {
       <Stack.Screen
         name="Login"
         component={LoginScreen}
-        options={{header: () => null}}
-      />
+        options={{header: () => null}} />
+
       <Stack.Screen
         name="SignUp"
         component={SignUpScreen}
-        options={optinWithBack}
-      />
+        options={optinWithBack} />
 
       <Stack.Screen
         name="Phone"

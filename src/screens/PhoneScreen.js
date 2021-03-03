@@ -10,7 +10,7 @@ import {COLORS} from '../utilities/colors';
 
 const PhoneScreen = () => {
   const navigation = useNavigation();
-  const [phoneNumber, setPhoneNumber] = useState('+380507375012');
+  const [phoneNumber, setPhoneNumber] = useState('+380');
 
   const onChangeText = (numbers) => {
     setPhoneNumber(numbers)
@@ -29,6 +29,9 @@ const PhoneScreen = () => {
       <TextInput 
         style={styles.input}
         value={phoneNumber}
+        autoFocus={true}
+        keyboardType="numeric"
+        maxLength={13}
         onChangeText={onChangeText} />
 
       <View style={styles.btnContainer}>

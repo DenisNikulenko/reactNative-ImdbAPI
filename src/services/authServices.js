@@ -21,10 +21,6 @@ export const googleLogin = async () => {
   }
 };
 
-export const phoneLogin = async (phoneNumber) => {
-  await auth().signInWithPhoneNumber(phoneNumber);
-};
-
 export const register = async (email, password) => {
   try {
     await auth().createUserWithEmailAndPassword(email, password);
@@ -36,7 +32,7 @@ export const register = async (email, password) => {
 
 export const logaut = async () => {
   try {
-    auth().signOut();
+    await auth().signOut();
   } catch (error) {
     console.log(error);
   }
