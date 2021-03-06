@@ -18,6 +18,7 @@ const MovieDetails = ({movieDetails, movieDetailsActors, movieTrailer}) => {
     production_companies,
   } = movieDetails;
 
+
   const Genre = genres.map((item, idx) => (
     <Text style={styles.textOverview} key={idx}>
       {idx + 1}. {item.name}

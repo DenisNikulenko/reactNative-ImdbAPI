@@ -22,6 +22,7 @@ export const getMovieDetails = async (id) => {
       `${BASE_URL}/movie/${id}?${API_KEY}&${LANGUAGE}`,
     );
     const json = await response.json();
+    console.log(json)
     return json;
   } catch (error) {
     return error;

@@ -30,8 +30,9 @@ const DetailsScreen = ({route}) => {
   const [movieDetailsActors, setMovieDetailsActors] = useState([]);
   const [movieTrailer, setMovieTrailer] = useState('');
   const id = route.params.id;
-
+  
   const navigation = useNavigation();
+
   useEffect(() => {
     fetchAPI(id);
   }, [id]);

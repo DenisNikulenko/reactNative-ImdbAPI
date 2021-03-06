@@ -27,7 +27,7 @@ const HomeScreen = () => {
       headerRight: () => <BtnLogout />,
     });
 
-    return () => dispatch(clearData());
+    // return () => dispatch(clearData());
   }, [page, navigation]);
 
   const fetchAPI = async (page) => {
@@ -40,7 +40,10 @@ const HomeScreen = () => {
   };
 
   const BtnLogout = () => (
-    <TouchableOpacity onPress={() => logaut()}>
+    <TouchableOpacity onPress={() => {
+      dispatch(clearData());
+      logaut();
+    }}>
       <Ionicons style={styles.iconLogout} name="exit-outline" size={30} />
     </TouchableOpacity>
   );

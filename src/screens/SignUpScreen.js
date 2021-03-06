@@ -9,20 +9,24 @@ import FormInput from '../components/ui/FormInput';
 import FormButton from '../components/ui/FormButton';
 import SocialButton from '../components/ui/SocialButton';
 
-import {windowHeight} from '../utilities/dimensions';
+import {COLORS} from '../utilities/colors';
 
 const SignUpScreen = () => {
   const navigation = useNavigation();
 
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-  const [confirmPassword, setConfirmPassword] = useState();
+  const [email, setEmail] = useState(null);
+  const [password, setPassword] = useState(null);
+  const [confirmPassword, setConfirmPassword] = useState(null);
 
   const validationRegistrer = (email, password) => {
-    if (password === confirmPassword) {
+    if (password === confirmPassword && email) {
       register(email, password);
+    } else if (!password && !email){
+      alert('Заполните поля!')      
+    }else if(!password || !confirmPassword) {
+      alert('Заполните поле пароля!');
     } else {
-      alert('Пароли не совпадают');
+      alert('Пароли не совпадают!');
     }
   };
 
@@ -57,19 +61,19 @@ const SignUpScreen = () => {
         buttonTitle="Создать"
         onPress={() => validationRegistrer(email, password)} />
 
-      <SocialButton 
-        btnTitle='Регистрация через Google'
-        btnType='google'
-        color='#ff4d4d'
-        backgroundColor='#ffb3b3'
-        onPress={() =>  googleLogin()} />
-      
-      <SocialButton 
-        btnTitle='Регистрация по номеру'
-        btnType='phone'
-        color='white'
-        backgroundColor='#bfbfbf'
-        onPress={() => navigation.navigate('Phone')} />
+      <View style={styles.loginWithBar}>
+        <SocialButton
+          btnType='google'
+          onPress={() => googleLogin()} />
+
+        <SocialButton
+          btnType='phone'
+          onPress={() => navigation.navigate('Phone')} />
+
+        <SocialButton
+          btnType='apple'
+          onPress={() => alert('In developing')} />
+      </View>
 
       <TouchableOpacity
         style={styles.navBtn}
@@ -89,14 +93,14 @@ const styles = StyleSheet.create({
 
   text: {
     fontSize: 28,
-    marginBottom: 10,
-    color: '#051d5f',
+    marginBottom: 60,
+    color: COLORS.MAIN_COLOR,
   },
 
-  googleBtn: {
-    marginTop: 10,
-    width: '100%',
-    height: windowHeight / 15,
+  loginWithBar: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginTop: 50,
   },
 
   navBtn: {
@@ -107,7 +111,7 @@ const styles = StyleSheet.create({
   navBtnText: {
     fontSize: 14,
     fontWeight: '500',
-    color: '#2e64e5',
+    color: COLORS.LINK,
   },
 });
 

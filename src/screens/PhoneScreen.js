@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
 
 import {useNavigation} from '@react-navigation/native';
 
@@ -13,19 +13,23 @@ const PhoneScreen = () => {
   const [phoneNumber, setPhoneNumber] = useState('+380');
 
   const onChangeText = (numbers) => {
-    setPhoneNumber(numbers)
+    const i = /\+38\(\d{3}\)\d{3}-\d{2}-\d{2}/;
+
+    setPhoneNumber(numbers);
   }
 
   const getOTP = () => {
-    if (phoneNumber && phoneNumber.length > 9){
+    if (phoneNumber && phoneNumber.length > 10){
       navigation.navigate('OTP Screen', {phoneNumber});
     } else { 
           alert("Please enter 10 digit phone number");
       }
   }
- 
+  
   return (
     <View style={styles.container}>
+      <Text style={styles.title}>Введите норме телефона:</Text>
+
       <TextInput 
         style={styles.input}
         value={phoneNumber}
@@ -50,10 +54,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 
+  title: {
+    marginBottom: 50,
+    fontSize: 20,
+    color: COLORS.MAIN_COLOR
+  },
+
   input: {
     width: '80%',
-    
-    height: 45,
+    fontSize: 20,
+    height: 50,
     elevation: 2,
     borderBottomColor: COLORS.MAIN_COLOR,
     borderBottomWidth: 1 ,

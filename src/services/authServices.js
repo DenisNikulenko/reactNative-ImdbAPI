@@ -5,7 +5,18 @@ export const login = async (email, password) => {
   try {
     await auth().signInWithEmailAndPassword(email, password);
   } catch (error) {
-    console.log(error);
+    console.log(error)
+    if (error.code === 'auth/email-already-in-use') {
+      console.log('That email address is already in use!');
+    }
+    if (error.code === 'auth/invalid-email') {
+      alert('Неправильный формат поля email')
+      console.log('That email address is invalid!');
+    }
+    if(error) {
+      console.log(`${error}:${error.code}`);
+    } 
+    // alert(error);
   }
 };
 
@@ -26,14 +37,17 @@ export const register = async (email, password) => {
     await auth().createUserWithEmailAndPassword(email, password);
   } catch (error) {
     alert(error);
-    console.log(error);
+    console.log(`${error}:${error.code}`);
   }
 };
 
 export const logaut = async () => {
   try {
     await auth().signOut();
+    await GoogleSignin.revokeAccess();
   } catch (error) {
-    console.log(error);
+    if(!error.code === 4) {
+      console.log(`${error}:${error.code}`);
+    }
   }
 };

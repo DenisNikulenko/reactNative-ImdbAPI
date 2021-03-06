@@ -9,13 +9,25 @@ import FormButton from '../components/ui/FormButton';
 import FormInput from '../components/ui/FormInput';
 import SocialButton from '../components/ui/SocialButton';
 
-import {windowHeight} from '../utilities/dimensions';
+import {COLORS} from '../utilities/colors';
 
 const LoginScreen = () => {
   const navigation = useNavigation();
 
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+
+  const validationLogin = (email, password) => {
+    if (email && password) {
+      login(email, password);
+    } else if (email && !password) {
+      alert('Проверьте поле pass!');
+    } else if (password & !email) {
+      alert('Проверьте поле email!')
+    } else {
+      alert('Проверьте поля email и password!')
+    }
+  }
 
   return (
     <View style={styles.container}>
@@ -40,27 +52,27 @@ const LoginScreen = () => {
         iconType="lock"
         secureTextEntry={true} />
 
-      <FormButton buttonTitle="Войти" onPress={() => login(email, password)} />
+      <FormButton buttonTitle="Войти" onPress={() => validationLogin(email, password)} />
 
       <TouchableOpacity
         style={styles.forgotButton}
-        onPress={() => console.log('forgot password')}>
+        onPress={() => alert('In developing')}>
         <Text style={styles.navBtnText}>Забыл пароль?</Text>
       </TouchableOpacity>
 
-      <SocialButton 
-        btnTitle='Войти через Google'
-        btnType='google'
-        color='#ff4d4d'
-        backgroundColor='#ffb3b3'
-        onPress={() =>  googleLogin()} />
-      
-      <SocialButton 
-        btnTitle='Войти по номеру'
-        btnType='phone'
-        color='white'
-        backgroundColor='#bfbfbf'
-        onPress={() => navigation.navigate('Phone')} />
+      <View style={styles.loginWithBar}>
+        <SocialButton
+          btnType='google'
+          onPress={() => googleLogin()} />
+
+        <SocialButton
+          btnType='phone'
+          onPress={() => navigation.navigate('Phone')} />
+
+        <SocialButton
+          btnType='apple'
+          onPress={() => alert('In developing')} />
+      </View>
 
       <TouchableOpacity
         style={styles.createBtn}
@@ -87,17 +99,17 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 28,
     marginBottom: 10,
-    color: '#051d5f',
+    color: COLORS.MAIN_COLOR,
   },
 
   forgotButton: {
     marginBottom: 15,
   },
 
-  googleBtn: {
-    marginTop: 10,
-    width: '100%',
-    height: windowHeight / 15,
+  loginWithBar: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginTop: 50,
   },
 
   createBtn: {
@@ -109,7 +121,7 @@ const styles = StyleSheet.create({
   navBtnText: {
     fontSize: 14,
     fontWeight: '500',
-    color: '#2e64e5',
+    color: COLORS.LINK,
   },
 });
 

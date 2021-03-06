@@ -15,10 +15,10 @@ const OTPScrenn = ({
     params: {phoneNumber},
   },
 }) => {
-  const lengthInput = 6;
-  const [internalVal, setInternalVal] = useState('');
   let textInput = useRef(null);
+  const lengthInput = 6;
 
+  const [internalVal, setInternalVal] = useState('');
   const [confirm, setConfirm] = useState(null);
 
   useEffect(() => {
