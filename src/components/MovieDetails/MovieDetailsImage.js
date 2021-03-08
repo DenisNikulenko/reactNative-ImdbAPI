@@ -62,6 +62,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: '90%',
     color: COLORS.WHITE,
+    fontFamily: 'Roboto-Bold',
     fontSize: 22,
     marginLeft: 20,
     marginRight: 20,
@@ -82,7 +83,7 @@ const styles = StyleSheet.create({
     width: windowWidth,
     height: 35,
     opacity: 0.3,
-    top: windowWidth - 20,
+    top: windowWidth - 15,
   },
 
   descriptionBottom: {
@@ -91,7 +92,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
     width: '100%',
-    top: windowWidth - 15,
+    top: windowWidth - 10,
   },
 
   textInfo: {

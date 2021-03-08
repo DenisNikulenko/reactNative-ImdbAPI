@@ -59,7 +59,7 @@ export const getMovieTrailer = async (id) => {
   try {
     const response = await fetch(`${BASE_URL}/movie/${id}/videos?${API_KEY}`);
     const json = await response.json();
-    const result = json.results[0].key;
+    const result = json.results[0].key
 
     const link = `${YOUTUBE}=${result}`;
     return link;

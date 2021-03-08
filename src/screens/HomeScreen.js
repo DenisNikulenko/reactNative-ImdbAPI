@@ -23,6 +23,7 @@ const HomeScreen = () => {
 
   useEffect(() => {
     fetchAPI(page);
+    
     navigation.setOptions({
       headerRight: () => <BtnLogout />,
     });

@@ -5,7 +5,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 export const MovieButton = ({
   styles,
-  onPress = () => console.log('hello'),
+  onPress = () => console.log('click'),
   iconName = 'trash-outline',
   iconColor = 'black',
   iconSize = 20,

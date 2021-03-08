@@ -184,7 +184,12 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: "libs", include: ["*.jar"])
+    
+    //Fot NonNull, Nullable
+    implementation 'com.android.support:support-annotations:28.0.0'
+    implementation 'com.intellij:annotations:+@jar'
+
+
     //noinspection GradleDynamicVersion
     implementation "com.facebook.react:react-native:+"  // From node_modules
 

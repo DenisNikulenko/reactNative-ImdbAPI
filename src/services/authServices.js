@@ -5,7 +5,6 @@ export const login = async (email, password) => {
   try {
     await auth().signInWithEmailAndPassword(email, password);
   } catch (error) {
-    console.log(error)
     if (error.code === 'auth/email-already-in-use') {
       console.log('That email address is already in use!');
     }

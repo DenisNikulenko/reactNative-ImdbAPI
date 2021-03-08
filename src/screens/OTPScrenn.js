@@ -26,6 +26,10 @@ const OTPScrenn = ({
     signInWithPhoneNumber(phoneNumber);
   }, [phoneNumber]);
 
+  useEffect(() => {
+    
+  }, [])
+
   const signInWithPhoneNumber = async (phoneNumber) => {
     try {
       const confirmation = await auth().signInWithPhoneNumber(phoneNumber);
@@ -174,6 +178,7 @@ const styles = StyleSheet.create({
   },
 
   textResend: {
+    color: '#234db7',
     alignItems: 'center',
     fontSize: 15,
   },

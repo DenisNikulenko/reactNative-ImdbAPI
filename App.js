@@ -29,8 +29,7 @@ const App = () => {
           <StatusBar
             backgroundColor={COLORS.MAIN_COLOR}
             barStyle="light-content"
-            hidden={false}
-          />
+            hidden={false} />
           <Routes />
         </PersistGate>
       </Provider>

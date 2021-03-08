@@ -115,26 +115,28 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     height: windowHeight / 2,
     marginVertical: 10,
-    paddingBottom: 15,
+    paddingBottom: 22,
   },
 
   infoTitle: {
     alignItems: 'center',
   },
+
   infoTitleText: {
     marginLeft: 30,
     marginRight: 30,
-    fontSize: 20,
+    fontSize: 19,
     color: COLORS.GREY,
   },
+
   infoTitleDate: {
-    fontSize: 14,
+    fontSize: 12,
     color: COLORS.GREY,
   },
 
   movieImage: {
     resizeMode: 'contain',
-    marginTop: 10,
+    marginTop: 5,
     height: '75%',
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
@@ -143,10 +145,11 @@ const styles = StyleSheet.create({
   },
 
   infoRaite: {
+    marginTop: 10,
     flexDirection: 'row',
     justifyContent: 'space-around',
-    marginTop: 5,
   },
+
   infoRaiteText: {
     color: COLORS.GREY,
     fontSize: 18,
@@ -155,7 +158,7 @@ const styles = StyleSheet.create({
   BtnBookmark: {
     backgroundColor: COLORS.GREEN,
     width: '100%',
-    height: windowHeight / 20,
+    height: windowHeight / 18,
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
     justifyContent: 'center',

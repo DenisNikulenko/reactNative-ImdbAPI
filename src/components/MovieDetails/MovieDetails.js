@@ -54,7 +54,7 @@ const MovieDetails = ({movieDetails, movieDetailsActors, movieTrailer}) => {
             {Genre}
           </View>
           <View>
-            <Text style={styles.textTitle}>Компании:</Text>
+            <Text style={styles.textTitle}>Создатели:</Text>
             {ProductionCompany}
           </View>
         </View>
@@ -73,34 +73,23 @@ const styles = StyleSheet.create({
   text: {
     width: windowWidth,
     padding: 12,
-    backgroundColor: COLORS.LIGHT_GREY,
+    // backgroundColor: COLORS.LIGHT_GREY,
     borderBottomRightRadius: 60,
-  },
-
-  textPreview: {
-    color: COLORS.BLACK,
-    fontWeight: 'bold',
-    fontSize: 20,
-    borderLeftWidth: 1,
-    paddingLeft: 5,
-    borderBottomWidth: 1,
-    borderColor: COLORS.MAIN_COLOR,
-    width: 200,
   },
 
   textOverview: {
     color: COLORS.BLACK,
+    fontFamily: 'Roboto-Italic',
+    textAlign: 'center',
     fontSize: 16,
     marginTop: 5,
   },
 
   blockDetails: {
-    width: windowWidth,
     paddingLeft: 20,
     paddingRight: 20,
     borderTopColor: COLORS.MAIN_COLOR,
     borderTopWidth: 1,
-    backgroundColor: COLORS.LIGHT_GREY,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
@@ -108,9 +97,10 @@ const styles = StyleSheet.create({
   textTitle: {
     fontSize: 19,
     borderColor: COLORS.MAIN_COLOR,
-    borderLeftWidth: 1,
-    borderBottomWidth: 1,
-    fontWeight: 'bold',
+    borderLeftWidth: 0.8,
+    borderBottomWidth: 0.8,
+    fontFamily: 'Roboto-Bold',
+    // fontWeight: 'bold',
     paddingLeft: 10,
     color: COLORS.BLACK,
   },
