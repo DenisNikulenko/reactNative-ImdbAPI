@@ -43,10 +43,11 @@ const MovieDetails = ({movieDetails, movieDetailsActors, movieTrailer}) => {
         voteAverage={vote_average}
         runtime={runtime}
       />
+
       <View>
         <View style={styles.text}>
           <Text style={styles.textTitle}>Описание: </Text>
-          <Text style={styles.textOverview}>{overview}</Text>
+          <Text style={[styles.textOverview, {textAlign: 'center'}]}>{overview}</Text>
         </View>
         <View style={styles.blockDetails}>
           <View>
@@ -73,14 +74,14 @@ const styles = StyleSheet.create({
   text: {
     width: windowWidth,
     padding: 12,
-    // backgroundColor: COLORS.LIGHT_GREY,
     borderBottomRightRadius: 60,
   },
 
   textOverview: {
     color: COLORS.BLACK,
     fontFamily: 'Roboto-Italic',
-    textAlign: 'center',
+    marginLeft: 5,
+    // textAlign: 'center',
     fontSize: 16,
     marginTop: 5,
   },
@@ -91,6 +92,9 @@ const styles = StyleSheet.create({
     borderTopColor: COLORS.MAIN_COLOR,
     borderTopWidth: 1,
     flexDirection: 'row',
+    marginLeft: 20,
+    marginRight: 20,
+    marginBottom: 20,
     justifyContent: 'space-between',
   },
 
@@ -100,7 +104,6 @@ const styles = StyleSheet.create({
     borderLeftWidth: 0.8,
     borderBottomWidth: 0.8,
     fontFamily: 'Roboto-Bold',
-    // fontWeight: 'bold',
     paddingLeft: 10,
     color: COLORS.BLACK,
   },

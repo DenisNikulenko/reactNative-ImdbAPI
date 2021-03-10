@@ -81,9 +81,9 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.BLACK,
     position: 'absolute',
     width: windowWidth,
-    height: 35,
+    height: 30,
     opacity: 0.3,
-    top: windowWidth - 15,
+    top: windowWidth - 10,
   },
 
   descriptionBottom: {
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
     width: '100%',
-    top: windowWidth - 10,
+    top: windowWidth - 5,
   },
 
   textInfo: {

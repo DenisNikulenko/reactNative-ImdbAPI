@@ -9,26 +9,68 @@ import {
 } from 'react-native';
 
 import auth from '@react-native-firebase/auth';
+import RNOtpVerify from 'react-native-otp-verify';
 
 const OTPScrenn = ({
   route: {
     params: {phoneNumber},
   },
 }) => {
-  let textInput = useRef(null);
-  const lengthInput = 6;
-
   const [internalVal, setInternalVal] = useState('');
   const [confirm, setConfirm] = useState(null);
+
+  let textInput = useRef(null);
+  const lengthInput = 6;
 
   useEffect(() => {
     textInput.focus();
     signInWithPhoneNumber(phoneNumber);
   }, [phoneNumber]);
 
+// Dont work.
   useEffect(() => {
-    
-  }, [])
+    getHash();
+
+    RNOtpVerify.getOtp()
+      .then((response) => RNOtpVerify.addListener(otpHandler))
+      .catch((error) => console.log(error));
+
+    return () => {
+      RNOtpVerify.removeListener();
+    };
+  }, []);
+
+  const getHash = () => {
+    RNOtpVerify.getHash()
+      .then(console.log)
+      .catch(console.log);
+  };
+
+  const otpHandler = (message) => {
+    console.log('message ===>>> ', message);
+    RNOtpVerify.removeListener();
+  };
+
+  //
+  //   (message) => {
+  //     try {
+  //       if (message && message !== 'Timeout Error') {
+  //         const otp = message
+  //         console.log(otp)
+  //       } else {
+  //         console.log(
+  //           'OTPVerification: RNOtpVerify.getOtp - message=>',
+  //           message,
+  //         );
+  //       }
+  //     } catch (error) {
+  //       console.log('OTPVerification: RNOtpVerify.getOtp error=>', error);
+  //     }
+  //   });
+  // })
+  // .catch((error) => {
+  //   console.log(error);
+  // });
 
   const signInWithPhoneNumber = async (phoneNumber) => {
     try {

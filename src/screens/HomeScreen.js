@@ -42,7 +42,7 @@ const HomeScreen = () => {
 
   const BtnLogout = () => (
     <TouchableOpacity onPress={() => {
-      dispatch(clearData());
+      // dispatch(clearData());
       logaut();
     }}>
       <Ionicons style={styles.iconLogout} name="exit-outline" size={30} />
