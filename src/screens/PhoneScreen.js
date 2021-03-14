@@ -10,7 +10,7 @@ import {COLORS} from '../utilities/colors';
 
 const PhoneScreen = () => {
   const navigation = useNavigation();
-  const [phoneNumber, setPhoneNumber] = useState('+380');
+  const [phoneNumber, setPhoneNumber] = useState('+44 7444 555666');
 
   const onChangeText = (numbers) => {
     const i = /\+38\(\d{3}\)\d{3}-\d{2}-\d{2}/;

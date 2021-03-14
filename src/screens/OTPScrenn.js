@@ -5,100 +5,95 @@ import {
   StyleSheet,
   KeyboardAvoidingView,
   TouchableOpacity,
-  TextInput,
 } from 'react-native';
 
 import auth from '@react-native-firebase/auth';
+import OTPInputView from '@twotalltotems/react-native-otp-input';
 import RNOtpVerify from 'react-native-otp-verify';
+
+import {windowWidth} from '../utilities/dimensions';
+import {COLORS} from '../utilities/colors';
+
+//TESTING:
+//PHONE: +44 7444 555666
+//CODE: 123456
 
 const OTPScrenn = ({
   route: {
     params: {phoneNumber},
   },
 }) => {
-  const [internalVal, setInternalVal] = useState('');
+  const [otp, setOtp] = useState('');
   const [confirm, setConfirm] = useState(null);
 
-  let textInput = useRef(null);
-  const lengthInput = 6;
+  let inputRef = useRef(null);
 
-  useEffect(() => {
-    textInput.focus();
-    signInWithPhoneNumber(phoneNumber);
-  }, [phoneNumber]);
-
-// Dont work.
   useEffect(() => {
     getHash();
+    startListeningForOtp();
 
-    RNOtpVerify.getOtp()
-      .then((response) => RNOtpVerify.addListener(otpHandler))
-      .catch((error) => console.log(error));
+    signInWithPhoneNumber(phoneNumber);
 
     return () => {
       RNOtpVerify.removeListener();
     };
-  }, []);
+  }, [inputRef]);
 
   const getHash = () => {
-    RNOtpVerify.getHash()
-      .then(console.log)
-      .catch(console.log);
+    RNOtpVerify.getHash().then(console.log).catch(console.log);
   };
 
-  const otpHandler = (message) => {
-    console.log('message ===>>> ', message);
-    RNOtpVerify.removeListener();
+  const startListeningForOtp = () => {
+    RNOtpVerify.getOtp()
+      .then((response) => {
+        console.log(response);
+        RNOtpVerify.addListener((message) => {
+          try {
+            if (message && message !== 'Timeout Error') {
+              console.log(`message=> , ${message}`);
+              const otp = /(\d{6})/g.exec(message)[0];
+              if (otp.length === 6) {
+                console.log(otp);
+                setOtp(otp.split(''));
+              }
+            } else {
+              console.log(
+                'OTPVerification: RNOtpVerify.getOtp - message=>',
+                message,
+              );
+            }
+          } catch (error) {
+            console.log('OTPVerification: RNOtpVerify.getOtp error=>', error);
+          }
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
-
-  //
-  //   (message) => {
-  //     try {
-  //       if (message && message !== 'Timeout Error') {
-  //         const otp = message
-  //         console.log(otp)
-  //       } else {
-  //         console.log(
-  //           'OTPVerification: RNOtpVerify.getOtp - message=>',
-  //           message,
-  //         );
-  //       }
-  //     } catch (error) {
-  //       console.log('OTPVerification: RNOtpVerify.getOtp error=>', error);
-  //     }
-  //   });
-  // })
-  // .catch((error) => {
-  //   console.log(error);
-  // });
 
   const signInWithPhoneNumber = async (phoneNumber) => {
     try {
       const confirmation = await auth().signInWithPhoneNumber(phoneNumber);
       setConfirm(confirmation);
+      if(phoneNumber === '+44 7444 555666') {
+        setOtp('123456');
+      }
     } catch (error) {
       console.log(error);
     }
   };
 
-  const onResendOTP = async () => {
+  const onSendOTP = async (otp) => {
     try {
-      console.log('===>>>', confirm);
-      await confirm.confirm(internalVal);
+      await confirm.confirm(otp);
     } catch (error) {
-      console.log(error);
+      console.log(`message: ${error}, code: ${error.code}`);
     }
   };
 
   const onChangeNumber = () => {
-    setInternalVal(null);
-  };
-
-  const onChangeText = (text) => {
-    setInternalVal(text);
-    if (text.length === lengthInput) {
-      onResendOTP();
-    }
+    setOtp('');
   };
 
   return (
@@ -107,43 +102,30 @@ const OTPScrenn = ({
         keyboardVerticalOffset={50}
         behavior={'padding'}
         style={styles.containerAvoiding}>
-        <Text style={styles.textTitle}>Введите код:</Text>
-
-        <View>
-          <TextInput
-            ref={(input) => (textInput = input)}
-            onChangeText={onChangeText}
-            style={{width: 0, height: 0}}
-            value={internalVal}
-            maxLength={lengthInput}
-            returnKeyType="done"
-            keyboardType="numeric"
+        <View style={styles.topView}>
+          <Text style={styles.textTitle}>Введите код:</Text>
+          <OTPInputView
+            style={styles.otpInput}
+            ref={inputRef}
+            pinCount={6}
+            code={otp}
+            onCodeChanged={setOtp}
+            autoFocusOnLoad={true}
+            codeInputFieldStyle={styles.underlineStyleBase}
+            codeInputHighlightStyle={styles.underlineStyleHighLighted}
+            onCodeFilled={onSendOTP}
           />
-        </View>
-
-        <View style={styles.containerInput}>
-          {Array(lengthInput)
-            .fill()
-            .map((data, idx) => (
-              <View key={idx} style={styles.cellView}>
-                <Text style={styles.cellText} onPress={() => textInput.focus()}>
-                  {internalVal && internalVal.length > 0
-                    ? internalVal[idx]
-                    : ''}
-                </Text>
-              </View>
-            ))}
         </View>
 
         <View style={styles.bottomView}>
           <TouchableOpacity onPress={onChangeNumber}>
             <View style={styles.btnChangeNumber}>
-              <Text style={styles.textChange}>Change number</Text>
+              <Text style={styles.textBtn}>Изменить</Text>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity onPress={onResendOTP}>
+          <TouchableOpacity onPress={() => onSendOTP(otp)}>
             <View style={styles.btnResend}>
-              <Text style={styles.textResend}>Resend OTP</Text>
+              <Text style={styles.textBtn}>Войти</Text>
             </View>
           </TouchableOpacity>
         </View>
@@ -160,69 +142,58 @@ const styles = StyleSheet.create({
   containerAvoiding: {
     flex: 1,
     padding: 10,
+  },
+
+  topView: {
+    flex: 1,
     alignItems: 'center',
   },
 
   textTitle: {
     marginTop: 50,
-    marginBottom: 50,
-    fontSize: 16,
+    fontSize: 30,
+    color: COLORS.MAIN_COLOR,
   },
 
-  containerInput: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
+  otpInput: {
+    height: 200,
+    width: windowWidth - 60,
   },
 
-  cellView: {
-    paddingVertical: 11,
+  borderStyleBase: {
+    width: 30,
+    height: 45,
+  },
+
+  underlineStyleBase: {
     width: 40,
-    margin: 5,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderBottomWidth: 1.5,
+    height: 55,
+    borderWidth: 0,
+    borderBottomWidth: 1,
+    color: COLORS.BLACK,
+    fontSize: 24,
     borderBottomColor: 'red',
+    backgroundColor: COLORS.WHITE,
+    borderRadius: 5,
   },
 
-  cellText: {
-    textAlign: 'center',
-    fontSize: 16,
+  underlineStyleHighLighted: {
+    borderBottomColor: COLORS.BLACK,
   },
 
   bottomView: {
-    flexDirection: 'row',
     flex: 1,
+    width: windowWidth - 60,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-end',
+    marginLeft: 10,
     marginBottom: 50,
-    alignItems: 'flex-end',
   },
 
-  btnChangeNumber: {
-    width: 150,
-    height: 50,
-    borderRadius: 10,
-    alignItems: 'flex-start',
-    justifyContent: 'center',
-  },
-
-  textChange: {
-    color: '#234db7',
-    alignItems: 'center',
-    fontSize: 15,
-  },
-
-  btnResend: {
-    width: 150,
-    height: 59,
-    borderRadius: 10,
-    alignItems: 'flex-end',
-    justifyContent: 'center',
-  },
-
-  textResend: {
-    color: '#234db7',
-    alignItems: 'center',
-    fontSize: 15,
+  textBtn: {
+    color: COLORS.LINK,
+    fontSize: 18,
   },
 });
 

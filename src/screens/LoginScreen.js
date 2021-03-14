@@ -23,17 +23,18 @@ const LoginScreen = () => {
     } else if (email && !password) {
       alert('Проверьте поле pass!');
     } else if (password & !email) {
-      alert('Проверьте поле email!')
+      alert('Проверьте поле email!');
     } else {
-      alert('Проверьте поля email и password!')
+      alert('Проверьте поля email и password!');
     }
-  }
+  };
 
   return (
     <View style={styles.container}>
       <Image
         style={styles.logo}
-        source={require('../assests/images/movie-logo.png')} />
+        source={require('../assests/images/movie-logo.png')}
+      />
       <Text style={styles.text}>Movie App</Text>
 
       <FormInput
@@ -43,16 +44,21 @@ const LoginScreen = () => {
         iconType="user"
         keyboardType="email-address"
         autoCapitalize="none"
-        autoCorrect={false} />
+        autoCorrect={false}
+      />
 
       <FormInput
         labelValue={password}
         onChangeText={(userPassword) => setPassword(userPassword)}
         placeholderText="Password"
         iconType="lock"
-        secureTextEntry={true} />
+        secureTextEntry={true}
+      />
 
-      <FormButton buttonTitle="Войти" onPress={() => validationLogin(email, password)} />
+      <FormButton
+        buttonTitle="Войти"
+        onPress={() => validationLogin(email, password)}
+      />
 
       <TouchableOpacity
         style={styles.forgotButton}
@@ -61,22 +67,19 @@ const LoginScreen = () => {
       </TouchableOpacity>
 
       <View style={styles.loginWithBar}>
-        <SocialButton
-          btnType='google'
-          onPress={() => googleLogin()} />
+        <SocialButton btnType="google" onPress={() => googleLogin()} />
 
         <SocialButton
-          btnType='phone'
-          onPress={() => navigation.navigate('Phone')} />
+          btnType="phone"
+          onPress={() => navigation.navigate('Phone')}
+        />
 
-        <SocialButton
-          btnType='apple'
-          onPress={() => alert('In developing')} />
+        <SocialButton btnType="apple" onPress={() => alert('In developing')} />
       </View>
 
       <TouchableOpacity
         style={styles.createBtn}
-        onPress={() => navigation.navigate('SignUp')} >
+        onPress={() => navigation.navigate('SignUp')}>
         <Text style={styles.navBtnText}>Создать аккаунт...</Text>
       </TouchableOpacity>
     </View>
@@ -98,8 +101,10 @@ const styles = StyleSheet.create({
 
   text: {
     fontSize: 28,
-    marginBottom: 10,
+    marginBottom: 30,
     color: COLORS.MAIN_COLOR,
+    fontFamily: 'Roboto-Bold',
+
   },
 
   forgotButton: {

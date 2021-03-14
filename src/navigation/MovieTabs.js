@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
@@ -11,6 +11,7 @@ import ActorScreen from '../screens/ActorScreen';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {COLORS} from '../utilities/colors';
+import MovieIndicator from '../components/ui/MovieIndicator';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -112,15 +113,27 @@ const tabBarOptions = {
 };
 
 const MovieTabs = () => {
-  return (
-    <Tab.Navigator
-      screenOptions={({route}) => screenOption(route)}
-      tabBarOptions={tabBarOptions}>
-      <Tab.Screen name="Home" component={HomeStack} />
-      <Tab.Screen name="Search" component={SearchStack} />
-      <Tab.Screen name="Bookmarks" component={BookmarksStack} />
-    </Tab.Navigator>
-  );
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(async () => {
+      setIsLoading(false);
+    }, 500);
+  }, [isLoading]);
+
+  if(isLoading) {
+    return <MovieIndicator />
+  } else {
+    return (
+      <Tab.Navigator
+        screenOptions={({route}) => screenOption(route)}
+        tabBarOptions={tabBarOptions}>
+        <Tab.Screen name="Home" component={HomeStack} />
+        <Tab.Screen name="Search" component={SearchStack} />
+        <Tab.Screen name="Bookmarks" component={BookmarksStack} />
+      </Tab.Navigator>
+    );
+  }
 };
 
 export default MovieTabs;

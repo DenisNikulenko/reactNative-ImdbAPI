@@ -1,5 +1,12 @@
 import React from 'react';
-import {View, StyleSheet, Text, Image, TouchableOpacity, Linking} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Text,
+  Image,
+  TouchableOpacity,
+  Linking,
+} from 'react-native';
 
 import {windowHeight, windowWidth} from '../../utilities/dimensions';
 import {COLORS} from '../../utilities/colors';
@@ -8,7 +15,6 @@ import {IMAGE_URL} from '../../utilities/apiUrl';
 
 const MovieDetailsImage = ({movieDetails, movieTrailer}) => {
   const {poster_path, title, vote_average, runtime} = movieDetails;
-  const trailerLink = movieTrailer ? movieTrailer : 'https://www.youtube.com';
 
   return (
     <View>
@@ -25,9 +31,13 @@ const MovieDetailsImage = ({movieDetails, movieTrailer}) => {
         {title}
       </Text>
 
-      <TouchableOpacity style={styles.iconPlay} onPress={() => Linking.openURL(trailerLink)}>
-        <Ionicons  name='play-outline' size={70} color='white'/>
-      </TouchableOpacity>
+      {movieTrailer ? (
+        <TouchableOpacity
+          style={styles.iconPlay}
+          onPress={() => Linking.openURL(movieTrailer)}>
+          <Ionicons name="play-outline" size={70} color="white" />
+        </TouchableOpacity>
+      ) : null}
 
       <View style={styles.opacityBlockBottom}></View>
 
@@ -72,7 +82,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: '100%',
     height: 100,
-    top: windowWidth / 2.5,
+    top: windowHeight / 5,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -83,7 +93,7 @@ const styles = StyleSheet.create({
     width: windowWidth,
     height: 30,
     opacity: 0.3,
-    top: windowWidth - 10,
+    top: windowHeight / 2 - 30,
   },
 
   descriptionBottom: {
@@ -92,7 +102,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
     width: '100%',
-    top: windowWidth - 5,
+    top: windowHeight / 2 - 25,
   },
 
   textInfo: {

@@ -22,7 +22,6 @@ export const getMovieDetails = async (id) => {
       `${BASE_URL}/movie/${id}?${API_KEY}&${LANGUAGE}`,
     );
     const json = await response.json();
-    console.log(json)
     return json;
   } catch (error) {
     return error;
@@ -59,10 +58,12 @@ export const getMovieTrailer = async (id) => {
   try {
     const response = await fetch(`${BASE_URL}/movie/${id}/videos?${API_KEY}`);
     const json = await response.json();
-    const result = json.results[0].key
+    if(json.results.length) {
+      const result = json.results[0].key
+      const link = `${YOUTUBE}=${result}`;
+      return link;
+    }
 
-    const link = `${YOUTUBE}=${result}`;
-    return link;
   } catch (error) {
     return console.log(error);
   }

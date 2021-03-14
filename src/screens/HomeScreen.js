@@ -50,7 +50,7 @@ const HomeScreen = () => {
   );
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, isReady ? {backgroundColor: 'white'} : null]}>
       {isReady ? (
         <MovieIndicator />
       ) : (

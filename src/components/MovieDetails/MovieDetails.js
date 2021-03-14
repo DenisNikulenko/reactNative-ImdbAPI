@@ -25,11 +25,17 @@ const MovieDetails = ({movieDetails, movieDetailsActors, movieTrailer}) => {
     </Text>
   ));
   
-  const ProductionCompany = production_companies.map((item, idx) => (
-    <Text style={styles.textOverview} key={idx}>
-      {idx + 1}. {item.name}
-    </Text>
-  ));
+  const ProductionCompany = production_companies.map((item, idx) => {
+  let {name} = item;
+
+  name.length > 20 ? name = name.substring(0, 20) : null;
+
+    return (
+      <Text allowFontScaling={true} maxFontSizeMultiplier={2} numberOfLines={1} style={styles.textOverview} key={idx}>
+        {idx + 1}. {name}
+      </Text>
+    )
+});
 
   overview.length < 5 ? (overview = 'нет описания :(') : null;
 
@@ -69,31 +75,29 @@ const MovieDetails = ({movieDetails, movieDetailsActors, movieTrailer}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    width: windowWidth,
   },
 
   text: {
-    width: windowWidth,
     padding: 12,
-    borderBottomRightRadius: 60,
   },
 
   textOverview: {
     color: COLORS.BLACK,
     fontFamily: 'Roboto-Italic',
     marginLeft: 5,
-    // textAlign: 'center',
     fontSize: 16,
     marginTop: 5,
   },
 
   blockDetails: {
-    paddingLeft: 20,
-    paddingRight: 20,
+    paddingLeft: 5,
+    paddingRight: 5,
     borderTopColor: COLORS.MAIN_COLOR,
     borderTopWidth: 1,
     flexDirection: 'row',
-    marginLeft: 20,
-    marginRight: 20,
+    marginLeft: 10,
+    marginRight: 10,
     marginBottom: 20,
     justifyContent: 'space-between',
   },

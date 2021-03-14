@@ -3,6 +3,7 @@ import {View, TextInput, StyleSheet} from 'react-native';
 
 import {windowHeight, windowWidth} from '../../utilities/dimensions';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import { COLORS } from '../../utilities/colors';
 
 const FormInput = ({labelValue, placeholderText, iconType, ...rest}) => {
   return (
@@ -33,6 +34,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#fff',
+    borderRadius: 10,
+    borderBottomColor: COLORS.MAIN_COLOR,
   },
 
   iconStyle: {
@@ -40,7 +43,7 @@ const styles = StyleSheet.create({
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
-    borderRightColor: '#ccc',
+    borderRightColor: COLORS.MAIN_COLOR,
     borderRightWidth: 1,
     width: 50,
   },

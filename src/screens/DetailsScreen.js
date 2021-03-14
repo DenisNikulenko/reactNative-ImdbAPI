@@ -61,7 +61,7 @@ const DetailsScreen = ({route}) => {
         dispatch(removeFromBookmarks(movieDetails));
         ToastAndroid.show('Удален из закладок', 2000);
       }}>
-      <Ionicons style={styles.iconStarGold} name="star" size={26} />
+      <Ionicons style={[styles.iconStar, {color: 'gold'}]} name="star" size={26} />
     </TouchableOpacity>
   );
 
@@ -71,7 +71,7 @@ const DetailsScreen = ({route}) => {
         dispatch(addToBookmarks(movieDetails));
         ToastAndroid.show('Добавлен в закладки', 2000);
       }}>
-      <Ionicons style={styles.iconStarWhite} name="star" size={26} />
+      <Ionicons style={styles.iconStar} name="star" size={26} />
     </TouchableOpacity>
   );
 
@@ -93,17 +93,10 @@ const DetailsScreen = ({route}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
 
-  iconStarWhite: {
+  iconStar: {
     color: 'white',
-    marginRight: 10,
-  },
-
-  iconStarGold: {
-    color: 'gold',
     marginRight: 10,
   },
 });
