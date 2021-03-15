@@ -23,6 +23,7 @@ const SearchScreen = () => {
   const [refreshing, setRefreshing] = useState(false);
 
   useEffect(() => {
+    console.log(foundItems)
     if (movieSearch.length > 3) {
       fetchAPI(movieSearch, page);
     }
@@ -37,7 +38,7 @@ const SearchScreen = () => {
     setRefreshing(false);
   };
 
-  const scrollOnRefresh = () => {
+  const OnRefresh = () => {
     setMovieSearch('');
     setRefreshing(true);
     setFoundItems([]);
@@ -46,10 +47,6 @@ const SearchScreen = () => {
 
   const scrollLoadMore = () => {
     setPage(page + 1);
-  };
-
-  const tabOnSearch = () => {
-    fetchAPI(movieSearch);
   };
 
   return (
@@ -62,8 +59,8 @@ const SearchScreen = () => {
           style={styles.searchInput}
           placeholder="Введите название фильма..."
           maxLength={64} />
-        <TouchableOpacity style={styles.serchBtn} onPress={tabOnSearch}>
-          <Ionicons name="search" color={COLORS.MAIN_COLOR} size={30} />
+        <TouchableOpacity style={styles.serchBtn} onPress={OnRefresh}>
+          <Ionicons name="close-outline" color={COLORS.MAIN_COLOR} size={34} />
         </TouchableOpacity>
       </View>
 
@@ -71,7 +68,7 @@ const SearchScreen = () => {
         <View style={styles.contentBlock}>
           <FlatList
             refreshing={refreshing}
-            onRefresh={() => scrollOnRefresh()}
+            onRefresh={() => spodeыOnRefresh()}
             onEndReached={() => scrollLoadMore()}
             onEndReachedThreshold={1}
             ListFooterComponent={() => <MovieIndicator />}
@@ -85,7 +82,6 @@ const SearchScreen = () => {
           <Text>Что будем искать?</Text>
         </View>
       )}
-      
     </View>
   );
 };

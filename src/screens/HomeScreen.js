@@ -23,7 +23,7 @@ const HomeScreen = () => {
 
   useEffect(() => {
     fetchAPI(page);
-    
+
     navigation.setOptions({
       headerRight: () => <BtnLogout />,
     });
@@ -41,16 +41,18 @@ const HomeScreen = () => {
   };
 
   const BtnLogout = () => (
-    <TouchableOpacity onPress={() => {
-      // dispatch(clearData());
-      logaut();
-    }}>
+    <TouchableOpacity
+      onPress={() => {
+        // dispatch(clearData());
+        logaut();
+      }}>
       <Ionicons style={styles.iconLogout} name="exit-outline" size={30} />
     </TouchableOpacity>
   );
 
   return (
-    <View style={[styles.container, isReady ? {backgroundColor: 'white'} : null]}>
+    <View
+      style={[styles.container, isReady ? {backgroundColor: 'white'} : null]}>
       {isReady ? (
         <MovieIndicator />
       ) : (

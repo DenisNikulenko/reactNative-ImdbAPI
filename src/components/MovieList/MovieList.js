@@ -18,6 +18,7 @@ import {
 
 import {useNavigation} from '@react-navigation/native';
 
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import MovieIndicator from '../ui/MovieIndicator';
 import MovieStars from '../ui/MovieStars';
 import {isExist} from '../../utilities/funcHelpers';
@@ -44,7 +45,8 @@ const MovieList = ({stateMovies, scrollLoadMore}) => {
             dispatch(addToBookmarks(item));
             ToastAndroid.show('Добавлен в закладки', 2000);
           }}>
-          <Text style={styles.textAddBookMark}>Добавить в закладки</Text>
+          <Ionicons name='bookmarks' size={24} color='white' />
+          <Text style={styles.textAddBookMark}>Смотреть позже</Text>
         </TouchableOpacity>
       );
     };
@@ -57,6 +59,8 @@ const MovieList = ({stateMovies, scrollLoadMore}) => {
             dispatch(removeFromBookmarks(item));
             ToastAndroid.show('Удален из закладок', 2000);
           }}>
+            
+          <Ionicons name='bookmarks' size={24} color='white' />
           <Text style={styles.textAddBookMark}>Удалить из закладок</Text>
         </TouchableOpacity>
       );
@@ -66,9 +70,11 @@ const MovieList = ({stateMovies, scrollLoadMore}) => {
       <View style={styles.movieItem}>
         <TouchableOpacity onPress={() => navigation.navigate('Details', {id})}>
           <View style={styles.infoTitle}>
+
             <Text numberOfLines={1} style={styles.infoTitleText}>
               {title}
             </Text>
+            
             <Text style={styles.infoTitleDate}>Релиз: {release_date}</Text>
           </View>
           <Image
@@ -161,6 +167,7 @@ const styles = StyleSheet.create({
     height: windowHeight / 18,
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
+    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -169,7 +176,16 @@ const styles = StyleSheet.create({
     color: COLORS.WHITE,
     fontSize: 18,
     fontWeight: '600',
+    marginLeft: 10,
   },
+
+  bookmark: {
+    // marginLeft: 300,
+    right: 100,
+    justifyContent: 'flex-end',
+    position: 'absolute',
+  }
 });
 
 export default MovieList;
+

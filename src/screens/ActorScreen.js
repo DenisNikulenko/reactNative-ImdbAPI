@@ -4,6 +4,7 @@ import {IMAGE_URL} from '../utilities/apiUrl';
 
 const ActorScreen = ({route}) => {
   const {item} = route.params;
+  console.log(item)
   const {
     name,
     profile_path,
