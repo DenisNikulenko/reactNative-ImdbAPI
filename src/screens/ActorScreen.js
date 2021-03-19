@@ -17,20 +17,28 @@ const ActorScreen = ({route}) => {
             source={{
               uri: `${IMAGE_URL}/${profile_path}`,
             }} />
-      <Text> {item.name} </Text>
+      <Text style={styles.text}>{name}</Text>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: 'center',
+    flex: 1,
     alignItems: 'center'
   },
+
   actorImage: {
     borderRadius: 150,
     width: 300,
     height: 400,
+  },
+
+  text: {
+    marginTop: 10,
+    fontFamily: 'Roboto-Italic',
+    fontSize: 20,
+    fontWeight: 'bold'
   }
 });
 

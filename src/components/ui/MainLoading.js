@@ -12,7 +12,7 @@ const MainLoading = () => {
         autoPlay
         loop />
     </View>
-  );
+  );``
 };
 
 const styles = StyleSheet.create({
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#000000'
+    backgroundColor: '#000'
   },
 });
 

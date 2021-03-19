@@ -68,7 +68,7 @@ const SearchScreen = () => {
         <View style={styles.contentBlock}>
           <FlatList
             refreshing={refreshing}
-            onRefresh={() => spodeыOnRefresh()}
+            onRefresh={() => OnRefresh()}
             onEndReached={() => scrollLoadMore()}
             onEndReachedThreshold={1}
             ListFooterComponent={() => <MovieIndicator />}

@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -59,9 +59,9 @@ const MovieList = ({stateMovies, scrollLoadMore}) => {
             dispatch(removeFromBookmarks(item));
             ToastAndroid.show('Удален из закладок', 2000);
           }}>
-            
+
           <Ionicons name='bookmarks' size={24} color='white' />
-          <Text style={styles.textAddBookMark}>Удалить из закладок</Text>
+          <Text style={styles.textAddBookMark}>Remove from bookmark</Text>
         </TouchableOpacity>
       );
     };

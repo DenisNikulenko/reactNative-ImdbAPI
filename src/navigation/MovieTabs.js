@@ -118,7 +118,7 @@ const MovieTabs = () => {
   useEffect(() => {
     setTimeout(async () => {
       setIsLoading(false);
-    }, 800);
+    }, 500);
   }, [isLoading]);
 
   if(isLoading) {
