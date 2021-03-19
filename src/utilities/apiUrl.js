@@ -20,5 +20,4 @@ const TEST_GIT_FLOW7='TEST_GIT_FLOW'
 
 
 
-
 //numberOfFiles //poste_path //ASPECT_RATIO// text?.length
