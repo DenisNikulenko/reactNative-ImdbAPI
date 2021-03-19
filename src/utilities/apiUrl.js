@@ -5,4 +5,13 @@ export const LANGUAGE = 'language=ru';
 export const TOP_POPULAR = 'movie/top_rated';
 export const SEARCH_MULTI = 'search/multi';
 
+const TEST_GIT_FLOW='TEST_GIT_FLOW'
+const TEST_GIT_FLOW='TEST_GIT_FLOW'
+
+const TEST_GIT_FLOW='TEST_GIT_FLOW'
+
+const TEST_GIT_FLOW='TEST_GIT_FLOW'
+
+
+
 //numberOfFiles //poste_path //ASPECT_RATIO// text?.length
