@@ -24,7 +24,7 @@
     "lottie-react-native": "^3.5.0",
     "prop-types": "^15.7.2",
     "react": "16.13.1",
-    "react-native": "0.63.4",
+    "react-native": "^0.64.0",
     "react-native-gesture-handler": "^1.10.0",
     "react-native-indicators": "^0.17.0",
     "react-native-otp-verify": "^1.0.3",
