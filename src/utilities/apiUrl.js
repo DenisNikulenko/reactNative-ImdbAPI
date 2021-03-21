@@ -5,19 +5,9 @@ export const LANGUAGE = 'language=ru';
 export const TOP_POPULAR = 'movie/top_rated';
 export const SEARCH_MULTI = 'search/multi';
 
-const TEST_GIT_FLOW1='TEST_GIT_FLOW'
-const TEST_GIT_FLOW2='TEST_GIT_FLOW'
+const TEST_GIT_FLOWsasa1='TEST_GIT_FLOW'
 
-const TEST_GIT_FLOW3='TEST_GIT_FLOW'
-
-const TEST_GIT_FLOW4='TEST_GIT_FLOW'
-const TEST_GIT_FLOW5='TEST_GIT_FLOW'
-
-const TEST_GIT_FLOW6='TEST_GIT_FLOW'
-
-const TEST_GIT_FLOW7='TEST_GIT_FLOW'
-
-
-
-
+const test = 'test'
+//dsadadasda
+//dasdasdasda
 //numberOfFiles //poste_path //ASPECT_RATIO// text?.length
